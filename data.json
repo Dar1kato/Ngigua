@@ -1,0 +1,10 @@
+{
+    "carro": {
+        "traduccion": "car",
+        "significado": "cosa que se mueve"
+    },
+    "perro": {
+        "traduccion": "dog",
+        "significado": "cosa que ladra"
+    }
+}
