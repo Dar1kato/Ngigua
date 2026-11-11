@@ -1,0 +1,1 @@
+export { Glosario as default } from './Glosario.jsx'

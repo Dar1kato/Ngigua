@@ -1,32 +1,57 @@
 import { useState } from 'react'
 import { 
-    getTraduccion,
-    getSignificado,
+    getTraduccionNgigua,
+    getTraduccionEspañol
 } 
 from '../../logic/traductor'
 
 export function Traductor() {
     const [palabra, setPalabra] = useState('')
     const [traduccion, setTraduccion] = useState('')
-    const [significado, setSignificado] = useState('')
+    const [isEspañol, setIsEspañol] = useState(true)
 
     function handleTraducir(e) {
         const palabra = e.target.value
         setPalabra(palabra)
-        setTraduccion(getTraduccion(palabra))
-        setSignificado(getSignificado(palabra))
+        
+        if (isEspañol) {
+            setTraduccion(getTraduccionNgigua(palabra))
+            return
+        }
+
+        if (!isEspañol) {
+            setTraduccion(getTraduccionEspañol(palabra))
+            return
+        }
+    }
+
+    function handleCambiarDireccion() {
+        setIsEspañol(!isEspañol)
+
+        if (!palabra) {
+            setTraduccion('')
+            return
+        }
+
+        setTraduccion(
+            !isEspañol
+                ? getTraduccionNgigua(palabra)
+                : getTraduccionEspañol(palabra)
+        )
     }
 
     return (
         <div>
             <form>
-                <label>Palabra: <input type="text" value={palabra} onChange={handleTraducir}/>
+                <label>{isEspañol ? 'Español' : 'Ngigua'}: <input type="text" value={palabra} onChange={handleTraducir}/>
                 </label>
             </form>
+            <button type="button" onClick={handleCambiarDireccion}>
+                Cambiar a {isEspañol ? 'Ngigua → Español' : 'Español → Ngigua'}
+            </button>
             <br></br>
             <p>
-                Traducción: {traduccion}<br />
-                significado: {significado}
+                {isEspañol ? 'Ngigua' : 'Español'}: {traduccion}<br />
             </p>
         </div>
     )

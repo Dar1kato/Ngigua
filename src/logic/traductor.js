@@ -1,9 +1,22 @@
-import data from '../../data.json'
+import data from '../data/data.json'
 
-export function getTraduccion(palabra) {
-    return data[palabra.toLowerCase()]?.traduccion ?? "Palabra no encontrada"
+export function traducir(idioma, español) {
+
 }
 
-export function getSignificado(palabra) {
-    return data[palabra.toLowerCase()]?.significado ?? "Palabra no econtrada"
+export function getTraduccionNgigua(palabra) {
+    const entrada = Object.values(data).find(
+        ({ español }) => español.toLowerCase() === palabra.toLowerCase()
+    )
+
+    return entrada?.ngigua ?? "Palabra no encontrada"
 }
+
+export function getTraduccionEspañol(palabra) {
+    const termino = palabra.toLowerCase()
+    const entrada = Object.values(data).find(
+        ({ ngigua }) => ngigua.toLowerCase() === palabra.toLowerCase()
+    )
+
+    return entrada?.español ?? "Palabra no encontrada"
+}   

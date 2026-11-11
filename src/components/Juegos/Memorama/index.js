@@ -1,0 +1,1 @@
+export { Memorama as default} from './Memorama.jsx'
