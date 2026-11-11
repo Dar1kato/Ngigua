@@ -1,25 +1,23 @@
-import { useState, useEffect } from 'react'
-import Traductor from './components/Traductor'
-import './App.css'
-import Glosario from './components/Glosario'
-import Memorama from './components/Juegos/Memorama'
+import { Routes, Route } from 'react-router-dom'
+import Traductor from './pages/Traductor'
+import Glosario from './pages/Glosario'
+import Inicio from './pages/Inicio'
+import Login from './pages/Login'
+import Juegos from './pages/Juegos'
+import Memorama from './pages/Memorama'
+import Admin from './pages/Admin'
 
-
-function App() {
+export default function App() {
   return (
-    <>
-      <h1>Notebook</h1>
-      <br />
-      <h2>Traductor</h2>
-      <Traductor />
-      <br />
-      <h2>Glosario</h2>
-      <Glosario />
-      <br />
-      <h2>Memorama</h2>
-      <Memorama />
-    </>
+    <Routes>
+      <Route path="/" element={<Inicio />}/>
+      <Route path="/traductor" element={<Traductor />}/>
+      <Route path="/glosario" element={<Glosario />}/>
+      <Route path="/juegos" element={<Juegos />}/>
+      <Route path="/juegos/memorama" element={<Memorama />}/>
+      <Route path="/login" element={<Login />}/>
+      <Route path="/admin" element={<Admin />}/>
+    </Routes>
   )
 }
 
-export default App
