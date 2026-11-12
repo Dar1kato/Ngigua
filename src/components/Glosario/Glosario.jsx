@@ -1,7 +1,6 @@
-import { useState } from "react";
-import data from '../../data/data.json'
 
-export function Glosario() {
+
+export function Glosario({palabras = []}) {
 
     return (
         <table>
@@ -13,14 +12,15 @@ export function Glosario() {
                 </tr>
             </thead>
             <tbody>
-                {Object.entries(data).map(([id, contenido]) => (
-                  <tr key={id}>
-                    <td>{id}</td>
-                    <td>{contenido.traduccion}</td>
-                    <td>{contenido.significado}</td>
-                  </tr>
-                ))}
-            </tbody>
-        </table>
-    )
+               {palabras.map((item) => (
+          <tr key={item.docId || item.id}>
+            <td>{item.id}</td>
+            <td>{item.ng}</td>
+            <td>{item.es}</td>
+            <td>{item.categoria}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
 }
