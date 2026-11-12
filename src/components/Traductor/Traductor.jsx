@@ -5,55 +5,59 @@ import {
 } 
 from '../../logic/traductor'
 
-export function Traductor() {
-    const [palabra, setPalabra] = useState('')
-    const [traduccion, setTraduccion] = useState('')
-    const [isEspañol, setIsEspañol] = useState(true)
+export default function Traductor({ palabras = [] }) {
+  const [palabra, setPalabra] = useState('')
+  const [traduccion, setTraduccion] = useState('')
+  const [isEspañol, setIsEspañol] = useState(true)
 
     function handleTraducir(e) {
-        const palabra = e.target.value
-        setPalabra(palabra)
+        const texto = e.target.value
+        setPalabra(texto)
         
         if (isEspañol) {
-            setTraduccion(getTraduccionNgigua(palabra))
+            setTraduccion(getTraduccionNgigua(palabras))
             return
         }
 
         if (!isEspañol) {
-            setTraduccion(getTraduccionEspañol(palabra))
+            setTraduccion(getTraduccionEspañol(palabras))
             return
         }
     }
 
-    function handleCambiarDireccion() {
-        setIsEspañol(!isEspañol)
+ function handleCambiarDireccion() {
+    const nuevoEstado = !isEspañol
+    setIsEspañol(nuevoEstado)
 
-        if (!palabra) {
-            setTraduccion('')
-            return
-        }
-
-        setTraduccion(
-            !isEspañol
-                ? getTraduccionNgigua(palabra)
-                : getTraduccionEspañol(palabra)
-        )
+    if (!palabra) {
+      setTraduccion('')
+      return
     }
 
-    return (
-        <div>
-            <form>
-                <label>{isEspañol ? 'Español' : 'Ngigua'}: <input type="text" value={palabra} onChange={handleTraducir}/>
-                </label>
-            </form>
-            <button type="button" onClick={handleCambiarDireccion}>
-                Cambiar a {isEspañol ? 'Ngigua → Español' : 'Español → Ngigua'}
-            </button>
-            <br></br>
-            <p>
-                {isEspañol ? 'Ngigua' : 'Español'}: {traduccion}<br />
-            </p>
-        </div>
+    setTraduccion(
+      nuevoEstado
+        ? getTraduccionNgigua(palabra, palabras)
+        : getTraduccionEspañol(palabra, palabras)
     )
+  }
+  
+    return (
+    <div>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <label>
+          {isEspañol ? 'Español' : 'Ngigua'}:{' '}
+          <input type="text" value={palabra} onChange={handleTraducir} />
+        </label>
+      </form>
+      <button type="button" onClick={handleCambiarDireccion}>
+        Cambiar a {isEspañol ? 'Ngigua → Español' : 'Español → Ngigua'}
+      </button>
+      <br />
+      <p>
+        {isEspañol ? 'Ngigua' : 'Español'}: {traduccion}
+        <br />
+      </p>
+    </div>
+  )
 }
 

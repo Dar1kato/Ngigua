@@ -1,22 +1,25 @@
-import data from '../data/data.json'
 
-export function traducir(idioma, español) {
 
+// Traduce de Español (item.es) -> Ngigua (item.ng)
+export function getTraduccionNgigua(palabra, palabras = []) {
+  const busqueda = palabra.trim().toLowerCase();
+  if (!busqueda) return "";
+
+  const encontrado = palabras.find(
+    (item) => item.es?.toLowerCase() === busqueda
+  );
+
+  return encontrado ? encontrado.ng : "No encontrado";
 }
 
-export function getTraduccionNgigua(palabra) {
-    const entrada = Object.values(data).find(
-        ({ español }) => español.toLowerCase() === palabra.toLowerCase()
-    )
+// Traduce de Ngigua (item.ng) -> Español (item.es)
+export function getTraduccionEspañol(palabra, palabras = []) {
+  const busqueda = palabra.trim().toLowerCase();
+  if (!busqueda) return "";
 
-    return entrada?.ngigua ?? "Palabra no encontrada"
+  const encontrado = palabras.find(
+    (item) => item.ng?.toLowerCase() === busqueda
+  );
+
+  return encontrado ? encontrado.es : "No encontrado";
 }
-
-export function getTraduccionEspañol(palabra) {
-    const termino = palabra.toLowerCase()
-    const entrada = Object.values(data).find(
-        ({ ngigua }) => ngigua.toLowerCase() === palabra.toLowerCase()
-    )
-
-    return entrada?.español ?? "Palabra no encontrada"
-}   
