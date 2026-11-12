@@ -36,7 +36,7 @@ Si el README contradice a `docs/` o a lo que te piden, avisa y pregunta antes de
 
 ## Regla 3: registrar cada tarea en el log de uso de IA
 
-**Al finalizar cualquier tarea que modifique el proyecto**, agrega una entrada al final de `docs/ai-usage-log.md`. Este archivo funciona como la "declaración sobre uso de IA" del proyecto.
+**Al finalizar cualquier tarea que modifique el proyecto**, agrega una entrada al final de `docs/99-uso-de-IA.md`. Este archivo funciona como la "declaración sobre uso de IA" del proyecto.
 
 Formato de la entrada (breve, sin relleno):
 
