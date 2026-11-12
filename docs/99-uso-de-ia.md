@@ -9,6 +9,7 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
 ```markdown
 ## AAAA-MM-DD · Título corto de la tarea
 
+- **Autor:** nombre de quien dio el prompt
 - **Herramienta / modelo:** nombre del agente y modelo
 - **Prompt:** "texto del prompt"
 - **Cambios:**

@@ -25,7 +25,3 @@ dist-ssr
 
 # Variables de entorno
 .env
-
-# Obsidian
-docs/.obsidian/
-docs/.trash/

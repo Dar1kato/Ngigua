@@ -43,6 +43,7 @@ Formato de la entrada (breve, sin relleno):
 ```markdown
 ## AAAA-MM-DD · Título corto de la tarea
 
+- **Autor:** nombre de quien dio el prompt (obtenlo con `git config user.name`)
 - **Herramienta / modelo:** nombre del agente y modelo, si lo conoces
 - **Prompt:** "texto del prompt que dio origen a la tarea"
 - **Cambios:**
@@ -53,7 +54,7 @@ Formato de la entrada (breve, sin relleno):
 
 Reglas del log:
 
-- Agrega la entrada **al final** del archivo. Nunca edites, reordenes ni borres entradas anteriores.
+- Agrega la entrada **al final** del archivo, dejando una línea en blanco antes del título. Nunca edites, reordenes ni borres entradas anteriores.
 - Una entrada por tarea. Si la tarea quedó incompleta o falló, regístrala igual indicando el estado.
 - **Prompt:** cítalo textualmente. Si es muy largo (más de unas 3 líneas), resúmelo fielmente y añade "(resumen)" al final.
 - **Cambios:** una línea por archivo, describiendo qué cambió y no cómo.
