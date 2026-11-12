@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import Traductor from './components/Traductor'
+import { Traductor } from './components/Traductor/Traductor'
 import './App.css'
-import Glosario from './components/Glosario'
-import Memorama from './components/Juegos/Memorama'
-import { cargarElementos } from './data/Firesotre_data'
+import { Glosario } from './components/Glosario/Glosario'
+import { Memorama } from './components/Juegos/Memorama/Memorama'
+import { cargarElementos } from './data/Firestore_data'
 
 function App() {
   const [palabras, setPalabras] = useState([])
@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       <h1>Notebook</h1>
-      <p>Palabras cargadas: {palabras.length}</p>
+      <p>Palabras cargadas desde Firestore: {palabras.length}</p>
       <br />
       <h2>Traductor</h2>
       <Traductor palabras={palabras} />

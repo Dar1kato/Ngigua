@@ -1,6 +1,4 @@
-
-
-export function Glosario({palabras = []}) {
+export function Glosario({ palabras = [] }) {
 
     return (
         <table>

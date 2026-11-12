@@ -4,8 +4,7 @@ import {
     getTraduccionEspañol
 } 
 from '../../logic/traductor'
-
-export default function Traductor({ palabras = [] }) {
+export function Traductor({ palabras = [] }) {
   const [palabra, setPalabra] = useState('')
   const [traduccion, setTraduccion] = useState('')
   const [isEspañol, setIsEspañol] = useState(true)
@@ -40,7 +39,7 @@ export default function Traductor({ palabras = [] }) {
         : getTraduccionEspañol(palabra, palabras)
     )
   }
-  
+
     return (
     <div>
       <form onSubmit={(e) => e.preventDefault()}>

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import data from '../../../data/data.json'
 import { Tarjeta } from './Tarjeta'
 
-export function Memorama({palabras = []}) {
+export function Memorama({ palabras = [] }) {
     function handleClick() {
 
     }
