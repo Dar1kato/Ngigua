@@ -81,14 +81,14 @@ Usuario                          Admin
 Inicio                           Login
 ├─ Traductor                     ├─ Pantalla de datos
 ├─ Juegos (Memorama)             └─ Estadísticas
-└─ Diccionario (Fichas)
+└─ Diccionario (Tabla)
 ```
 
 | Pantalla | Rol | Qué muestra | Componente |
 |---|---|---|---|
 | Traductor | Usuario | Campo de texto, botón para cambiar dirección y resultado | Traductor |
 | Juegos | Usuario | Memorama con tarjetas que se voltean | Memorama, Tarjeta |
-| Diccionario | Usuario | Cuadrícula de fichas con ngigua, español, imagen y audio | Glosario, Ficha |
+| Diccionario | Usuario | Tabla con ngigua, español, imagen y audio | Tabla |
 | Login | Admin | Formulario de acceso | Por crear |
 | Pantalla de datos | Admin | Tabla con alta, edición y baja de palabras | Por crear |
 | Estadísticas | Admin | Conteos y gráficas de uso | Por crear |
