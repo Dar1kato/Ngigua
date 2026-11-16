@@ -1,5 +1,3 @@
-
-
 export function Tarjeta({id, valor, volteada}) {
     return (
         <article>
