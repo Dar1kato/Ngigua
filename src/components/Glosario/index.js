@@ -1,1 +1,1 @@
-export { Glosario as default } from './Glosario.jsx'
+export { Tabla as default } from './Tabla.jsx'

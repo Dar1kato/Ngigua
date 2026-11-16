@@ -6,3 +6,11 @@ Los componentes que se ocupen para esta pagina deben crearse en /components/«No
 
 El estilo de esta página se debe modificar en /styles/Juegos.css.
 */
+
+export default function Juegos() {
+    return (
+        <main>
+            <h1>Juegos</h1>
+        </main>
+    )
+}

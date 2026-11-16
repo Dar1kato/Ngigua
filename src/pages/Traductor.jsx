@@ -6,3 +6,10 @@ Los componentes que se ocupen para esta pagina deben crearse en /components/«No
 
 El estilo de esta página se debe modificar en /styles/Traductor.css.
 */
+export default function Traductor() {
+    return (
+        <main>
+            <h1>Traductor</h1>
+        </main>
+    )
+}

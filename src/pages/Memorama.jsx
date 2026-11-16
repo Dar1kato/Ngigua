@@ -6,3 +6,10 @@ Los componentes que se ocupen para esta pagina deben crearse en /components/«No
 
 El estilo de esta página se debe modificar en /styles/Memorama.css.
 */
+export default function Memorama() {
+    return (
+        <main>
+            <h1>Memorama</h1>
+        </main>
+    )
+}

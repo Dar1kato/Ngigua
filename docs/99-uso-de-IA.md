@@ -20,3 +20,13 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
 ---
 
 ## Entradas
+
+
+## 2026-11-15 · Fix bug TypeError en Tabla.jsx (slice de undefined)
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Antigravity / Claude Opus 4.6
+- **Prompt:** "Ayudame a debugear el siguiente error: Uncaught TypeError: Cannot read properties of undefined (reading 'slice') at Tabla (Tabla.jsx:19:39). itemsFiltrados es un useMemo que llama a una funcion filtrarDatos() en logic/glosario.js. Esa funcion en glosario.js, escrita tal cual dentro del useMemo si funciona, pero al pasar la logica fuera de Tabla.jsx a su respectivo archivo de logica se rompe"
+- **Cambios:**
+  - `src/components/Glosario/Tabla.jsx`: Agregado `return` implícito en el `useMemo` que llama a `filtrarDatos`; corregido el `.map()` del render para iterar objetos en vez de destructurar como arreglo; eliminado import no usado de `useEffect`
+- **Revisión humana:** Pendiente

@@ -6,3 +6,11 @@ Los componentes que se ocupen para esta pagina deben crearse en /components/«No
 
 El estilo de esta página se debe modificar en /styles/Admin.css.
 */
+
+export default function Admin() {
+    return (
+        <main>
+            <h1>Admin</h1>
+        </main>
+    )
+}
