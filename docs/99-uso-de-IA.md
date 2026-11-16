@@ -40,3 +40,34 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
 - **Cambios:**
   - `src/components/Glosario/Filtros.jsx`: Corregida la firma de la función para recibir props como objeto destructurado `{ busqueda, setBusqueda, categoria, setCategoria }` en vez de parámetros individuales
 - **Revisión humana:** Pendiente
+
+
+## 2026-11-15 · Fix bug en handleIngresarLetra (letras siempre marcadas como malas)
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Antigravity / Claude Opus 4.6
+- **Prompt:** "donde se encuentra el bug en mi funcion handleIngresarLetra()? En este momento cualquier letra que añada al formulario de entrada de letras me marca como letra mala, a pesar de que si sea una letra valida"
+- **Cambios:**
+  - `src/components/Juegos/Ahorcado/JuegoAhorcado.jsx`: Corregido `onChange` para pasar `e.target.value` en vez del evento completo a `handleIngresarLetra`
+  - `src/logic/ahorcado.js`: Corregido typo `lenght` → `length` en la guarda de longitud de `verificarLetra`
+- **Revisión humana:** Pendiente
+
+
+## 2026-11-15 · Input controlado para formulario de letras en Ahorcado
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Antigravity / Claude Opus 4.6
+- **Prompt:** "pregunta, como puedo hacer que el formulario se limpie al ingresar cualquier letra? actualmente borrar la letra existente cuenta como un intento y añadir una letra adicional extiende el input, haciendolo incorrecto"
+- **Cambios:**
+  - `src/components/Juegos/Ahorcado/JuegoAhorcado.jsx`: Agregado estado `inputLetra` para hacer el input controlado; se limpia con `setInputLetra("")` después de procesar la letra; añadido `value={inputLetra}` y `maxLength={1}` al input
+- **Revisión humana:** Pendiente
+
+
+## 2026-11-15 · Diagnóstico de estado del botón de reset en Ahorcado
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Antigravity / Gemini 3.8 Flash
+- **Prompt:** "Por que el boton de reseteo no se actualiza cuando se gana o pierde la partida?"
+- **Cambios:**
+  - Ninguno (consulta y diagnóstico: explicación de la condición booleana en el atributo `disabled` de `JuegoAhorcado.jsx` y correcciones en los valores de retorno de `checkDerrota` y `checkVictoria` en `ahorcado.js`)
+- **Revisión humana:** Pendiente

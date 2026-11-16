@@ -1,0 +1,1 @@
+import { Ahorcado as default } from "./Ahorcado";

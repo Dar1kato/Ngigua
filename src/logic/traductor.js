@@ -1,9 +1,5 @@
 import data from '../data/data.json'
 
-export function traducir(idioma, español) {
-
-}
-
 export function getTraduccionNgigua(palabra) {
     const entrada = Object.values(data).find(
         ({ español }) => español.toLowerCase() === palabra.toLowerCase()

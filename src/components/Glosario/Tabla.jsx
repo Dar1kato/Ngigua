@@ -10,12 +10,13 @@ export function Tabla() {
     const [busqueda, setBusqueda] = useState("")
     const [categoria, setCategoria] = useState("")
     const [paginaActual, setPaginaActual] = useState(1)
-    const [tamañoTabla, setTamañoTabla] = useState(20)
 
     const itemsFiltrados = useMemo(
         () => filtrarDatos(data, busqueda, categoria),
         [busqueda, categoria]
     )
+
+    const tamañoTabla = 20;
 
     const ultimoIndex = paginaActual * tamañoTabla;
     const primerIndex = ultimoIndex - tamañoTabla;

@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import Juegos from './pages/Juegos'
 import Memorama from './pages/Memorama'
 import Admin from './pages/Admin'
+import Ahorcado from './pages/Ahorcado'
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Route path="/glosario" element={<Glosario />}/>
       <Route path="/juegos" element={<Juegos />}/>
       <Route path="/juegos/memorama" element={<Memorama />}/>
+      <Route path="/juegos/ahorcado" element={<Ahorcado />}/>
       <Route path="/login" element={<Login />}/>
       <Route path="/admin" element={<Admin />}/>
     </Routes>
