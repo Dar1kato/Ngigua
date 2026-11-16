@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { 
     filtrarDatos 
 } from "../../logic/glosario";
+import Filtros from "./Filtros";
+import Paginacion from "./Paginacion";
 import data from '../../data/data.json'
 
 export function Tabla() {
@@ -21,7 +23,13 @@ export function Tabla() {
 
     return (
         <section>
-            <Filtros busqueda={busqueda} setBusqueda={setBusqueda} categoria={categoria} setCategoria={setCategoria} />
+            <Filtros 
+                busqueda={busqueda} 
+                setBusqueda={setBusqueda} 
+                categoria={categoria} 
+                setCategoria={setCategoria} 
+            />
+
             <table>
                 <thead>
                     <tr>
@@ -40,6 +48,14 @@ export function Tabla() {
                     ))}
                 </tbody>
             </table>
+            
+            <Paginacion 
+                paginaActual={paginaActual} 
+                setPaginaActual={setPaginaActual} 
+                tamañoTabla={tamañoTabla} 
+                ultimoIndex={ultimoIndex} 
+                postActual={postActual} 
+            />
         </section>
     )
 }

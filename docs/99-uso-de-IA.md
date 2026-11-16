@@ -30,3 +30,13 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
 - **Cambios:**
   - `src/components/Glosario/Tabla.jsx`: Agregado `return` implícito en el `useMemo` que llama a `filtrarDatos`; corregido el `.map()` del render para iterar objetos en vez de destructurar como arreglo; eliminado import no usado de `useEffect`
 - **Revisión humana:** Pendiente
+
+
+## 2026-11-15 · Fix bug TypeError en Filtros.jsx (setBusqueda is not a function)
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Antigravity / Claude Opus 4.6
+- **Prompt:** "Tengo el siguiente error en el componente de <Filtros />: Filtros.jsx:4 Uncaught TypeError: setBusqueda is not a function at onChange (Filtros.jsx:4:64)"
+- **Cambios:**
+  - `src/components/Glosario/Filtros.jsx`: Corregida la firma de la función para recibir props como objeto destructurado `{ busqueda, setBusqueda, categoria, setCategoria }` en vez de parámetros individuales
+- **Revisión humana:** Pendiente
