@@ -11,7 +11,7 @@ export function Glosario({ palabras = [] }) {
 
   return (
     <div>
-      {/*  botones de filtrado */}
+      {/* botones de filtrado */}
       <div style={{ display: 'flex', gap: '10px', marginBottom: '15px', flexWrap: 'wrap' }}>
         <button onClick={() => setFiltroActivo('Todos')} style={{ fontWeight: filtroActivo === 'Todos' ? 'bold' : 'normal' }}>
           Todos
@@ -37,14 +37,24 @@ export function Glosario({ palabras = [] }) {
       <table>
         <thead>
           <tr>
+            <th>Imagen</th> {/* <--- Columna de imagen agregada */}
             <th>Ngigua</th>
             <th>Español</th>
             <th>Categoría</th>
           </tr>
         </thead>
         <tbody>
-          {palabrasFiltradas.map((item) => (
-            <tr key={item.docId || item.id}>
+          {palabrasFiltradas.map((item, index) => (
+            <tr key={item.docId || item.id || index}>
+              <td>
+                {/* <--- Etiqueta de imagen agregada con la ruta que subió el script */}
+                <img 
+                  src={item.imagen} 
+                  alt={item.es} 
+                  style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px' }} 
+                  onError={(e) => { e.target.style.display = 'none' }} /* Se oculta si no encuentra la foto local */
+                />
+              </td>
               <td>{item.ng}</td>
               <td>{item.es}</td>
               <td>{item.categoria}</td>
