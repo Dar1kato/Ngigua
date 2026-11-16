@@ -71,3 +71,13 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
 - **Cambios:**
   - Ninguno (consulta y diagnóstico: explicación de la condición booleana en el atributo `disabled` de `JuegoAhorcado.jsx` y correcciones en los valores de retorno de `checkDerrota` y `checkVictoria` en `ahorcado.js`)
 - **Revisión humana:** Pendiente
+
+
+## 2026-11-16 · Diagnóstico de TypeError en Abecedario.jsx (prop letrasUsadas undefined)
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Antigravity / Gemini 3.8 Flash
+- **Prompt:** "ayudame a resolver este bug: Uncaught TypeError: Cannot read properties of undefined (reading 'includes') at Abecedario.jsx:12:34"
+- **Cambios:**
+  - Ninguno (consulta y diagnóstico: identificación de discrepancia en el nombre de la prop `letrasEncontradas` vs `letrasUsadas` entre `JuegoAhorcado.jsx` y `Abecedario.jsx`)
+- **Revisión humana:** Pendiente

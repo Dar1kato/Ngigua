@@ -1,4 +1,4 @@
-const palabras = ["amor", "calor", "perro"]
+const palabras = ["amor", "calor", "perro", "directo"]
 
 export function generarPalabra() {
     const palabra = palabras[Math.floor(Math.random() * palabras.length)]
@@ -19,6 +19,12 @@ export function checkVictoria(letrasUsadas, palabra) {
     return palabra.every(letra => letrasUsadas.includes(letra))
 }
 
+
 export function checkDerrota(intentos) {
     return intentos === 0
+}
+
+
+export function resetearAbecedario() {
+
 }

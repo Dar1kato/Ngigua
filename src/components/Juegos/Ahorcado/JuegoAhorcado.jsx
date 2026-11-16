@@ -5,46 +5,57 @@ import {
     checkDerrota,
     generarPalabra
 } from "../../../logic/ahorcado"
+import { Abecedario } from "./Abecedario"
 
 export function JuegoAhorcado() {
     const [palabra, setPalabra] = useState(generarPalabra())
+    const [letrasEncontradas, setletrasEncontradas] = useState([])
     const [letrasUsadas, setLetrasUsadas] = useState([])
     const [inputLetra, setInputLetra] = useState("")
     const [intentos, setIntentos] = useState(7)
 
-    let victoria = checkVictoria(letrasUsadas, palabra)
+
+    let victoria = checkVictoria(letrasEncontradas, palabra)
     let derrota = checkDerrota(intentos)
+
 
     function handleIngresarLetra(input) {
         setInputLetra("")
 
-        if (verificarLetra(input, letrasUsadas, palabra)) {
-            setLetrasUsadas([...letrasUsadas, input]);
+        if (verificarLetra(input, letrasEncontradas, palabra)) {
+            setletrasEncontradas([...letrasEncontradas, input]);
+            setLetrasUsadas([...letrasUsadas, input])
+            
         } else {
             const intentosRestantes = (intentos - 1) < 0 ? 0 : intentos - 1
+            setLetrasUsadas([...letrasUsadas, input])
             setIntentos(intentosRestantes)
         }
     }
 
+
     function handleReset() {
-        setLetrasUsadas([])
+        setletrasEncontradas([])
         setInputLetra("")
         setIntentos(7)
         setPalabra(generarPalabra())
+        setLetrasUsadas([])
 
         victoria, derrota = false, false
     }
 
+
     return (
         <section>
             <p>{intentos}</p>
-            <p>{palabra}</p>
+            <p>{palabra.length - letrasEncontradas.length} letras restantes</p>
             <form>
                 <input type="text" value={inputLetra} onChange={e => handleIngresarLetra(e.target.value)} maxLength={1} placeholder="Ingresa tu letra"></input>
                 <button type="button" disabled={!victoria&&!derrota} onClick={handleReset}>Resetear</button>
             </form>
             {victoria&&<p>Victoria!</p>}
             {derrota&&<p>Derrota...</p>}
+            <Abecedario letrasUsadas={letrasUsadas}/>
         </section>
     )
 }
