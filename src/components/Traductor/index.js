@@ -1,1 +1,1 @@
-export { Traductor as default } from './Traductor.jsx'
+export { Traduccion as default } from './Traduccion.jsx'

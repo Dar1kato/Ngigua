@@ -11,6 +11,7 @@ export function filtrarDatos(data, busqueda, categoria) {
             .map(([id, item]) => ({ ...item, id }));
 }
 
+
 export function generarPaginas(postActual, tamañoTabla) {
     let paginas = [];                                  
     const post = Object.keys(postActual).length;

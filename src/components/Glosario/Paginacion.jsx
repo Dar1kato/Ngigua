@@ -1,4 +1,6 @@
-import { generarPaginas } from "../../logic/glosario";
+import { 
+    generarPaginas,
+} from "../../logic/glosario";
 
 export default function Paginacion({ paginaActual, setPaginaActual, tamañoTabla, ultimoIndex, postActual }) {
   let paginas = generarPaginas(postActual, tamañoTabla);

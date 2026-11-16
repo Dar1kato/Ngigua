@@ -1,10 +1,12 @@
 {
     "132": {
         "ngigua": "car",
-        "español": "carro"
+        "español": "carro",
+        "categoria": "Sustantivo"
     },
     "923": {
         "ngigua": "dog",
-        "español": "perro"
+        "español": "perro",
+        "categoria": "Verbo"
     }
 }

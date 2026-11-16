@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { 
-    filtrarDatos 
+    filtrarDatos,
 } from "../../logic/glosario";
 import Filtros from "./Filtros";
 import Paginacion from "./Paginacion";
@@ -36,6 +36,7 @@ export function Tabla() {
                         <th>ID</th>
                         <th>Ngigua</th>
                         <th>Español</th>
+                        <th>Categoría</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,11 +45,12 @@ export function Tabla() {
                             <td>{item.id}</td>
                             <td>{item.ngigua}</td>
                             <td>{item.español}</td>
+                            <td>{item.categoria}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-            
+
             <Paginacion 
                 paginaActual={paginaActual} 
                 setPaginaActual={setPaginaActual} 

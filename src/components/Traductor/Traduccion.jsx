@@ -5,7 +5,7 @@ import {
 } 
 from '../../logic/traductor'
 
-export function Traductor() {
+export function Traduccion() {
     const [palabra, setPalabra] = useState('')
     const [traduccion, setTraduccion] = useState('')
     const [isEspañol, setIsEspañol] = useState(true)
