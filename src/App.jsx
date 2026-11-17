@@ -1,4 +1,8 @@
+import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { 
+  cargarElementos 
+} from './data/Firestore_data'
 import Traductor from './pages/Traductor'
 import Glosario from './pages/Glosario'
 import Inicio from './pages/Inicio'
@@ -9,6 +13,22 @@ import Admin from './pages/Admin'
 import Ahorcado from './pages/Ahorcado'
 
 export default function App() {
+  const [palabras, setPalabras] = useState([])
+  const [cargando, setCargando] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    cargarElementos()
+      .then((datos) => {
+        setPalabras(datos)
+        setCargando(false)
+      })
+      .catch((err) => {
+        setError(err.message)
+        setCargando(false)
+      })
+  }, [])
+
   return (
     <Routes>
       <Route path="/" element={<Inicio />}/>

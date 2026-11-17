@@ -23,5 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-# Variables de entorno
+# llaves privadas (Ignora la API Key)
 .env
+.env.*
+!.env.example
+*serviceAccountKey*.json
