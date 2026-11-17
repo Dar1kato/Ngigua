@@ -1,14 +1,19 @@
-export function filtrarDatos(data, busqueda, categoria) {
-    return Object.entries(data)
-            .filter(([, item]) => {
-                if (!item || !item.ngigua) return false;
+export function filtrarDatos(data = [], busqueda = "", categoria = "") {
+    const normalizar = (valor) => String(valor ?? "").trim().toLocaleLowerCase()
+    const entradas = Array.isArray(data)
+        ? data.map((item, index) => [item?.id ?? item?.docId ?? index, item])
+        : Object.entries(data ?? {})
 
-                return (
-                    item.ngigua.toString().toLowerCase().includes(busqueda.toLocaleLowerCase()) &&
-                    (categoria === "" || item.categoria === categoria)
-                );
-            })
-            .map(([id, item]) => ({ ...item, id }));
+    return entradas
+        .filter(([, item]) => {
+            if (!item?.ng) return false
+
+            return (
+                normalizar(item.ng).includes(normalizar(busqueda)) &&
+                (!categoria || normalizar(item.categoria) === normalizar(categoria))
+            )
+        })
+        .map(([id, item]) => ({ ...item, id: item.id ?? id }))
 }
 
 

@@ -4,16 +4,16 @@ import {
 } from "../../logic/glosario";
 import Filtros from "./Filtros";
 import Paginacion from "./Paginacion";
-import data from '../../data/data.json'
 
-export function Tabla() {
+
+export function Tabla({ palabras = [] }) {
     const [busqueda, setBusqueda] = useState("")
     const [categoria, setCategoria] = useState("")
     const [paginaActual, setPaginaActual] = useState(1)
 
     const itemsFiltrados = useMemo(
-        () => filtrarDatos(data, busqueda, categoria),
-        [busqueda, categoria]
+        () => filtrarDatos(palabras, busqueda, categoria),
+        [palabras, busqueda, categoria]
     )
 
     const tamañoTabla = 20;
@@ -26,9 +26,15 @@ export function Tabla() {
         <section>
             <Filtros 
                 busqueda={busqueda} 
-                setBusqueda={setBusqueda} 
+                setBusqueda={(valor) => {
+                    setBusqueda(valor)
+                    setPaginaActual(1)
+                }}
                 categoria={categoria} 
-                setCategoria={setCategoria} 
+                setCategoria={(valor) => {
+                    setCategoria(valor)
+                    setPaginaActual(1)
+                }}
             />
 
             <table>
@@ -44,8 +50,8 @@ export function Tabla() {
                     {postActual.map((item) => (
                         <tr key={item.id}>
                             <td>{item.id}</td>
-                            <td>{item.ngigua}</td>
-                            <td>{item.español}</td>
+                            <td>{item.ng}</td>
+                            <td>{item.es}</td>
                             <td>{item.categoria}</td>
                         </tr>
                     ))}

@@ -81,3 +81,29 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
 - **Cambios:**
   - Ninguno (consulta y diagnóstico: identificación de discrepancia en el nombre de la prop `letrasEncontradas` vs `letrasUsadas` entre `JuegoAhorcado.jsx` y `Abecedario.jsx`)
 - **Revisión humana:** Pendiente
+
+## 2026-11-16 · Corrección de traducciones con Firebase
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Copilot SDK en VS Code / modelo no disponible
+- **Prompt:** "Verifica por qué el componente del Traductor no esta realizando las traducciones. Hubo un merge considerable, revisa App.jsx y todo lo relacionado a Firebase para entender las modificaciones y ayudame a resolver el bug"
+- **Cambios:**
+  - `src/components/Traductor/index.js`: Reexporta el componente que recibe las palabras cargadas.
+  - `src/components/Traductor/Traductor.jsx`: Restaura la traducción en ambos sentidos usando el vocabulario recibido.
+  - `src/data/Firestore_data.js`: Normaliza los campos antiguos y canónicos de las palabras.
+  - `src/pages/Traduccion.jsx`: Muestra los estados de carga y error del vocabulario.
+  - `src/App.jsx`: Pasa los estados de carga y error a la página del Traductor.
+  - `src/firebase.js`: Elimina la inicialización de Analytics no utilizada.
+  - Validación: pendiente; no se ejecutaron lint ni build.
+- **Revisión humana:** Pendiente
+
+## 2026-11-16 · Corrección de tabla y filtro del glosario
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Copilot SDK en VS Code / modelo no disponible
+- **Prompt:** "hay un bug en Tabla, los datos no estan mostrandose correctamente. Al recargar la pagina la tabla esta vacia, solo al escribir una letra es cuando inicia la visualizacion de elementos. Ademas, el dropdown para filtrar por categorias dejo de funciona."
+- **Cambios:**
+  - `src/components/Glosario/Tabla.jsx`: Recalcula los resultados al cargar palabras y reinicia la paginación al cambiar filtros.
+  - `src/logic/glosario.js`: Admite datos en arreglo u objeto, normaliza categoría y preserva IDs.
+  - Validación: lint focalizado, build y pruebas manuales de lógica aprobados.
+- **Revisión humana:** Pendiente

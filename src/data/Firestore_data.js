@@ -11,8 +11,14 @@ export async function cargarElementos() {
     )
   );
 
-  return snap.docs.map((d) => ({
-    docId: d.id,
-    ...d.data(),
-  }));
+  return snap.docs.map((d) => {
+    const palabra = d.data()
+
+    return {
+      ...palabra,
+      docId: d.id,
+      es: palabra.es ?? palabra.español,
+      ng: palabra.ng ?? palabra.ngigua,
+    }
+  })
 }

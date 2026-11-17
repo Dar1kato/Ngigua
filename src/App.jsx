@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import { 
   cargarElementos 
 } from './data/Firestore_data'
-import Traductor from './pages/Traductor'
+import Traduccion from './pages/Traduccion'
 import Glosario from './pages/Glosario'
 import Inicio from './pages/Inicio'
 import Login from './pages/Login'
@@ -32,8 +32,17 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Inicio />}/>
-      <Route path="/traductor" element={<Traductor />}/>
-      <Route path="/glosario" element={<Glosario />}/>
+      <Route
+        path="/traduccion"
+        element={
+          <Traduccion
+            palabras={palabras}
+            cargando={cargando}
+            error={error}
+          />
+        }
+      />
+      <Route path="/glosario" element={<Glosario palabras={palabras}/>}/>
       <Route path="/juegos" element={<Juegos />}/>
       <Route path="/juegos/memorama" element={<Memorama />}/>
       <Route path="/juegos/ahorcado" element={<Ahorcado />}/>
