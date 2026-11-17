@@ -62,8 +62,7 @@ export function Tabla({ palabras = [] }) {
                 paginaActual={paginaActual} 
                 setPaginaActual={setPaginaActual} 
                 tamañoTabla={tamañoTabla} 
-                ultimoIndex={ultimoIndex} 
-                postActual={postActual} 
+                totalElementos={itemsFiltrados.length}
             />
         </section>
     )

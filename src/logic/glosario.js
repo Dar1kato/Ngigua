@@ -1,5 +1,6 @@
 export function filtrarDatos(data = [], busqueda = "", categoria = "") {
     const normalizar = (valor) => String(valor ?? "").trim().toLocaleLowerCase()
+
     const entradas = Array.isArray(data)
         ? data.map((item, index) => [item?.id ?? item?.docId ?? index, item])
         : Object.entries(data ?? {})
@@ -17,13 +18,7 @@ export function filtrarDatos(data = [], busqueda = "", categoria = "") {
 }
 
 
-export function generarPaginas(postActual, tamañoTabla) {
-    let paginas = [];                                  
-    const post = Object.keys(postActual).length;
-
-    for (let i = 1; i <= Math.ceil(post / tamañoTabla); i++) {
-      paginas.push(i);
-    }
-
-    return paginas;
+export function generarPaginas(totalElementos, tamañoTabla) {
+    const totalPaginas = Math.ceil(totalElementos / tamañoTabla)
+    return Array.from({ length: totalPaginas }, (_, indice) => indice + 1)
 }

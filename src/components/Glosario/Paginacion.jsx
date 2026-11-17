@@ -2,16 +2,36 @@ import {
     generarPaginas,
 } from "../../logic/glosario";
 
-export default function Paginacion({ paginaActual, setPaginaActual, tamañoTabla, ultimoIndex, postActual }) {
-  let paginas = generarPaginas(postActual, tamañoTabla);
+export default function Paginacion({ paginaActual, setPaginaActual, tamañoTabla, totalElementos }) {
+  const paginas = generarPaginas(totalElementos, tamañoTabla)
+  const ultimaPagina = paginas.length
 
   return (
-    <div className="paginacion">
-      <button onClick={() => setPaginaActual(tamañoTabla === ultimoIndex ? paginaActual : paginaActual - 1)}>Anterior</button>
-      {paginas.map((pagina, index) => (
-        <button key={index} onClick={() => setPaginaActual(pagina)}>{pagina}</button>
+    <nav className="paginacion" aria-label="Paginación del glosario">
+      <button
+        type="button"
+        disabled={paginaActual <= 1 || ultimaPagina === 0}
+        onClick={() => setPaginaActual((pagina) => Math.max(1, pagina - 1))}
+      >
+        Anterior
+      </button>
+      {paginas.map((pagina) => (
+        <button
+          key={pagina}
+          type="button"
+          aria-current={pagina === paginaActual ? 'page' : undefined}
+          onClick={() => setPaginaActual(pagina)}
+        >
+          {pagina}
+        </button>
       ))}
-      <button onClick={() => setPaginaActual(paginaActual === paginas[paginas.length - 1] ? paginaActual : paginaActual + 1)}>Siguiente</button>
-    </div>
-  );
+      <button
+        type="button"
+        disabled={paginaActual >= ultimaPagina || ultimaPagina === 0}
+        onClick={() => setPaginaActual((pagina) => Math.min(ultimaPagina, pagina + 1))}
+      >
+        Siguiente
+      </button>
+    </nav>
+  )
 }

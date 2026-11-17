@@ -1,6 +1,3 @@
-
-
-// Traduce de Español (item.es) -> Ngigua (item.ng)
 export function getTraduccionNgigua(palabra, palabras = []) {
   const busqueda = palabra.trim().toLowerCase();
   if (!busqueda) return "";
@@ -12,7 +9,6 @@ export function getTraduccionNgigua(palabra, palabras = []) {
   return encontrado ? encontrado.ng : "No encontrado";
 }
 
-// Traduce de Ngigua (item.ng) -> Español (item.es)
 export function getTraduccionEspañol(palabra, palabras = []) {
   const busqueda = palabra.trim().toLowerCase();
   if (!busqueda) return "";
