@@ -1,4 +1,4 @@
-const palabras = ["amor", "calor", "perro", "directo"]
+const palabras = ["nchia", "kunxin", "kumichin", "kunthua", "nua", "thin", "nithe", "thuchjuin"]
 
 export function generarPalabra() {
     const palabra = palabras[Math.floor(Math.random() * palabras.length)]
