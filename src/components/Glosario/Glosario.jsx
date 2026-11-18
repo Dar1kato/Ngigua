@@ -1,17 +1,14 @@
 import { useState } from 'react';
 
 export function Glosario({ palabras = [] }) {
-  // Estado para saber qué filtro está activo. Inicia mostrando "Todos"
   const [filtroActivo, setFiltroActivo] = useState('Todos');
 
-  // arreglo de palabras en tiempo real dependiendo del botón seleccionado
   const palabrasFiltradas = filtroActivo === 'Todos'
     ? palabras
     : palabras.filter((item) => item.categoria?.toLowerCase() === filtroActivo.toLowerCase());
 
   return (
     <div>
-      {/* botones de filtrado */}
       <div style={{ display: 'flex', gap: '10px', marginBottom: '15px', flexWrap: 'wrap' }}>
         <button onClick={() => setFiltroActivo('Todos')} style={{ fontWeight: filtroActivo === 'Todos' ? 'bold' : 'normal' }}>
           Todos
@@ -30,14 +27,12 @@ export function Glosario({ palabras = [] }) {
         </button>
       </div>
 
-      {/* Contador para saber cuántas palabras hay en la categoría seleccionada */}
       <p><em>Mostrando {palabrasFiltradas.length} resultados para "{filtroActivo}"</em></p>
 
-      {/* Tabla de palabras */}
       <table>
         <thead>
           <tr>
-            <th>Imagen</th> {/* <--- Columna de imagen agregada */}
+            <th>Imagen</th>
             <th>Ngigua</th>
             <th>Español</th>
             <th>Categoría</th>
@@ -47,12 +42,10 @@ export function Glosario({ palabras = [] }) {
           {palabrasFiltradas.map((item, index) => (
             <tr key={item.docId || item.id || index}>
               <td>
-                {/* <--- Etiqueta de imagen agregada con la ruta que subió el script */}
                 <img 
                   src={item.imagen} 
-                  alt={item.es} 
+                  alt={item.imagen || "Sin ruta"} 
                   style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px' }} 
-                  onError={(e) => { e.target.style.display = 'none' }} /* Se oculta si no encuentra la foto local */
                 />
               </td>
               <td>{item.ng}</td>
