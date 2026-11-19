@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { 
     shuffle,
     girarTarjeta,
@@ -92,8 +92,24 @@ export function JuegoMemorama() {
     const [tarjetas, setTarjetas] = useState(shuffle(items))
     const [primerTarjeta, setPrimeraTarjeta] = useState(null)
     const [volteadas, setvolteadas] = useState(0)
+    const [bloqueo, setBloqueo] = useState(false)
+
+    useEffect(() => {
+        if (volteadas !== 2) return
+
+        const timer = setTimeout(() => {
+            setTarjetas((tarjetasActuales) => resetTarjetas(tarjetasActuales))
+            setPrimeraTarjeta(null)
+            setvolteadas(0)
+            setBloqueo(false)
+        }, 1000)
+
+        return () => clearTimeout(timer)
+    }, [volteadas])
 
     function handleClickCartas(item) {
+        if (bloqueo) return
+
         const tarjetasActualizadas = volteadas === 2 ? resetTarjetas(tarjetas) : tarjetas
         const primeraSeleccionada = volteadas === 2 ? null : primerTarjeta
         const tarjetaSeleccionada = tarjetasActualizadas.find((tarjeta) => tarjeta.id === item.id)
@@ -112,7 +128,12 @@ export function JuegoMemorama() {
             }
 
             setPrimeraTarjeta(null)
-            setvolteadas(encontrada ? 0 : 2)
+            if (encontrada) {
+                setvolteadas(0)
+            } else {
+                setBloqueo(true)
+                setvolteadas(2)
+            }
         } else {
             setPrimeraTarjeta(nuevaTarjeta)
             setvolteadas(1)

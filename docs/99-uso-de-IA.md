@@ -127,3 +127,13 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
   - `src/logic/memorama.js`: Marca ambas cartas de una pareja como volteadas y emparejadas.
   - Validación: build y ESLint del componente aprobados; ESLint de la lógica reporta la referencia preexistente a `items` en el valor predeterminado de `shuffle`.
 - **Revisión humana:** Pendiente
+
+## 2026-11-18 · Ocultamiento temporizado de parejas incorrectas
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Copilot SDK en VS Code / modelo no disponible
+- **Prompt:** "Ayudame a completar el useEffect, para que despues de 1 segundo de voltear la segunda carta, y si no son pareja, estas se vuelvan a ocultar"
+- **Cambios:**
+  - `src/components/Juegos/Memorama/JuegoMemorama.jsx`: Oculta los intentos fallidos un segundo después y bloquea clics durante la espera.
+  - Validación: build y ESLint del componente aprobados.
+- **Revisión humana:** Pendiente
