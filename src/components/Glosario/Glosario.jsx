@@ -5,7 +5,9 @@ export function Glosario({ palabras = [] }) {
 
   const palabrasFiltradas = filtroActivo === 'Todos'
     ? palabras
-    : palabras.filter((item) => item.categoria?.toLowerCase() === filtroActivo.toLowerCase());
+    : palabras.filter((item) =>
+        item.categoria?.toLowerCase().startsWith(filtroActivo.toLowerCase())
+      );
 
   return (
     <div>
@@ -22,7 +24,7 @@ export function Glosario({ palabras = [] }) {
         <button onClick={() => setFiltroActivo('adjetivo')} style={{ fontWeight: filtroActivo === 'adjetivo' ? 'bold' : 'normal' }}>
           Adjetivos
         </button>
-        <button onClick={() => setFiltroActivo('adverbio')} style={{ fontWeight: filtroActivo === 'adverbio' ? 'bold' : 'normal' }}>
+        <button onClick={() => setFiltroActivo('adverbios')} style={{ fontWeight: filtroActivo === 'adverbios' ? 'bold' : 'normal' }}>
           Adverbios
         </button>
       </div>
@@ -42,11 +44,13 @@ export function Glosario({ palabras = [] }) {
           {palabrasFiltradas.map((item, index) => (
             <tr key={item.docId || item.id || index}>
               <td>
-                <img 
-                  src={item.imagen} 
-                  alt={item.imagen || "Sin ruta"} 
-                  style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px' }} 
-                />
+                {item.imagen && (
+                  <img
+                    src={item.imagen}
+                    alt={item.es}
+                    style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px' }}
+                  />
+                )}
               </td>
               <td>{item.ng}</td>
               <td>{item.es}</td>
