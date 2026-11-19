@@ -2,10 +2,9 @@ name: CI
 
 on:
   push:
+    branches: [main, dev]
   pull_request:
-
-permissions:
-  contents: read
+    branches: [main, dev]
 
 jobs:
   verificar:
@@ -18,11 +17,11 @@ jobs:
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: npm
+          node-version: '22'
+          cache: 'npm'
 
       - name: Instalar dependencias
-        run: npm ci
+        run: npm install
 
       - name: Revisar código
         run: npm run lint
