@@ -9,6 +9,12 @@ export function Glosario({ palabras = [] }) {
         item.categoria?.toLowerCase().startsWith(filtroActivo.toLowerCase())
       );
 
+  const reproducirAudio = (rutaAudio) => {
+    if (!rutaAudio) return;
+    const sonido = new Audio(rutaAudio);
+    sonido.play().catch((err) => console.error('Error al reproducir audio:', err));
+  };
+
   return (
     <div>
       <div style={{ display: 'flex', gap: '10px', marginBottom: '15px', flexWrap: 'wrap' }}>
@@ -35,6 +41,7 @@ export function Glosario({ palabras = [] }) {
         <thead>
           <tr>
             <th>Imagen</th>
+            <th>Audio</th>
             <th>Ngigua</th>
             <th>Español</th>
             <th>Categoría</th>
@@ -50,6 +57,17 @@ export function Glosario({ palabras = [] }) {
                     alt={item.es}
                     style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px' }}
                   />
+                )}
+              </td>
+              <td>
+                {item.audio && (
+                  <button
+                    onClick={() => reproducirAudio(item.audio)}
+                    title={`Escuchar ${item.ng}`}
+                    style={{ cursor: 'pointer', padding: '6px 10px', borderRadius: '6px' }}
+                  >
+                    🔊
+                  </button>
                 )}
               </td>
               <td>{item.ng}</td>
