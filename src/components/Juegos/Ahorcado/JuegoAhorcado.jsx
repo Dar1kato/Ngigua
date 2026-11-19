@@ -40,8 +40,6 @@ export function JuegoAhorcado() {
         setIntentos(7)
         setPalabra(generarPalabra())
         setLetrasUsadas([])
-
-        victoria, derrota = false, false
     }
 
 
