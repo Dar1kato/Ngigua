@@ -137,3 +137,14 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
   - `src/components/Juegos/Memorama/JuegoMemorama.jsx`: Oculta los intentos fallidos un segundo después y bloquea clics durante la espera.
   - Validación: build y ESLint del componente aprobados.
 - **Revisión humana:** Pendiente
+
+## 2026-11-18 · Corrección de errores de CI en Ahorcado
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Copilot SDK en VS Code / modelo no disponible
+- **Prompt:** "Corrige los errores de ESLint/parse reportados por CI: reasignación de `victoria`/`derrota` en `JuegoAhorcado.jsx` e import inválido en `Ahorcado/index.js`. (resumen)"
+- **Cambios:**
+  - `src/components/Juegos/Ahorcado/JuegoAhorcado.jsx`: Elimina la reasignación de valores derivados; el reinicio vuelve a calcularlos desde el estado.
+  - `src/components/Juegos/Ahorcado/index.js`: Reexporta `JuegoAhorcado` como predeterminado con sintaxis válida.
+  - Validación: ESLint del repositorio y build aprobados.
+- **Revisión humana:** Pendiente

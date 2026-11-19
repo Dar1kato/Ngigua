@@ -1,1 +1,1 @@
-import { Ahorcado as default } from "./Ahorcado";
+export { JuegoAhorcado as default } from "./JuegoAhorcado.jsx";
