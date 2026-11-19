@@ -1,7 +1,11 @@
-export function Tarjeta({id, valor, volteada}) {
+export function Tarjeta({ item, handleClick }) {
     return (
         <article>
-            {volteada && <p>{valor}</p>}
+            <button type="button" onClick={() => handleClick(item)}>
+                {item.volteada && item.tipo === "texto" && <p>{item.palabra}</p>}
+                {item.volteada && item.tipo === "img" && <img src={item.img} />}
+                {!item.volteada && <p>ngigua</p>}
+            </button>
         </article>
     )
-}
+}   
