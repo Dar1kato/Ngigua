@@ -111,30 +111,30 @@ export function JuegoMemorama() {
         if (bloqueo) return
 
         const tarjetasActualizadas = volteadas === 2 ? resetTarjetas(tarjetas) : tarjetas
-        const primeraSeleccionada = volteadas === 2 ? null : primerTarjeta
         const tarjetaSeleccionada = tarjetasActualizadas.find((tarjeta) => tarjeta.id === item.id)
+
+        const primeraSeleccionada = volteadas === 2 ? null : primerTarjeta
 
         if (!tarjetaSeleccionada || tarjetaSeleccionada.emparejada || tarjetaSeleccionada.volteada) return
 
         const nuevaTarjeta = girarTarjeta(tarjetaSeleccionada)
+
         let tarjetasSiguientes = updateTarjetas(tarjetasActualizadas, nuevaTarjeta)
 
         if (primeraSeleccionada) {
             const encontrada = isPreja(primeraSeleccionada, nuevaTarjeta)
 
             if (encontrada) {
-                tarjetasSiguientes = emparejarTarjetas(tarjetasSiguientes, primeraSeleccionada, nuevaTarjeta
-                )
-            }
-
-            setPrimeraTarjeta(null)
-            if (encontrada) {
+                tarjetasSiguientes = emparejarTarjetas(tarjetasSiguientes, primeraSeleccionada, nuevaTarjeta)
                 setvolteadas(0)
             } else {
                 setBloqueo(true)
                 setvolteadas(2)
             }
-        } else {
+
+            setPrimeraTarjeta(null)
+
+        } else {    
             setPrimeraTarjeta(nuevaTarjeta)
             setvolteadas(1)
         }
