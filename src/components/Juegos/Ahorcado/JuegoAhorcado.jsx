@@ -54,7 +54,7 @@ export function JuegoAhorcado() {
                 <button type="button" disabled={!victoria&&!derrota} onClick={handleReset}>Resetear</button>
             </form>
             {victoria&&<p>Victoria!</p>}
-            {derrota&&<p>Derrota...</p>}
+            {derrota&&<p>Derrota... La palabra era {palabra}</p>}
             <Abecedario letrasUsadas={letrasUsadas}/>
         </section>
     )

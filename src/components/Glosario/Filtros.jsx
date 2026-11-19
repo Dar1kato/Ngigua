@@ -7,6 +7,7 @@ export default function Filtros({ busqueda, setBusqueda, categoria, setCategoria
                 <option value="sustantivo">Sustantivo</option>
                 <option value="verbo">Verbo</option>
                 <option value="adjetivo">Adjetivo</option>
+                <option value="pronombre">Pronombre</option>
             </select>
         </form>
     )

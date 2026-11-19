@@ -105,3 +105,35 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
   - `src/logic/glosario.js`: Calcula páginas a partir del total de elementos.
   - Validación: lint focalizado, build y pruebas de cálculo aprobados.
 - **Revisión humana:** Pendiente
+
+## 2026-11-18 · Corrección del giro de tarjetas del memorama
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Copilot SDK en VS Code / modelo no disponible
+- **Prompt:** "por que las tarjetas ocupan que les de dos click para que se volteen? Ayudame a resolver ese bug. A partir de ahora ya puedes modificar archivos, y ya debes ingresar tus logs de uso de ia"
+- **Cambios:**
+  - `src/components/Juegos/Memorama/JuegoMemorama.jsx`: Reinicia las cartas anteriores y voltea la seleccionada con el mismo clic.
+  - `src/components/Juegos/Memorama/Tarjeta.jsx`: Elimina una importación de lógica que no se utilizaba.
+  - Validación: build aprobado; ESLint focalizado reporta el setter `setBloqueo` sin uso, ya existente.
+- **Revisión humana:** Pendiente
+
+## 2026-11-18 · Implementación del chequeo de parejas
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Copilot SDK en VS Code / modelo no disponible
+- **Prompt:** "Ayudame a terminar la implementación del chequeo de parejas. Recuerda añadir tu entrada al log"
+- **Cambios:**
+  - `src/components/Juegos/Memorama/JuegoMemorama.jsx`: Compara la segunda carta, conserva parejas correctas y reinicia intentos fallidos.
+  - `src/logic/memorama.js`: Marca ambas cartas de una pareja como volteadas y emparejadas.
+  - Validación: build y ESLint del componente aprobados; ESLint de la lógica reporta la referencia preexistente a `items` en el valor predeterminado de `shuffle`.
+- **Revisión humana:** Pendiente
+
+## 2026-11-18 · Ocultamiento temporizado de parejas incorrectas
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Copilot SDK en VS Code / modelo no disponible
+- **Prompt:** "Ayudame a completar el useEffect, para que despues de 1 segundo de voltear la segunda carta, y si no son pareja, estas se vuelvan a ocultar"
+- **Cambios:**
+  - `src/components/Juegos/Memorama/JuegoMemorama.jsx`: Oculta los intentos fallidos un segundo después y bloquea clics durante la espera.
+  - Validación: build y ESLint del componente aprobados.
+- **Revisión humana:** Pendiente

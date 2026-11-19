@@ -10,7 +10,8 @@ export function filtrarDatos(data = [], busqueda = "", categoria = "") {
             if (!item?.ng) return false
 
             return (
-                normalizar(item.ng).includes(normalizar(busqueda)) &&
+                (normalizar(item.ng).includes(normalizar(busqueda)) || 
+                normalizar(item.es).includes(normalizar(busqueda)) ) &&
                 (!categoria || normalizar(item.categoria) === normalizar(categoria))
             )
         })
