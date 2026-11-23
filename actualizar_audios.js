@@ -4,7 +4,6 @@ import fs from 'fs';
 import path from 'path';
 
 const serviceAccount = JSON.parse(fs.readFileSync('./serviceAccountKey.json', 'utf8'));
-
 initializeApp({
   credential: cert(serviceAccount)
 });
