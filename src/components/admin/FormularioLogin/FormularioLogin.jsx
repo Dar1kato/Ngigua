@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { iniciarSesionAdmin } from '../../logic/auth'
+import { iniciarSesionAdmin } from '../../../logic/auth'
 
 export function FormularioLogin({ onExito }) {
   const [correo, setCorreo] = useState('')

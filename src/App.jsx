@@ -11,7 +11,7 @@ import Juegos from './pages/Juegos'
 import Memorama from './pages/Memorama'
 import Admin from './pages/Admin'
 import Ahorcado from './pages/Ahorcado'
-import RutaProtegida from './components/RutaProtegida'
+import RutaProtegida from './components/admin/RutaProtegida'
 
 export default function App() {
   const [palabras, setPalabras] = useState([])

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
-import { escucharAdmin } from '../../logic/auth'
+import { escucharAdmin } from '../../../logic/auth'
 
 export function RutaProtegida({ children }) {
     const [admin, setAdmin] = useState(undefined) // undefined = verificando

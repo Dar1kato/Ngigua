@@ -4,7 +4,7 @@ Los componentes que se ocupen para esta pagina deben crearse en /components/«No
 El estilo de esta página se debe modificar en /styles/Login.css.
 */
 import { Link, useNavigate } from 'react-router-dom'
-import FormularioLogin from '../components/FormularioLogin'
+import FormularioLogin from '../components/admin/FormularioLogin'
 import '../styles/Login.css'
 
 export default function Login() {
