@@ -2,27 +2,56 @@ import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebas
 import { doc, getDoc } from 'firebase/firestore'
 import { auth, db } from '../firebase'
 
-async function esAdmin(uid) {
-  const snap = await getDoc(doc(db, 'admins', uid))
-  return snap.exists()
+export async function verificarEsAdmin(uid) {
+  const adminSnap = await getDoc(doc(db, 'admins', uid))
+  return adminSnap.exists()
 }
 
-export async function iniciarSesion(correo, contraseña) {
-  const { user } = await signInWithEmailAndPassword(auth, correo, contraseña)
-  if (!(await esAdmin(user.uid))) {
-    await signOut(auth)
-    throw new Error('sin-permisos')
+export async function iniciarSesionAdmin(email, password) {
+  let credencial
+
+  try {
+    credencial = await signInWithEmailAndPassword(auth, email.trim(), password)
+  } catch (err) {
+    if (
+      err.code === 'auth/invalid-credential' ||
+      err.code === 'auth/user-not-found' ||
+      err.code === 'auth/wrong-password' ||
+      err.code === 'auth/invalid-email'
+    ) {
+      throw new Error('Correo o contraseña incorrectos')
+    }
+    throw new Error('No se pudo iniciar sesión')
   }
-  return user
+
+  try {
+    const esAdmin = await verificarEsAdmin(credencial.user.uid)
+    if (!esAdmin) {
+      await signOut(auth)
+      throw new Error('Esta cuenta no tiene permisos de administrador')
+    }
+    return credencial.user
+  } catch (err) {
+    if (err.message === 'Esta cuenta no tiene permisos de administrador') {
+      throw err
+    }
+    await signOut(auth)
+    throw new Error('No se pudo iniciar sesión')
+  }
 }
 
-export function cerrarSesion() {
-  return signOut(auth)
+export async function cerrarSesion() {
+  await signOut(auth)
 }
 
-// Avisa cuando cambia la sesión; devuelve la función para dejar de escuchar
+// Avisa cuando cambia la sesión (usuario admin o null); la usa RutaProtegida.
+// Devuelve la función para dejar de escuchar.
 export function escucharAdmin(callback) {
   return onAuthStateChanged(auth, async (user) => {
-    callback(user && (await esAdmin(user.uid)) ? user : null)
+    try {
+      callback(user && (await verificarEsAdmin(user.uid)) ? user : null)
+    } catch {
+      callback(null)
+    }
   })
 }

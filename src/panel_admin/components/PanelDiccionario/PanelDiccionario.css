@@ -1,0 +1,32 @@
+.panel-diccionario { display: flex; flex-direction: column; gap: 20px; }
+.panel-diccionario__caja {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+  background: var(--admin-principal, #ec6459);
+  border-radius: 20px;
+}
+.panel-diccionario__busqueda { display: flex; flex-wrap: wrap; gap: 12px; }
+.panel-diccionario__busqueda input {
+  flex: 1 1 180px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 999px;
+  background: #e5e7eb;
+  color: #1f2937;
+  font: inherit;
+}
+.panel-diccionario__busqueda input:focus { outline: 2px solid #7c3aed; }
+.panel-diccionario__busqueda button,
+.panel-diccionario__acciones button {
+  padding: 10px 28px;
+  border: none;
+  border-radius: 999px;
+  background: var(--admin-acento, #f9dd6e);
+  color: #1f2937;
+  font: inherit;
+  cursor: pointer;
+}
+.panel-diccionario__acciones { display: flex; justify-content: space-between; gap: 12px; }
+.panel-diccionario__acciones button:disabled { opacity: 0.5; cursor: not-allowed; }

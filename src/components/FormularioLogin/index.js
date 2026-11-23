@@ -1,0 +1,1 @@
+export { FormularioLogin as default} from './FormularioLogin.jsx'
