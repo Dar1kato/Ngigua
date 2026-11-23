@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
+
 import { 
     verificarLetra,
     checkVictoria,
@@ -40,8 +41,6 @@ export function JuegoAhorcado() {
         setIntentos(7)
         setPalabra(generarPalabra())
         setLetrasUsadas([])
-
-        victoria, derrota = false, false
     }
 
 

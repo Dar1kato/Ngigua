@@ -137,3 +137,49 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
   - `src/components/Juegos/Memorama/JuegoMemorama.jsx`: Oculta los intentos fallidos un segundo después y bloquea clics durante la espera.
   - Validación: build y ESLint del componente aprobados.
 - **Revisión humana:** Pendiente
+
+## 2026-11-18 · Corrección de errores de CI en Ahorcado
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Copilot SDK en VS Code / modelo no disponible
+- **Prompt:** "Corrige los errores de ESLint/parse reportados por CI: reasignación de `victoria`/`derrota` en `JuegoAhorcado.jsx` e import inválido en `Ahorcado/index.js`. (resumen)"
+- **Cambios:**
+  - `src/components/Juegos/Ahorcado/JuegoAhorcado.jsx`: Elimina la reasignación de valores derivados; el reinicio vuelve a calcularlos desde el estado.
+  - `src/components/Juegos/Ahorcado/index.js`: Reexporta `JuegoAhorcado` como predeterminado con sintaxis válida.
+  - Validación: ESLint del repositorio y build aprobados.
+- **Revisión humana:** Pendiente
+
+## 2026-11-23 · Consolidación del panel de administración
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Copilot SDK en VS Code / modelo no disponible
+- **Prompt:** "Refactoriza `src/panel_admin`: consolida páginas y estilos en sus ubicaciones actuales, revisa imports y agrupa componentes admin en `src/components/admin`. (resumen)"
+- **Cambios:**
+  - `src/App.jsx`: Actualiza la importación de `RutaProtegida`.
+  - `src/pages/Admin.jsx`: Usa los componentes agrupados bajo `components/admin`.
+  - `src/pages/Login.jsx`: Usa el formulario de login desde `components/admin`.
+  - `src/components/admin/BarraLateralAdmin/BarraLateralAdmin.css`: Reubica los estilos de la barra lateral.
+  - `src/components/admin/BarraLateralAdmin/BarraLateralAdmin.jsx`: Reubica la barra lateral.
+  - `src/components/admin/BarraLateralAdmin/index.js`: Conserva el punto de entrada de la barra lateral.
+  - `src/components/admin/FormularioLogin/FormularioLogin.jsx`: Reubica el formulario y actualiza la importación de autenticación.
+  - `src/components/admin/FormularioLogin/index.js`: Conserva el punto de entrada del formulario de login.
+  - `src/components/admin/FormularioPalabra/FormularioPalabra.css`: Reubica los estilos del formulario de palabra.
+  - `src/components/admin/FormularioPalabra/FormularioPalabra.jsx`: Reubica el formulario de palabra.
+  - `src/components/admin/FormularioPalabra/index.js`: Conserva el punto de entrada del formulario de palabra.
+  - `src/components/admin/PanelDiccionario/PanelDiccionario.css`: Reubica los estilos del panel de diccionario.
+  - `src/components/admin/PanelDiccionario/PanelDiccionario.jsx`: Reubica el panel de diccionario.
+  - `src/components/admin/PanelDiccionario/index.js`: Conserva el punto de entrada del panel de diccionario.
+  - `src/components/admin/PanelEstadisticas/PanelEstadisticas.css`: Reubica los estilos del panel de estadísticas.
+  - `src/components/admin/PanelEstadisticas/PanelEstadisticas.jsx`: Reubica el panel de estadísticas.
+  - `src/components/admin/PanelEstadisticas/index.js`: Conserva el punto de entrada del panel de estadísticas.
+  - `src/components/admin/RutaProtegida/RutaProtegida.jsx`: Reubica la protección de ruta y corrige la ruta de autenticación.
+  - `src/components/admin/RutaProtegida/index.js`: Conserva el punto de entrada de la protección de ruta.
+  - `src/components/admin/TablaPalabras/TablaPalabras.css`: Reubica los estilos de la tabla de palabras.
+  - `src/components/admin/TablaPalabras/TablaPalabras.jsx`: Reubica la tabla de palabras.
+  - `src/components/admin/TablaPalabras/index.js`: Conserva el punto de entrada de la tabla de palabras.
+  - `src/components/admin/TarjetaEstadistica/TarjetaEstadistica.css`: Reubica los estilos de la tarjeta estadística.
+  - `src/components/admin/TarjetaEstadistica/TarjetaEstadistica.jsx`: Reubica la tarjeta estadística.
+  - `src/components/admin/TarjetaEstadistica/index.js`: Conserva el punto de entrada de la tarjeta estadística.
+  - `src/panel_admin/`: Elimina copias antiguas; reutiliza la página y el estilo ya existentes en `src/pages` y `src/styles`.
+  - Validación: build y ESLint aprobados; sin importaciones ni referencias restantes a `panel_admin`.
+- **Revisión humana:** Pendiente

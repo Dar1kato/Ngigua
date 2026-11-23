@@ -11,11 +11,17 @@ import Juegos from './pages/Juegos'
 import Memorama from './pages/Memorama'
 import Admin from './pages/Admin'
 import Ahorcado from './pages/Ahorcado'
+import RutaProtegida from './components/admin/RutaProtegida'
 
 export default function App() {
   const [palabras, setPalabras] = useState([])
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(null)
+
+  // La usa el panel de admin para refrescar las palabras después de guardar o eliminar
+  function recargar() {
+    return cargarElementos().then(setPalabras)
+  }
 
   useEffect(() => {
     cargarElementos()
@@ -47,7 +53,14 @@ export default function App() {
       <Route path="/juegos/memorama" element={<Memorama />}/>
       <Route path="/juegos/ahorcado" element={<Ahorcado />}/>
       <Route path="/login" element={<Login />}/>
-      <Route path="/admin" element={<Admin />}/>
+      <Route
+        path="/admin"
+        element={
+          <RutaProtegida>
+            <Admin palabras={palabras} recargar={recargar} />
+          </RutaProtegida>
+        }
+      />
     </Routes>
   )
 }
