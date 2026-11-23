@@ -19,9 +19,9 @@ export async function iniciarSesionAdmin(email, password) {
       err.code === 'auth/wrong-password' ||
       err.code === 'auth/invalid-email'
     ) {
-      throw new Error('Correo o contraseña incorrectos')
+      throw new Error('Correo o contraseña incorrectos', { cause: err })
     }
-    throw new Error('No se pudo iniciar sesión')
+    throw new Error('No se pudo iniciar sesión', { cause: err })
   }
 
   try {
@@ -36,7 +36,7 @@ export async function iniciarSesionAdmin(email, password) {
       throw err
     }
     await signOut(auth)
-    throw new Error('No se pudo iniciar sesión')
+    throw new Error('No se pudo iniciar sesión', { cause: err })
   }
 }
 
