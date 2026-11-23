@@ -1,0 +1,14 @@
+.tarjeta-estadistica {
+  flex: 1 1 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px;
+  background: #fff;
+  color: #1f2937;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+.tarjeta-estadistica__valor { font-size: 2rem; font-weight: 700; color: #2563eb; }
+.tarjeta-estadistica__etiqueta { font-size: 0.9rem; color: #6b7280; }

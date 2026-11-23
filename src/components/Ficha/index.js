@@ -1,0 +1,1 @@
+export { Ficha as default } from './Ficha.jsx'
