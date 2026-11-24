@@ -1,21 +1,34 @@
-/* Aquí se construye la pagina de Inicio (ruta "/").
+import Tarjeta from "../components/Diseno/Tarjetas";
+import '../styles/styles.css'
+export default function MenuAprendizaje() {
+  return (
+    <div>
+      <h2>Plataforma de aprendizaje para la lengua ngigua</h2>
 
-Los componentes que se ocupen para esta pagina deben crearse en /components/«NombreDelComponente»/NombreDelComponente.jsx.
+      <div className="contenedor-tarjetas">
+        <Tarjeta
+          nombre="Traductor"
+          imagen="/img/traductor.webp"
+          detalle="Traductor bidireccional entre el ngigua y el español."
+          ruta="/traduccion"
+        />
 
-El estilo de esta página se debe modificar en /styles/Inicio.css.
-*/
-import { useNavigate } from 'react-router-dom'
-import '../styles/Inicio.css'
+        <Tarjeta
+          nombre="Vocabulario"
+          imagen="/img/vocabulario.webp"
+          detalle="Palabras en ngigua."
+          ruta="/traduccion"
+         
+        />
 
-export default function Inicio() {
-    const navigate = useNavigate()
-
-    return (
-        <main>
-            <h1>Inicio</h1>
-            
-            <button onClick={() => navigate("/traduccion")}>Ir a traducción</button>
-        </main>
-    )
+        <Tarjeta
+          nombre="Juegos"
+          imagen="/img/juegos.webp"
+          detalle="Aprender ngigua y divertirse."
+          ruta="/traduccion"
+          
+        />
+      </div>
+    </div>
+  )
 }
-

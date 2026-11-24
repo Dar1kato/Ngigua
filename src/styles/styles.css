@@ -1,0 +1,7 @@
+ 
+body {
+  background-image: url("public/img/fondo.webp"); /* Usar barras diagonales y la ruta correcta */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
