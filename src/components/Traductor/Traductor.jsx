@@ -1,59 +1,54 @@
 import { useState } from 'react'
-import { 
-    getTraduccionNgigua,
-    getTraduccionEspañol
-} 
-from '../../logic/traductor'
+import {
+  getTraduccionEspañol,
+  getTraduccionNgigua,
+} from '../../logic/traductor'
 
-export function Traductor() {
-    const [palabra, setPalabra] = useState('')
-    const [traduccion, setTraduccion] = useState('')
-    const [isEspañol, setIsEspañol] = useState(true)
+export function Traductor({ palabras = [] }) {
+  const [busqueda, setBusqueda] = useState('')
+  const [resultado, setResultado] = useState(null)
+  const [isEspañol, setIsEspañol] = useState(true)
 
-    function handleTraducir(e) {
-        const palabra = e.target.value
-        setPalabra(palabra)
-        
-        if (isEspañol) {
-            setTraduccion(getTraduccionNgigua(palabra))
-            return
-        }
+  const traducir = (palabra, desdeEspañol) => (
+    desdeEspañol
+      ? getTraduccionNgigua(palabra, palabras)
+      : getTraduccionEspañol(palabra, palabras)
+  )
 
-        if (!isEspañol) {
-            setTraduccion(getTraduccionEspañol(palabra))
-            return
-        }
-    }
+  const buscarTraduccion = (event) => {
+    event.preventDefault()
+    setResultado(busqueda.trim() ? traducir(busqueda, isEspañol) : null)
+  }
 
-    function handleCambiarDireccion() {
-        setIsEspañol(!isEspañol)
+  const cambiarDireccion = () => {
+    const nuevaDireccion = !isEspañol
+    setIsEspañol(nuevaDireccion)
+    setResultado(busqueda.trim() ? traducir(busqueda, nuevaDireccion) : null)
+  }
 
-        if (!palabra) {
-            setTraduccion('')
-            return
-        }
+  return (
+    <section style={{ textAlign: 'center', margin: '20px 0' }}>
+      <form onSubmit={buscarTraduccion}>
+        <label>
+          {isEspañol ? 'Español' : 'Ngigua'}:{' '}
+          <input
+            type="text"
+            value={busqueda}
+            onChange={(event) => setBusqueda(event.target.value)}
+            placeholder="Escribe una palabra..."
+          />
+        </label>
+        <button type="submit">Buscar</button>
+      </form>
 
-        setTraduccion(
-            !isEspañol
-                ? getTraduccionNgigua(palabra)
-                : getTraduccionEspañol(palabra)
-        )
-    }
+      <button type="button" onClick={cambiarDireccion}>
+        Cambiar a {isEspañol ? 'Ngigua → Español' : 'Español → Ngigua'}
+      </button>
 
-    return (
-        <div>
-            <form>
-                <label>{isEspañol ? 'Español' : 'Ngigua'}: <input type="text" value={palabra} onChange={handleTraducir}/>
-                </label>
-            </form>
-            <button type="button" onClick={handleCambiarDireccion}>
-                Cambiar a {isEspañol ? 'Ngigua → Español' : 'Español → Ngigua'}
-            </button>
-            <br></br>
-            <p>
-                {isEspañol ? 'Ngigua' : 'Español'}: {traduccion}<br />
-            </p>
-        </div>
-    )
+      <p>
+        {isEspañol ? 'Ngigua' : 'Español'}:{' '}
+        <strong>{resultado ?? '---'}</strong>
+      </p>
+    </section>
+  )
 }
-

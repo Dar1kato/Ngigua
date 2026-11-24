@@ -23,9 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-# Variables de entorno
+# llaves privadas (Ignora la API Key)
 .env
-
-# Obsidian
-docs/.obsidian/
-docs/.trash/
+.env.*
+!.env.example
+*serviceAccountKey*.json

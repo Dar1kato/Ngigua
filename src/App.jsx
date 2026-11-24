@@ -1,25 +1,66 @@
 import { useState, useEffect } from 'react'
-import Traductor from './components/Traductor'
-import './App.css'
-import Glosario from './components/Glosario'
-import Memorama from './components/Juegos/Memorama'
+import { Routes, Route } from 'react-router-dom'
+import { 
+  cargarElementos 
+} from './data/Firestore_data'
+import Traduccion from './pages/Traduccion'
+import Glosario from './pages/Glosario'
+import Inicio from './pages/Inicio'
+import Login from './pages/Login'
+import Juegos from './pages/Juegos'
+import Memorama from './pages/Memorama'
+import Admin from './pages/Admin'
+import Ahorcado from './pages/Ahorcado'
+import RutaProtegida from './components/admin/RutaProtegida'
 
+export default function App() {
+  const [palabras, setPalabras] = useState([])
+  const [cargando, setCargando] = useState(true)
+  const [error, setError] = useState(null)
 
-function App() {
+  // La usa el panel de admin para refrescar las palabras después de guardar o eliminar
+  function recargar() {
+    return cargarElementos().then(setPalabras)
+  }
+
+  useEffect(() => {
+    cargarElementos()
+      .then((datos) => {
+        setPalabras(datos)
+        setCargando(false)
+      })
+      .catch((err) => {
+        setError(err.message)
+        setCargando(false)
+      })
+  }, [])
+
   return (
-    <>
-      <h1>Notebook</h1>
-      <br />
-      <h2>Traductor</h2>
-      <Traductor />
-      <br />
-      <h2>Glosario</h2>
-      <Glosario />
-      <br />
-      <h2>Memorama</h2>
-      <Memorama />
-    </>
+    <Routes>
+      <Route path="/" element={<Inicio />}/>
+      <Route
+        path="/traduccion"
+        element={
+          <Traduccion
+            palabras={palabras}
+            cargando={cargando}
+            error={error}
+          />
+        }
+      />
+      <Route path="/glosario" element={<Glosario palabras={palabras}/>}/>
+      <Route path="/juegos" element={<Juegos />}/>
+      <Route path="/juegos/memorama" element={<Memorama />}/>
+      <Route path="/juegos/ahorcado" element={<Ahorcado />}/>
+      <Route path="/login" element={<Login />}/>
+      <Route
+        path="/admin"
+        element={
+          <RutaProtegida>
+            <Admin palabras={palabras} recargar={recargar} />
+          </RutaProtegida>
+        }
+      />
+    </Routes>
   )
 }
-
-export default App

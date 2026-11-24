@@ -1,0 +1,36 @@
+.admin {
+  /* Colores del panel: salen de la paleta de index.css (light y dark) */
+  --admin-acento: var(--accent);
+  --admin-acento-suave: var(--accent-bg);
+  --admin-borde: var(--accent-border);
+  --admin-superficie: var(--bg);
+  --admin-fondo: var(--code-bg);
+  --admin-texto: var(--text-h);
+  --admin-texto-suave: var(--text);
+  --admin-sobre-acento: var(--bg);
+
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 80vh;
+  text-align: left;
+  color: var(--admin-texto-suave);
+}
+.admin__contenido { padding: 32px; }
+.admin__pendiente { color: var(--admin-texto-suave); }
+.admin__mensaje,
+.admin__error {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+.admin__mensaje {
+  background: var(--admin-acento-suave);
+  color: var(--admin-texto);
+  border: 1px solid var(--admin-borde);
+}
+.admin__error { background: #fee2e2; color: #b91c1c; }
+
+@media (max-width: 720px) {
+  .admin { grid-template-columns: 1fr; }
+}
