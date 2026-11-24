@@ -1,0 +1,59 @@
+.ficha {
+    width: 160px;
+    height: 220px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    perspective: 800px;
+    font: inherit;
+}
+
+.ficha__inner {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+}
+
+.ficha--volteada .ficha__inner {
+    transform: rotateY(180deg);
+}
+
+.ficha__cara {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 2px solid var(--accent-border);
+    backface-visibility: hidden;
+    color: var(--text-h);
+    box-shadow: var(--shadow);
+}
+
+.ficha__cara strong {
+    font-size: 24px;
+}
+
+.ficha__frente {
+    background: var(--accent-bg);
+}
+
+.ficha__reverso {
+    background: var(--code-bg);
+    transform: rotateY(180deg);
+}
+
+.ficha:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 12px;
+}

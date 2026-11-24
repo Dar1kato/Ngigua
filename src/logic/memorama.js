@@ -1,4 +1,4 @@
-
+import '../../public/img/Abrazar.jpg'
 
 // Fisher-Yates
 export function shuffle(array) {

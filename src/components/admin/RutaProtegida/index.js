@@ -1,0 +1,1 @@
+export { RutaProtegida as default } from './RutaProtegida.jsx'

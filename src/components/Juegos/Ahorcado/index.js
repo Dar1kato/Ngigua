@@ -1,0 +1,1 @@
+export { JuegoAhorcado as default } from "./JuegoAhorcado.jsx";
