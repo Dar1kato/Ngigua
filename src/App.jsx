@@ -48,7 +48,14 @@ export default function App() {
           />
         }
       />
-      <Route path="/glosario" element={<Glosario palabras={palabras}/>}/>
+      <Route 
+        path="/glosario" 
+        element={
+          <Glosario 
+            palabras={palabras}
+          />
+        }
+      />
       <Route path="/juegos" element={<Juegos />}/>
       <Route path="/juegos/memorama" element={<Memorama />}/>
       <Route path="/juegos/ahorcado" element={<Ahorcado />}/>
