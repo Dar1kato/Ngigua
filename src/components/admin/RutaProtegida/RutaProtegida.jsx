@@ -8,6 +8,8 @@ export function RutaProtegida({ children }) {
     useEffect(() => escucharAdmin(setAdmin), [])
 
     if (admin === undefined) return <p>Verificando sesión...</p>
+
     if (!admin) return <Navigate to="/login" replace />
+    
     return children
 }
