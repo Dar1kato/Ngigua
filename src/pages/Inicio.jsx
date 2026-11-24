@@ -1,6 +1,6 @@
 import Tarjeta from "../components/Diseno/Tarjetas";
 import '../styles/styles.css'
-export default function MenuAprendizaje({}) {
+export default function MenuAprendizaje() {
   return (
     <div>
       <h2>Plataforma de aprendizaje para la lengua ngigua</h2>
