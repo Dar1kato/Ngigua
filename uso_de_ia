@@ -1,0 +1,31 @@
+# Declaración de uso de IA
+
+## 2026-11-22 · CRUD de palabras en el panel de administración
+
+- **Autor:** Omar Reyes
+- **Herramienta / modelo:** Gemini
+- **Prompt:** "para agregar, editar y eliminar vamos con esto en admin"
+- **Cambios:**
+  - `src/logic/palabras.js`: Se implementaron las operaciones CRUD contra la colección `palabras` en Firestore (`obtenerPalabras`, `agregarPalabra`, `editarPalabra` y `eliminarPalabra`).
+  - `src/components/Admin/Admin.jsx`: Se integró el formulario para agregar y editar entradas, un buscador en tiempo real y la tabla de gestión con botones de edición y eliminación con confirmación.
+- **Revisión humana:** Pendiente
+
+## 2026-11-23 · Migración de imágenes y audios a Firebase Storage
+
+- **Autor:** Omar Reyes
+- **Herramienta / modelo:** Gemini
+- **Prompt:** "Como se carga la colecion a storage de firebase." / "pero quiero que los audios e imagenes se suban a storage y estan de manera local"
+- **Cambios:**
+  - `subir_multimedia_storage.js`: Se creó y ejecutó el script con `firebase-admin` para subir los archivos de `public/img` y `public/audio` al bucket `diccionario-ngigua.firebasestorage.app` y actualizar en lotes las URLs públicas en Firestore (305 imágenes y 235 audios enlazados).
+  - Reglas de Firebase Storage (Firebase Console): Se configuró lectura pública y escritura restringida a usuarios registrados en la colección `admins` de Firestore.
+- **Revisión humana:** Pendiente
+
+## 2026-11-24 · Respaldo local (fallback) para multimedia
+
+- **Autor:** Omar Reyes
+- **Herramienta / modelo:** Gemini
+- **Prompt:** "las imagenes se cargan de manera local por eso esas carptetas estan con la siguiente direccion C:\Users\omare\OneDrive\Escritorio\Ngigua\public, revisa que ya no se utilice esa ruta"
+- **Cambios:**
+  - `src/logic/multimedia.js`: Se crearon las funciones `obtenerRutaLocal`, `manejarErrorImagen` y `reproducirAudioConRespaldo` para priorizar la carga desde Firebase Storage y usar `public/img` o `public/audio` únicamente si falla la descarga.
+- **Revisión humana:** Pendiente
+
