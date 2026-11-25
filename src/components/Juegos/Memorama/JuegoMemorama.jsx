@@ -1,5 +1,6 @@
+
 import { useEffect, useState } from 'react'
-import { 
+import {
     shuffle,
     girarTarjeta,
     isPreja,
@@ -7,7 +8,9 @@ import {
     resetTarjetas,
     emparejarTarjetas
 } from '../../../logic/memorama'
+
 import { Tarjeta } from './Tarjeta'
+import '../../../styles/Memorama.css'
 
 const items = [
     {
@@ -21,7 +24,7 @@ const items = [
         "id": "02",
         "tipo": "img",
         "palabra": "Abrazar",
-        "img": "../../public/img/Abrazar.jpg",
+        "img": "/img/Abrazar.jpg",
         "emparejada": false,
         "volteada": false
     },
@@ -36,7 +39,7 @@ const items = [
         "id": "04",
         "tipo": "img",
         "palabra": "Abrir",
-        "img": "../../public/img/Abrir.jpg",
+        "img": "/img/Abrir.jpg",
         "emparejada": false,
         "volteada": false
     },
@@ -51,7 +54,7 @@ const items = [
         "id": "06",
         "tipo": "img",
         "palabra": "Acariciar",
-        "img": "../../public/img/Acariciar.jpg",
+        "img": "/img/Acariciar.jpg",
         "emparejada": false,
         "volteada": false
     },
@@ -66,7 +69,7 @@ const items = [
         "id": "08",
         "tipo": "img",
         "palabra": "Adornar",
-        "img": "../../public/img/Adornar.jpg",
+        "img": "/img/Adornar.jpg",
         "emparejada": false,
         "volteada": false
     },
@@ -81,14 +84,14 @@ const items = [
         "id": "10",
         "tipo": "img",
         "palabra": "Agradecer",
-        "img": "../../public/img/Agradecer.jpg",
+        "img": "/img/Agradecer.jpg",
         "emparejada": false,
         "volteada": false
     }
 ]
 
-
 export function JuegoMemorama() {
+
     const [tarjetas, setTarjetas] = useState(shuffle(items))
     const [primerTarjeta, setPrimeraTarjeta] = useState(null)
     const [volteadas, setvolteadas] = useState(0)
@@ -98,7 +101,9 @@ export function JuegoMemorama() {
         if (volteadas !== 2) return
 
         const timer = setTimeout(() => {
-            setTarjetas((tarjetasActuales) => resetTarjetas(tarjetasActuales))
+            setTarjetas((tarjetasActuales) =>
+                resetTarjetas(tarjetasActuales)
+            )
             setPrimeraTarjeta(null)
             setvolteadas(0)
             setBloqueo(false)
@@ -108,45 +113,108 @@ export function JuegoMemorama() {
     }, [volteadas])
 
     function handleClickCartas(item) {
+
         if (bloqueo) return
 
-        const tarjetasActualizadas = volteadas === 2 ? resetTarjetas(tarjetas) : tarjetas
-        const tarjetaSeleccionada = tarjetasActualizadas.find((tarjeta) => tarjeta.id === item.id)
+        const tarjetasActualizadas =
+            volteadas === 2 ? resetTarjetas(tarjetas) : tarjetas
 
-        const primeraSeleccionada = volteadas === 2 ? null : primerTarjeta
+        const tarjetaSeleccionada = tarjetasActualizadas.find(
+            (tarjeta) => tarjeta.id === item.id
+        )
 
-        if (!tarjetaSeleccionada || tarjetaSeleccionada.emparejada || tarjetaSeleccionada.volteada) return
+        const primeraSeleccionada =
+            volteadas === 2 ? null : primerTarjeta
+
+        if (
+            !tarjetaSeleccionada ||
+            tarjetaSeleccionada.emparejada ||
+            tarjetaSeleccionada.volteada
+        ) return
 
         const nuevaTarjeta = girarTarjeta(tarjetaSeleccionada)
 
-        let tarjetasSiguientes = updateTarjetas(tarjetasActualizadas, nuevaTarjeta)
+        let tarjetasSiguientes = updateTarjetas(
+            tarjetasActualizadas,
+            nuevaTarjeta
+        )
 
         if (primeraSeleccionada) {
-            const encontrada = isPreja(primeraSeleccionada, nuevaTarjeta)
+
+            const encontrada = isPreja(
+                primeraSeleccionada,
+                nuevaTarjeta
+            )
 
             if (encontrada) {
-                tarjetasSiguientes = emparejarTarjetas(tarjetasSiguientes, primeraSeleccionada, nuevaTarjeta)
+
+                tarjetasSiguientes = emparejarTarjetas(
+                    tarjetasSiguientes,
+                    primeraSeleccionada,
+                    nuevaTarjeta
+                )
+
                 setvolteadas(0)
+
             } else {
+
                 setBloqueo(true)
                 setvolteadas(2)
+
             }
 
             setPrimeraTarjeta(null)
 
-        } else {    
+        } else {
+
             setPrimeraTarjeta(nuevaTarjeta)
             setvolteadas(1)
+
         }
 
         setTarjetas(tarjetasSiguientes)
     }
 
-    return (    
-        <div>
-            {tarjetas.map((item) => (
-                <Tarjeta key={item.id} id={item.id} item={item} handleClick={handleClickCartas}/>
-            ))}
-        </div>
+    return (
+        <section className="memorama">
+
+            <div className="memorama-encabezado">
+
+                <span className="memorama-etiqueta">
+                    Aprende jugando
+                </span>
+
+                <h2>Memorama Ngigua</h2>
+
+                <p>
+                    Encuentra las parejas y fortalece tu vocabulario.
+                </p>
+
+                <div className="memorama-contador">
+                    Parejas encontradas:
+
+                    <strong>
+                        {tarjetas.filter(t => t.emparejada).length / 2}
+                        {' / '}
+                        {tarjetas.length / 2}
+                    </strong>
+                </div>
+
+            </div>
+
+            <div className="memorama-tablero">
+
+                {tarjetas.map((item) => (
+                    <Tarjeta
+                        key={item.id}
+                        id={item.id}
+                        item={item}
+                        handleClick={handleClickCartas}
+                    />
+                ))}
+
+            </div>
+
+        </section>
     )
 }

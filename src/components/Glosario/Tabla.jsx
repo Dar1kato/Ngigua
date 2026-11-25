@@ -44,6 +44,7 @@ export function Tabla({ palabras = [] }) {
                         <th>Ngigua</th>
                         <th>Español</th>
                         <th>Categoría</th>
+                        <th>Imagén</th>
                     </tr>
                 </thead>
                 <tbody>

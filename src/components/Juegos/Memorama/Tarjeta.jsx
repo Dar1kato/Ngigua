@@ -1,11 +1,58 @@
+
 export function Tarjeta({ item, handleClick }) {
+
+    const visible = item.volteada || item.emparejada
+
     return (
-        <article>
-            <button type="button" onClick={() => handleClick(item)}>
-                {item.volteada && item.tipo === "texto" && <p>{item.palabra}</p>}
-                {item.volteada && item.tipo === "img" && <img src={item.img} style={{width: 400, height: 400}}/>}
-                {!item.volteada && <p>ngigua</p>}
+        <article className="memorama-tarjeta">
+
+            <button
+                type="button"
+                className={`memorama-carta
+                    ${visible ? 'volteada' : ''}
+                    ${item.emparejada ? 'emparejada' : ''}`}
+                onClick={() => handleClick(item)}
+                disabled={item.emparejada}
+            >
+
+                {visible && item.tipo === "texto" && (
+                    <p className="memorama-palabra">
+                        {item.palabra}
+                    </p>
+                )}
+
+                {visible && item.tipo === "img" && (
+                    <img
+                        src={item.img}
+                        alt={item.palabra}
+                        className="memorama-imagen"
+                    />
+                )}
+
+                {!visible && (
+                    <div className="memorama-reverso">
+
+                        <span className="memorama-rombo">
+                            ❖
+                        </span>
+
+                        <p>ngigua</p>
+
+                        <span className="memorama-subtexto">
+                            Descubre la pareja
+                        </span>
+
+                    </div>
+                )}
+
+                {item.emparejada && (
+                    <span className="memorama-acierto">
+                        ✓
+                    </span>
+                )}
+
             </button>
+
         </article>
     )
-}   
+}
