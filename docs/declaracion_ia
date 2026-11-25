@@ -1,0 +1,47 @@
+## 2026-11-12 · Configuración inicial de Firebase Firestore y carga de la base de datos
+
+- **Autor:** Omar Reyes
+- **Herramienta / modelo:** Gemini
+- **Prompt:** "[Resumen] Configurar Firebase Firestore en el proyecto React."
+- **Cambios:**
+  - `src/firebase.js`: Se inicializó Firebase y se configuró la instancia de Cloud Firestore (`getFirestore`) leyendo las credenciales desde variables de entorno.
+  - `.env`: Se configuraron las variables `VITE_FB_*` correspondientes al proyecto de Firebase.
+  - Colección `palabras` (Firestore): Se cargaron los registros iniciales del diccionario ngigua–español y se adaptó la lectura de datos en el frontend.
+- **Revisión humana:** Pendiente
+
+## 2026-11-16 · Enlace masivo de imágenes en la colección de Firestore
+
+- **Autor:** Omar Reyes
+- **Herramienta / modelo:** Gemini
+- **Prompt:** "[Resumen] Crear un script en Node.js con Firebase Admin para enlazar automáticamente las imágenes de `public/img` con cada palabra en Firestore."
+- **Cambios:**
+  - `actualizar_imagenes.js`: Se creó el script con `firebase-admin` y `serviceAccountKey.json` para normalizar los nombres de las palabras (minúsculas, sin acentos y guiones bajos)`.
+- **Revisión humana:** Pendiente
+
+## 2026-11-17 · Enlace de audios en Firestore y ajuste de scripts de Node
+
+- **Autor:** Omar Reyes
+- **Herramienta / modelo:** Gemini
+- **Prompt:** "[Resumen] Crear el script para vincular los audios de `public/audio` a los documentos de Firestore y corregir errores de compatibilidad de módulos."
+- **Cambios:**
+  - `actualizar_audios.cjs` → `actualizar_audios.js`: Se implementó el script con `firebase-admin` para asociar los archivos de audio al campo `audio` de cada palabra en Firestore y se unificó la extensión de `.cjs` a `.js`.
+- **Revisión humana:** Pendiente
+
+## 2026-11-18 · Limpieza de registros duplicados en Firestore
+
+- **Autor:** Omar Reyes
+- **Herramienta / modelo:** Gemini
+- **Prompt:** "[Resumen] Eliminar documentos duplicados en la colección `palabras` de Firestore para dejar únicamente entradas únicas."
+- **Cambios:**
+  - `eliminar_duplicados.js`: Se creó el script de mantenimiento para detectar y borrar entradas repetidas en la colección `palabras`, dejando la base depurada en ~510 registros únicos.
+- **Revisión humana:** Pendiente
+
+## 2026-11-22 · Seguridad de Firestore, colección `admins` y conexión con Auth
+
+- **Autor:** Omar Reyes
+- **Herramienta / modelo:** Gemini
+- **Prompt:** "[Resumen] Proteger la base de datos en Firestore para que cualquiera pueda leer el diccionario pero solo administradores autenticados puedan escribir."
+- **Cambios:**
+  - `src/firebase.js`: Se integró `getAuth` y se exportó `auth` junto con `db`.
+  - Reglas de Cloud Firestore y colección `admins` (Firebase Console): Se configuraron reglas de seguridad con lectura pública (`allow read: if true`) y escritura restringida a usuarios autenticados registrados en la colección `admins`.
+- **Revisión humana:** Pendiente
