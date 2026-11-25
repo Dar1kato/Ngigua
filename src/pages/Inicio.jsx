@@ -17,7 +17,7 @@ export default function MenuAprendizaje() {
           nombre="Vocabulario"
           imagen="/img/vocabulario.webp"
           detalle="Palabras en ngigua."
-          ruta="/traduccion"
+          ruta="/glosario"
          
         />
 
@@ -25,7 +25,7 @@ export default function MenuAprendizaje() {
           nombre="Juegos"
           imagen="/img/juegos.webp"
           detalle="Aprender ngigua y divertirse."
-          ruta="/traduccion"
+           ruta="/juegos"
           
         />
       </div>
