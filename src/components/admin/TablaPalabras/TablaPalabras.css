@@ -1,30 +1,43 @@
 .tabla-palabras {
   max-height: 420px;
   overflow-y: auto;
-  padding: 16px;
-  background: var(--admin-superficie);
-  border-radius: 16px;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
 }
+
 .tabla-palabras table { width: 100%; border-collapse: collapse; }
+
 .tabla-palabras th,
 .tabla-palabras td {
   padding: 12px 16px;
   text-align: center;
-  color: var(--admin-texto);
-  border-bottom: 1px solid var(--border);
+  color: var(--texto);
+  border-bottom: 1px solid #f0e8e0;
 }
+
 .tabla-palabras th {
   position: sticky;
   top: 0;
-  background: var(--admin-fondo);
-  font-weight: 600;
-  border-bottom: 2px solid var(--admin-borde);
+  z-index: 1;
+  background: #f2e3ea;
+  color: var(--rosa);
+  font-size: 14px;
+  font-weight: 800;
+  border-bottom: 2px solid #d8acbf;
 }
+
 .tabla-palabras tbody tr { cursor: pointer; }
-.tabla-palabras tbody tr:hover td { background: var(--admin-acento-suave); }
-.tabla-palabras tbody tr:focus-visible { outline: 2px solid var(--admin-acento); outline-offset: -2px; }
-.tabla-palabras__fila--activa td {
-  background: var(--admin-acento-suave);
-  box-shadow: inset 0 2px 0 var(--admin-acento), inset 0 -2px 0 var(--admin-acento);
+.tabla-palabras tbody tr:hover td { background: #f7f0f4; }
+.tabla-palabras tbody tr:focus-visible { outline: 3px solid var(--turquesa); outline-offset: -3px; }
+
+/* Fila seleccionada: tono azul del traductor */
+.tabla-palabras__fila--activa td,
+.tabla-palabras__fila--activa:hover td {
+  background: #e6edf0;
+  color: var(--azul);
+  font-weight: 700;
+  box-shadow: inset 0 2px 0 var(--azul), inset 0 -2px 0 var(--azul);
 }
-.tabla-palabras td.tabla-palabras__vacio { color: var(--admin-texto-suave); cursor: default; }
+
+.tabla-palabras td.tabla-palabras__vacio { color: var(--suave); cursor: default; }

@@ -14,6 +14,7 @@ export default function Login() {
     <main className="login">
       <section className="login__tarjeta">
         <h1>Acceso de administrador</h1>
+        <span className="login__etiqueta">Panel de administración</span>
         <p className="login__subtitulo">
           Inicia sesión para gestionar el vocabulario.
         </p>

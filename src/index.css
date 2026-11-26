@@ -109,3 +109,23 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* ===== Paleta compartida (la misma de Memorama, Ahorcado y Traductor) ===== */
+:root {
+  --ng-rosa: #95275e;
+  --ng-rosa-oscuro: #682044;
+  --ng-turquesa: #269b98;
+  --ng-morado: #532c54;
+  --ng-azul: #245b78;
+  --ng-crema: #faf6ed;
+  --ng-lila: #f2e8ee;
+  --ng-borde: #eadfd5;
+  --ng-texto: #302825;
+  --ng-suave: #74636e;
+  --ng-franja: repeating-linear-gradient(
+    135deg,
+    #bd2766 0 12px, #faf6ed 12px 16px,
+    #269b98 16px 28px, #faf6ed 28px 32px,
+    #532c54 32px 44px
+  );
+}

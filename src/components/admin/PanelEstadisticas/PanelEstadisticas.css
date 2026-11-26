@@ -1,14 +1,24 @@
 .panel-estadisticas {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
 }
+
 .panel-estadisticas .tarjeta-estadistica {
   min-height: 160px;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
+
+/* Alterna los dos tonos del traductor: rosa y azul */
+.panel-estadisticas .tarjeta-estadistica:nth-child(even) {
+  background: #e6edf0;
+  border-color: #dbe5e9;
+  border-left-color: var(--azul);
+}
+.panel-estadisticas .tarjeta-estadistica:nth-child(even) .tarjeta-estadistica__valor { color: var(--azul); }
+
 @media (max-width: 720px) {
-  .panel-estadisticas { grid-template-columns: 1fr; }
+  .panel-estadisticas { grid-template-columns: minmax(0, 1fr); }
 }

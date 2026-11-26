@@ -1,21 +1,27 @@
+/* Mismo recurso que la tarjeta de resultado del traductor:
+   panel tintado con borde lateral de color. Alterna rosa y azul. */
 .tarjeta-estadistica {
   flex: 1 1 180px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 20px;
-  background: var(--admin-superficie, var(--bg));
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
+  gap: 6px;
+  padding: 22px;
+  background: #f2e3ea;
+  border: 1px solid #e5cfda;
+  border-left: 4px solid var(--rosa);
+  border-radius: 14px;
   text-align: left;
 }
+
 .tarjeta-estadistica__valor {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--admin-acento, var(--accent));
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--rosa);
 }
+
 .tarjeta-estadistica__etiqueta {
-  font-size: 0.9rem;
-  color: var(--admin-texto-suave, var(--text));
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--suave);
 }

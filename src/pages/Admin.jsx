@@ -17,9 +17,24 @@ import '../styles/Admin.css'
 // Para agregar otro botón a la barra lateral, agrega un objeto aquí
 // y una línea más en el return.
 const SECCIONES = [
-  { id: 'diccionario', nombre: 'Diccionario' },
-  { id: 'oral', nombre: 'Diccionario oral' },
-  { id: 'estadisticas', nombre: 'Estadísticas (Consultas hechas)' },
+  {
+    id: 'diccionario',
+    nombre: 'Diccionario',
+    titulo: 'Diccionario',
+    descripcion: 'Busca, agrega, modifica o elimina palabras del vocabulario.',
+  },
+  {
+    id: 'oral',
+    nombre: 'Diccionario oral',
+    titulo: 'Diccionario oral',
+    descripcion: 'Audios de pronunciación de las palabras.',
+  },
+  {
+    id: 'estadisticas',
+    nombre: 'Estadísticas (Consultas hechas)',
+    titulo: 'Estadísticas',
+    descripcion: 'Resumen del uso de la plataforma.',
+  },
 ]
 
 const coincide = (texto, busqueda) =>
@@ -35,6 +50,7 @@ export default function Admin({ palabras = [], recargar }) {
   const [guardando, setGuardando] = useState(false)
   const [mensaje, setMensaje] = useState('')
   const [error, setError] = useState('')
+  const seccionActual = SECCIONES.find((s) => s.id === seccion)
 
   async function salir() {
     await cerrarSesion()
@@ -98,6 +114,11 @@ export default function Admin({ palabras = [], recargar }) {
       />
 
       <section className="admin__contenido">
+        <header className="admin__encabezado">
+          <span className="admin__etiqueta">Panel de administración</span>
+          <h2>{seccionActual.titulo}</h2>
+          <p>{seccionActual.descripcion}</p>
+        </header>
         {mensaje && <p role="status" className="admin__mensaje">{mensaje}</p>}
         {error && !formulario && <p role="alert" className="admin__error">{error}</p>}
 

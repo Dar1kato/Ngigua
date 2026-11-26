@@ -1,36 +1,82 @@
-.admin {
-  /* Colores del panel: salen de la paleta de index.css (light y dark) */
-  --admin-acento: var(--accent);
-  --admin-acento-suave: var(--accent-bg);
-  --admin-borde: var(--accent-border);
-  --admin-superficie: var(--bg);
-  --admin-fondo: var(--code-bg);
-  --admin-texto: var(--text-h);
-  --admin-texto-suave: var(--text);
-  --admin-sobre-acento: var(--bg);
+/* Panel de administración: mismo lenguaje visual que Memorama, Ahorcado y Traductor.
+   Las variables viven aquí y las heredan todos los componentes de /components/admin
+   (incluido el modal, que se renderiza dentro de <main class="admin">). */
 
+.admin {
+  --rosa: #95275e;
+  --rosa-oscuro: #762049;
+  --turquesa: #269b98;
+  --morado: #532c54;
+  --azul: #245b78;
+  --crema: #faf6ed;
+  --verde: #386641;
+  --borde: #eadfd5;
+  --texto: #302825;
+  --suave: #74636e;
+
+  position: relative;
+  overflow: hidden;
   display: grid;
-  grid-template-columns: 260px 1fr;
-  min-height: 80vh;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 24px;
+  align-items: stretch;
+  width: calc(100% - 32px);
+  max-width: 1100px;
+  min-height: 70vh;
+  margin: 30px auto;
+  padding: 40px 28px 28px;
+  box-sizing: border-box;
+  background: var(--crema);
+  color: var(--texto);
+  border: 1px solid var(--borde);
+  border-radius: 24px;
+  box-shadow: 0 12px 36px rgba(59, 40, 24, .17);
+  font-family: 'Segoe UI', system-ui, sans-serif;
   text-align: left;
-  color: var(--admin-texto-suave);
+  color-scheme: light;
 }
-.admin__contenido { padding: 32px; }
-.admin__pendiente { color: var(--admin-texto-suave); }
+
+.admin *,
+.admin *::before,
+.admin *::after { box-sizing: border-box; }
+
+.admin::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 12px;
+  background: repeating-linear-gradient(135deg,
+    #bd2766 0 12px, #faf6ed 12px 16px,
+    #269b98 16px 28px, #faf6ed 28px 32px,
+    #532c54 32px 44px);
+}
+
+.admin__contenido { min-width: 0; padding: 0; }
+.admin__pendiente {
+  margin: 0;
+  padding: 28px;
+  border: 1px dashed #d8acbf;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--suave);
+  text-align: center;
+}
+
 .admin__mensaje,
 .admin__error {
-  margin: 0 0 16px;
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-size: 0.95rem;
+  margin: 0 0 18px;
+  padding: 12px 16px;
+  border: 1px solid;
+  border-radius: 12px;
+  font-size: 15px;
 }
-.admin__mensaje {
-  background: var(--admin-acento-suave);
-  color: var(--admin-texto);
-  border: 1px solid var(--admin-borde);
-}
-.admin__error { background: #fee2e2; color: #b91c1c; }
+.admin__mensaje { background: #edf7e9; border-color: #70a575; color: var(--verde); }
+.admin__error { background: #f8e5eb; border-color: #e1aaba; color: #943950; }
 
-@media (max-width: 720px) {
-  .admin { grid-template-columns: 1fr; }
+.admin button:focus-visible,
+.admin input:focus-visible,
+.admin select:focus-visible { outline: 3px solid var(--turquesa); outline-offset: 3px; }
+
+@media (max-width: 760px) {
+  .admin { grid-template-columns: minmax(0, 1fr); padding: 34px 16px 20px; margin: 15px auto; }
 }

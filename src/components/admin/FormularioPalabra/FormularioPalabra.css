@@ -1,3 +1,4 @@
+/* El modal se renderiza dentro de <main class="admin">, así que hereda sus variables. */
 .formulario-palabra__fondo {
   position: fixed;
   inset: 0;
@@ -6,69 +7,111 @@
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(83, 44, 84, 0.5);
 }
+
 .formulario-palabra {
+  position: relative;
   width: 100%;
-  max-width: 440px;
+  max-width: 460px;
   max-height: 90vh;
   overflow-y: auto;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 24px;
-  background: var(--admin-superficie, var(--bg));
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
+  gap: 16px;
+  padding: 40px 28px 26px;
+  background: var(--crema);
+  color: var(--texto);
+  border: 1px solid var(--borde);
+  border-radius: 24px;
+  box-shadow: 0 12px 36px rgba(59, 40, 24, .3);
   text-align: left;
 }
-.formulario-palabra h2 { margin: 0; font-size: 1.3rem; color: var(--text-h); }
+
+.formulario-palabra::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 12px;
+  background: repeating-linear-gradient(135deg,
+    #bd2766 0 12px, #faf6ed 12px 16px,
+    #269b98 16px 28px, #faf6ed 28px 32px,
+    #532c54 32px 44px);
+}
+
+.formulario-palabra h2 {
+  margin: 0;
+  font-size: clamp(22px, 4vw, 26px);
+  font-weight: 800;
+  letter-spacing: normal;
+  color: var(--morado);
+}
+
 .formulario-palabra label {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  font-size: 0.9rem;
+  gap: 7px;
+  font-size: 15px;
   font-weight: 600;
-  color: var(--text-h);
+  color: var(--texto);
 }
+
 .formulario-palabra input,
 .formulario-palabra select {
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--bg);
-  color: var(--text-h);
+  width: 100%;
+  min-width: 0;
+  padding: 13px 15px;
+  border: 1px solid #d8cfc4;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--texto);
   font: inherit;
+  font-size: 16px;
+  transition: border-color .2s, box-shadow .2s;
 }
+.formulario-palabra input::placeholder { color: #776e65; }
 .formulario-palabra input:focus,
 .formulario-palabra select:focus {
-  outline: 2px solid var(--admin-acento, var(--accent));
-  border-color: transparent;
+  outline: none;
+  border-color: var(--rosa);
+  box-shadow: 0 0 0 3px rgba(166, 45, 98, .14);
 }
+
 .formulario-palabra__error {
   margin: 0;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: #fee2e2;
-  color: #b91c1c;
-  font-size: 0.9rem;
+  padding: 11px 14px;
+  border: 1px solid #e1aaba;
+  border-radius: 10px;
+  background: #f8e5eb;
+  color: #943950;
+  font-size: 14px;
 }
-.formulario-palabra__acciones { display: flex; justify-content: flex-end; gap: 12px; }
+
+.formulario-palabra__acciones { display: flex; justify-content: flex-end; gap: 12px; margin-top: 4px; }
+
 .formulario-palabra__acciones button {
-  padding: 10px 24px;
-  border: none;
-  border-radius: 999px;
-  background: var(--admin-acento, var(--accent));
-  color: var(--bg);
+  min-height: 44px;
+  padding: 10px 26px;
+  border: 0;
+  border-radius: 24px;
+  background: var(--rosa);
+  color: #fff;
   font: inherit;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
+  transition: background-color .2s;
 }
-.formulario-palabra__acciones button[type='button'] {
-  background: var(--code-bg);
-  color: var(--text-h);
+.formulario-palabra__acciones button:hover:not(:disabled) { background: var(--rosa-oscuro); }
+.formulario-palabra__acciones button[type='button'] { background: #eee5ee; color: var(--morado); }
+.formulario-palabra__acciones button[type='button']:hover { background: #e0d0e0; }
+.formulario-palabra__acciones button:disabled { background: #eee5ee; color: var(--suave); cursor: not-allowed; }
+
+@media (max-width: 420px) {
+  .formulario-palabra__acciones { flex-direction: column-reverse; }
+  .formulario-palabra__acciones button { width: 100%; }
 }
-.formulario-palabra__acciones button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+@media (prefers-reduced-motion: reduce) {
+  .formulario-palabra input, .formulario-palabra select, .formulario-palabra__acciones button { transition: none; }
+}

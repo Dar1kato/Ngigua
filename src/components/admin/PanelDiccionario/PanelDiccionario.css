@@ -1,37 +1,84 @@
 .panel-diccionario { display: flex; flex-direction: column; gap: 20px; }
+
 .panel-diccionario__caja {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 24px;
-  background: var(--admin-fondo);
-  border: 1px solid var(--border);
+  gap: 18px;
+  padding: 22px;
+  background: #fff;
+  border: 1px solid var(--borde);
   border-radius: 20px;
 }
-.panel-diccionario__busqueda { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.panel-diccionario__busqueda { display: flex; flex-wrap: wrap; gap: 10px; }
+
 .panel-diccionario__busqueda input {
   flex: 1 1 180px;
-  padding: 10px 16px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--admin-superficie);
-  color: var(--admin-texto);
+  min-width: 0;
+  padding: 13px 15px;
+  border: 1px solid #d8cfc4;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--texto);
   font: inherit;
+  font-size: 16px;
+  transition: border-color .2s, box-shadow .2s;
 }
-.panel-diccionario__busqueda input::placeholder { color: var(--admin-texto-suave); }
-.panel-diccionario__busqueda input:focus { outline: 2px solid var(--admin-acento); border-color: transparent; }
+.panel-diccionario__busqueda input::placeholder { color: #776e65; }
+.panel-diccionario__busqueda input:focus {
+  outline: none;
+  border-color: var(--rosa);
+  box-shadow: 0 0 0 3px rgba(166, 45, 98, .14);
+}
+
 .panel-diccionario__busqueda button,
 .panel-diccionario__acciones button {
-  padding: 10px 28px;
-  border: none;
-  border-radius: 999px;
-  background: var(--admin-acento);
-  color: var(--admin-sobre-acento);
+  border: 0;
+  color: #fff;
   font: inherit;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
+  transition: background-color .2s, color .2s, transform .2s;
 }
-.panel-diccionario__busqueda button:hover,
-.panel-diccionario__acciones button:hover:not(:disabled) { filter: brightness(1.1); }
-.panel-diccionario__acciones { display: flex; justify-content: space-between; gap: 12px; }
-.panel-diccionario__acciones button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Buscar: igual que el botón del traductor */
+.panel-diccionario__busqueda button {
+  padding: 13px 26px;
+  border-radius: 12px;
+  background: var(--rosa);
+  font-size: 16px;
+}
+.panel-diccionario__busqueda button:hover { background: #86234f; }
+
+/* Agregar / Modificar / Eliminar: píldoras como el botón de reiniciar del ahorcado */
+.panel-diccionario__acciones { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+.panel-diccionario__acciones button {
+  min-height: 44px;
+  padding: 10px 28px;
+  border-radius: 24px;
+  font-size: 15px;
+}
+.panel-diccionario__acciones button:nth-child(1) { background: var(--rosa); }
+.panel-diccionario__acciones button:nth-child(1):hover { background: var(--rosa-oscuro); }
+.panel-diccionario__acciones button:nth-child(2) { background: var(--azul); }
+.panel-diccionario__acciones button:nth-child(2):hover:not(:disabled) { background: #1b475f; }
+.panel-diccionario__acciones button:nth-child(3) { background: #f8e5eb; color: #943950; box-shadow: inset 0 0 0 1px #e1aaba; }
+.panel-diccionario__acciones button:nth-child(3):hover:not(:disabled) { background: #943950; color: #fff; }
+
+.panel-diccionario__acciones button:disabled {
+  background: #eee5ee;
+  color: var(--suave);
+  box-shadow: none;
+  cursor: default;
+}
+
+@media (max-width: 520px) {
+  .panel-diccionario__busqueda button { width: 100%; }
+  .panel-diccionario__acciones button { flex: 1 1 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel-diccionario__busqueda input,
+  .panel-diccionario__busqueda button,
+  .panel-diccionario__acciones button { transition: none; }
+}
