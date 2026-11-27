@@ -25,6 +25,4 @@ dist-ssr
 
 # llaves privadas (Ignora la API Key)
 .env
-.env.*
-!.env.example
 *serviceAccountKey*.json

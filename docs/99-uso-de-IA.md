@@ -183,3 +183,12 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
   - `src/panel_admin/`: Elimina copias antiguas; reutiliza la página y el estilo ya existentes en `src/pages` y `src/styles`.
   - Validación: build y ESLint aprobados; sin importaciones ni referencias restantes a `panel_admin`.
 - **Revisión humana:** Pendiente
+
+## 2026-11-25 · Corrección de ruta del fondo de Inicio
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Copilot SDK en VS Code / modelo no disponible
+- **Prompt:** "como lo soluciono?"
+- **Cambios:**
+  - `src/styles/styles.css`: Corrige la ruta de la imagen de fondo para servirla desde `public/`.
+- **Revisión humana:** Pendiente
