@@ -10,7 +10,6 @@ import { Tabla } from '../components/Glosario/Tabla'
 export default function Glosario({ palabras = [] }) {
     return (
         <main>
-            <h1>Glosario</h1>
             <Tabla palabras={palabras}/>
         </main>
     )

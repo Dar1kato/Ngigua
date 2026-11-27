@@ -1,36 +1,108 @@
-.admin {
-  /* Colores del panel: salen de la paleta de index.css (light y dark) */
-  --admin-acento: var(--accent);
-  --admin-acento-suave: var(--accent-bg);
-  --admin-borde: var(--accent-border);
-  --admin-superficie: var(--bg);
-  --admin-fondo: var(--code-bg);
-  --admin-texto: var(--text-h);
-  --admin-texto-suave: var(--text);
-  --admin-sobre-acento: var(--bg);
-
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  min-height: 80vh;
-  text-align: left;
-  color: var(--admin-texto-suave);
+/* Ngigua · tema olivo, crema y dorado. Selectores originales conservados. */
+/* Identidad visual Ngigua: fondo compartido con las herramientas de aprendizaje. */
+body:has(.admin) {
+  background: linear-gradient(115deg, rgba(21,28,22,.93), rgba(41,50,37,.78)),
+    url('/img/imagen3.png') center 30% / cover no-repeat fixed, #293225;
 }
-.admin__contenido { padding: 32px; }
-.admin__pendiente { color: var(--admin-texto-suave); }
+.admin {
+  --ng-acento: #ddc08b;
+  --ng-acento-hover: #f0dcb2;
+  --ng-texto: #f0e8d8;
+  --ng-suave: #d2cbb5;
+  --ng-secundario: #b9d3a4;
+  --ng-panel: #202a21;
+  --ng-campo: #151c16;
+  --ng-superficie: #293225;
+  --ng-seleccion: #35432c;
+  --ng-borde: #e9dec73d;
+  --ng-correcto: #b9d3a4;
+  --ng-error: #f1b6a0;
+  --ng-error-fondo: #57392f;
+  --ng-error-borde: #b87962;
+  --ng-sobre-acento: #293225;
+  /* Alias de compatibilidad para componentes existentes. */
+  --rosa: var(--ng-acento);
+  --rosa-oscuro: var(--ng-acento-hover);
+  --turquesa: var(--ng-acento);
+  --morado: var(--ng-texto);
+  --azul: var(--ng-secundario);
+  --crema: var(--ng-panel);
+  --verde: var(--ng-correcto);
+  --borde: var(--ng-borde);
+  --texto: var(--ng-texto);
+  --suave: var(--ng-suave);
+
+  position: relative;
+  overflow: visible;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 24px;
+  align-items: stretch;
+  width: calc(100% - 32px);
+  max-width: 1280px;
+  min-height: 70vh;
+  margin: 30px auto;
+  padding: 40px 28px 28px;
+  box-sizing: border-box;
+  background: linear-gradient(145deg, #202a21ed, #151c16f2);
+  color: var(--ng-texto);
+  border: 1px solid #efe8d36b;
+  border-radius: 24px;
+  box-shadow: 0 12px 36px #12181160;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  text-align: left;
+  color-scheme: dark;
+}
+
+.admin *,
+.admin *::before,
+.admin *::after { box-sizing: border-box; }
+
+.admin::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 24px; right: 24px;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--ng-acento), transparent);
+}
+
+.admin__contenido { min-width: 0; padding: 0; }
+.admin__pendiente {
+  margin: 0;
+  padding: 28px;
+  border: 1px dashed #ddc08b66;
+  border-radius: 16px;
+  background: var(--ng-campo);
+  color: var(--ng-suave);
+  text-align: center;
+}
+
 .admin__mensaje,
 .admin__error {
-  margin: 0 0 16px;
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-size: 0.95rem;
+  margin: 0 0 18px;
+  padding: 12px 16px;
+  border: 1px solid;
+  border-radius: 12px;
+  font-size: 15px;
 }
-.admin__mensaje {
-  background: var(--admin-acento-suave);
-  color: var(--admin-texto);
-  border: 1px solid var(--admin-borde);
-}
-.admin__error { background: #fee2e2; color: #b91c1c; }
+.admin__mensaje { background: #344b2d; border-color: #8aa777; color: var(--ng-correcto); }
+.admin__error { background: var(--ng-error-fondo); border-color: var(--ng-error-borde); color: var(--ng-error); }
 
-@media (max-width: 720px) {
-  .admin { grid-template-columns: 1fr; }
+.admin button:focus-visible,
+.admin input:focus-visible,
+.admin select:focus-visible { outline: 3px solid var(--ng-acento); outline-offset: 3px; }
+
+@media (max-width: 760px) {
+  .admin { grid-template-columns: minmax(0, 1fr); padding: 34px 16px 20px; margin: 15px auto; }
 }
+
+/* El modal es position: fixed: no usar transform, filter o backdrop-filter en .admin. */
+.admin { line-height: 1.5; }
+.admin__contenido { min-width: 0; animation: ng-admin-entrada .65s ease both; }
+.admin__contenido :is(h1, h2, h3) { color: var(--ng-texto); letter-spacing: -.035em; font-weight: 500; overflow-wrap: anywhere; }
+.admin a { color: var(--ng-acento); }
+.admin :is(button, input, select, textarea, a):focus-visible { outline: 2px solid var(--ng-acento); outline-offset: 3px; }
+@keyframes ng-admin-entrada { from { opacity: .25; } to { opacity: 1; } }
+@media (max-width: 420px) { .admin { width: calc(100% - 20px); padding: 24px 12px 16px; gap: 14px; border-radius: 16px; } }
+@media (prefers-reduced-motion: reduce) { .admin__contenido { animation: none; } }

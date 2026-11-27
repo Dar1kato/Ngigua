@@ -1,64 +1,180 @@
+/* Ngigua · tema olivo, crema y dorado. Selectores originales conservados. */
+/* Identidad visual Ngigua: fondo compartido con las herramientas de aprendizaje. */
+body:has(.login) {
+  background: linear-gradient(115deg, rgba(21,28,22,.93), rgba(41,50,37,.78)),
+    url('/img/imagen3.png') center 30% / cover no-repeat fixed, #293225;
+}
 .login {
+  --ng-acento: #ddc08b;
+  --ng-acento-hover: #f0dcb2;
+  --ng-texto: #f0e8d8;
+  --ng-suave: #d2cbb5;
+  --ng-secundario: #b9d3a4;
+  --ng-panel: #202a21;
+  --ng-campo: #151c16;
+  --ng-superficie: #293225;
+  --ng-seleccion: #35432c;
+  --ng-borde: #e9dec73d;
+  --ng-correcto: #b9d3a4;
+  --ng-error: #f1b6a0;
+  --ng-error-fondo: #57392f;
+  --ng-error-borde: #b87962;
+  --ng-sobre-acento: #293225;
+  /* Alias de compatibilidad para componentes existentes. */
+  --rosa: var(--ng-acento);
+  --rosa-oscuro: var(--ng-acento-hover);
+  --turquesa: var(--ng-acento);
+  --morado: var(--ng-texto);
+  --azul: var(--ng-secundario);
+  --crema: var(--ng-panel);
+  --verde: var(--ng-correcto);
+  --borde: var(--ng-borde);
+  --texto: var(--ng-texto);
+  --suave: var(--ng-suave);
+
   min-height: 80vh;
+  min-height: 80svh;
+  color: var(--ng-texto);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  padding: 24px;
-}
-.login__tarjeta {
-  width: 100%;
-  max-width: 380px;
+  gap: 18px;
+  padding: 24px 16px;
   box-sizing: border-box;
-  background: var(--bg);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px 28px;
-  box-shadow: var(--shadow);
+  color-scheme: dark;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 }
-.login__tarjeta h1 { margin: 0 0 4px; font-size: 1.5rem; text-align: center; color: var(--text-h); }
-.login__subtitulo { margin: 0 0 24px; text-align: center; font-size: 0.9rem; }
-.login__volver { color: var(--accent); font-size: 0.9rem; text-decoration: none; }
-.login__volver:hover { text-decoration: underline; }
 
-.login-form { display: flex; flex-direction: column; gap: 16px; }
+.login *,
+.login *::before,
+.login *::after { box-sizing: border-box; }
+
+
+.login__tarjeta {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 440px;
+  padding: 44px clamp(22px, 5vw, 36px) 32px;
+  background: linear-gradient(145deg, #202a21ed, #151c16f2);
+  color: var(--ng-texto);
+  border: 1px solid #efe8d36b;
+  border-radius: 24px;
+  box-shadow: 0 12px 36px #12181160;
+  text-align: left;
+}
+
+.login__tarjeta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 24px; right: 24px;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--ng-acento), transparent);
+}
+
+.login__tarjeta h1 {
+  margin: 0 0 8px;
+  font-size: clamp(24px, 4vw, 30px);
+  font-weight: 500;
+  letter-spacing: -.035em;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--ng-texto);
+}
+
+.login__subtitulo {
+  margin: 0 0 26px;
+  font-size: 15px;
+  text-align: center;
+  color: var(--ng-suave);
+}
+
+
+.login__volver {
+  padding: 9px 20px;
+  border: 1px solid var(--ng-borde);
+  border-radius: 999px;
+  background: var(--ng-campo);
+  color: var(--ng-acento);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color .2s, color .2s;
+}
+.login__volver:hover { background: var(--ng-acento); color: var(--ng-sobre-acento); }
+.login__volver:focus-visible { outline: 3px solid var(--ng-acento); outline-offset: 3px; }
+
+
+.login-form { display: flex; flex-direction: column; gap: 18px; }
+
 .login-form label {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  font-size: 0.9rem;
+  gap: 8px;
+  font-size: 15px;
   font-weight: 600;
-  color: var(--text-h);
+  color: var(--ng-texto);
   text-align: left;
 }
+
 .login-form input {
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--bg);
-  color: var(--text-h);
+  width: 100%;
+  min-width: 0;
+  padding: 14px 15px;
+  border: 1px solid #e9dec74d;
+  border-radius: 12px;
+  background: var(--ng-campo);
+  color: var(--ng-texto);
   font: inherit;
+  font-size: 16px;
+  transition: border-color .2s, box-shadow .2s;
 }
-.login-form input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+.login-form input:focus {
+  outline: none;
+  border-color: var(--ng-acento);
+  box-shadow: 0 0 0 3px #ddc08b30;
+}
+
 .login-form button {
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  background: var(--accent);
-  color: var(--bg);
+  margin-top: 4px;
+  padding: 14px 24px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--ng-acento);
+  color: var(--ng-sobre-acento);
   font: inherit;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
+  box-shadow: 0 4px 0 #101610;
+  transition: background-color .2s, transform .2s, box-shadow .2s;
 }
-.login-form button:hover:not(:disabled) { filter: brightness(1.1); }
-.login-form button:disabled { opacity: 0.6; cursor: not-allowed; }
+.login-form button:hover:not(:disabled) { background: var(--ng-acento-hover); transform: translateY(-2px); box-shadow: 0 6px 0 #101610; }
+.login-form button:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 1px 0 #101610; }
+.login-form button:focus-visible { outline: 3px solid var(--ng-acento); outline-offset: 3px; }
+.login-form button:disabled { background: #343b31; color: var(--ng-suave); box-shadow: none; cursor: not-allowed; }
+
 .login-error {
   margin: 0;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: #fee2e2;
-  color: #b91c1c;
-  font-size: 0.9rem;
+  padding: 11px 14px;
+  border: 1px solid var(--ng-error-borde);
+  border-radius: 10px;
+  background: var(--ng-error-fondo);
+  color: var(--ng-error);
+  font-size: 14px;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .login-form button, .login-form input, .login__volver { transition: none; }
+  .login-form button:hover:not(:disabled), .login-form button:active:not(:disabled) { transform: none; }
+}
+
+.login__tarjeta { backdrop-filter: blur(14px); animation: ng-login-entrada .65s cubic-bezier(.2,.65,.3,1) both; }
+.login-form input::placeholder { color: #bdb6a3; }
+.login-form input:autofill { color-scheme: dark; }
+.login-form button { box-shadow: none; }
+.login-form button:hover:not(:disabled), .login-form button:active:not(:disabled) { box-shadow: none; }
+@keyframes ng-login-entrada { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .login__tarjeta { animation: none; } }

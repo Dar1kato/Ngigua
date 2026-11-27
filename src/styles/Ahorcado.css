@@ -1,123 +1,145 @@
-
+/* Identidad visual del inicio Ngigua. Versión con teclado del dispositivo. */
+body:has(.ahorcado) {
+  background: linear-gradient(115deg, rgba(21,28,22,.93), rgba(41,50,37,.78)),
+    url('/img/imagen3.png') center 30% / cover no-repeat fixed, #293225;
+}
 .ahorcado {
-    --rosa: #95275e;
-    --turquesa: #269b98;
-    --morado: #532c54;
-    --crema: #faf6ed;
-    --verde: #386641;
-    max-width: 1100px;
-    margin: 30px auto;
-    padding: 36px;
-    position: relative;
-    overflow: hidden;
-    background: var(--crema);
-    color: var(--morado);
-    border: 1px solid #eadfd5;
-    border-radius: 24px;
-    box-sizing: border-box;
+  --ng-acento: #ddc08b;
+  --ng-texto: #f0e8d8;
+  --ng-muted: #d2cbb5;
+  --ng-borde: #e9dec72e;
+  --ng-panel: #151c16d9;
+  --ng-correcto: #b9d3a4;
+  --ng-error: #f1b6a0;
+  position: relative;
+  isolation: isolate;
+  width: calc(100% - 32px);
+  margin: clamp(18px, 4vw, 48px) auto;
+  padding: clamp(22px, 4vw, 46px);
+  background: linear-gradient(145deg, #202a21ed, #151c16f2);
+  color: var(--ng-texto);
+  border: 1px solid #efe8d36b;
+  border-radius: 24px;
+  box-shadow: 0 16px 45px #12181160;
+  backdrop-filter: blur(14px);
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+  color-scheme: dark;
+  text-align: left;
+  animation: ng-herramienta-entrada .65s cubic-bezier(.2,.65,.3,1) both;
 }
-.ahorcado *, .ahorcado *::before, .ahorcado *::after { box-sizing: border-box; }
+.ahorcado, .ahorcado *, .ahorcado *::before, .ahorcado *::after { box-sizing: border-box; }
 .ahorcado::before {
-    content: '';
-    position: absolute;
-    inset: 0 0 auto;
-    height: 12px;
-    background: repeating-linear-gradient(135deg,
-        #bd2766 0 12px, #faf6ed 12px 16px,
-        #269b98 16px 28px, #faf6ed 28px 32px,
-        #532c54 32px 44px);
+  content: ''; position: absolute; top: -1px; left: 24px; right: 24px;
+  height: 2px; background: linear-gradient(90deg, transparent, #ddc08b, transparent);
+  pointer-events: none;
 }
-.ahorcado .ahorcado-encabezado { text-align: center; margin-bottom: 30px; }
-.ahorcado .ahorcado-etiqueta {
-    color: var(--rosa); font-size: 12px; font-weight: 700;
-    letter-spacing: 3px; text-transform: uppercase;
+.ahorcado button:focus-visible, .ahorcado input:focus-visible {
+  outline: 2px solid var(--ng-acento); outline-offset: 3px;
 }
-.ahorcado .ahorcado-encabezado h2 {
-    color: var(--morado); font-size: clamp(26px, 4vw, 36px);
-    font-weight: 800; margin: 12px 0;
+@keyframes ng-herramienta-entrada {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.ahorcado .ahorcado-encabezado p { color: #74636e; font-size: 15px; margin: 0; }
-.ahorcado .ahorcado-tablero {
-    display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.45fr);
-    gap: 22px; align-items: stretch;
+@media (max-width: 520px) {
+  .ahorcado { width: calc(100% - 20px); padding: 22px 15px; border-radius: 16px; }
 }
-.ahorcado .ahorcado-panel-dibujo, .ahorcado .ahorcado-panel-juego {
-    min-width: 0; border-radius: 20px; padding: 24px; border: 1px solid #eadfd5;
+@media (prefers-reduced-motion: reduce) {
+  .ahorcado, .ahorcado *, .ahorcado *::before, .ahorcado *::after {
+    animation: none !important; transition: none !important;
+  }
 }
-.ahorcado .ahorcado-panel-dibujo {
-    background: #f2e8ee; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 12px;
-}
-.ahorcado .ahorcado-panel-juego { background: #fff; text-align: center; }
-.ahorcado .ahorcado-panel-etiqueta {
-    display: block; font-size: 11px; text-transform: uppercase;
-    letter-spacing: 2px; font-weight: 800; color: var(--rosa);
-}
+
+.ahorcado { max-width: 1100px; }
+.ahorcado .ahorcado-encabezado { text-align: left; margin-bottom: clamp(20px,3vw,32px); }
+.ahorcado .ahorcado-etiqueta { color: var(--ng-acento); font-size: .68rem; letter-spacing: .16em; font-weight: 650; text-transform: uppercase; }
+.ahorcado .ahorcado-encabezado h2 { color: var(--ng-texto); font-size: clamp(2rem,4.5vw,3.6rem); font-weight: 400; line-height: 1.04; letter-spacing: -.055em; margin: 12px 0; }
+.ahorcado .ahorcado-encabezado p { color: var(--ng-muted); font-size: .95rem; margin: 0; }
+
+.ahorcado .ahorcado-tablero { display: grid; grid-template-columns: minmax(0,.85fr) minmax(0,1.45fr); gap: 18px; align-items: stretch; }
+.ahorcado .ahorcado-panel-dibujo, .ahorcado .ahorcado-panel-juego { min-width: 0; padding: clamp(16px,2.5vw,25px); border-radius: 16px; border: 1px solid var(--ng-borde); background: #111910a0; }
+.ahorcado .ahorcado-panel-dibujo { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: #35432c75; }
+.ahorcado .ahorcado-panel-juego { text-align: center; }
+.ahorcado .ahorcado-panel-etiqueta { display: block; font-size: .68rem; letter-spacing: .14em; font-weight: 650; text-transform: uppercase; color: var(--ng-acento); }
 .ahorcado .ahorcado-dibujo { display: block; width: 100%; max-width: 260px; height: auto; }
-.ahorcado .ahorcado-soporte { stroke: var(--morado); stroke-width: 5; }
-.ahorcado .ahorcado-figura { stroke: var(--rosa); stroke-width: 4; }
+.ahorcado .ahorcado-soporte { stroke: #ddc08b; stroke-width: 5; }
+.ahorcado .ahorcado-figura { stroke: #e6b6a0; stroke-width: 4; }
 .ahorcado .ahorcado-intentos { display: grid; gap: 4px; text-align: center; }
-.ahorcado .ahorcado-intentos strong { color: var(--rosa); font-size: 30px; line-height: 1.1; }
-.ahorcado .ahorcado-intentos span { font-size: 13px; color: #74636e; }
+.ahorcado .ahorcado-intentos strong { color: var(--ng-acento); font-size: 30px; font-weight: 500; line-height: 1.1; }
+.ahorcado .ahorcado-intentos span { font-size: .82rem; color: var(--ng-muted); }
 .ahorcado .ahorcado-vidas { display: flex; gap: 6px; width: 100%; max-width: 220px; }
-.ahorcado .ahorcado-vidas span { flex: 1; height: 8px; border-radius: 8px; background: #d9c9d3; }
-.ahorcado .ahorcado-vidas span.activa { background: var(--turquesa); }
-.ahorcado .ahorcado-palabra {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
-    margin: 22px 0 12px;
-}
-.ahorcado .ahorcado-letra {
-    display: grid; place-items: center; width: 42px; height: 52px;
-    border-radius: 9px; border-bottom: 3px solid #c8a3b7; background: #f7f0f4;
-    color: #a4889b; font-size: 23px; font-weight: 800;
-}
-.ahorcado .ahorcado-letra.encontrada { background: #e8f4e9; color: var(--verde); border-color: #70a575; }
-.ahorcado .ahorcado-letra.revelada { background: #fae8ec; color: #9b3954; border-color: #cd7d94; }
-.ahorcado .ahorcado-restantes { color: #74636e; font-size: 13px; margin: 0 0 20px; }
-.ahorcado .ahorcado-formulario { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 0 0 22px; }
-.ahorcado .ahorcado-formulario label { color: var(--morado); font-size: 13px; font-weight: 600; }
-.ahorcado .ahorcado-formulario input {
-    width: 110px; min-height: 42px; padding: 8px; text-align: center;
-    border: 1px solid #cfb4c5; border-radius: 10px; background: #fff;
-    font: inherit; color: var(--morado);
-}
-.ahorcado .ahorcado-abecedario { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
-.ahorcado .ahorcado-tecla {
-    display: grid; place-items: center; width: 100%; min-width: 0; min-height: 40px;
-    padding: 0; margin: 0; border: 1px solid #e5cfda; border-radius: 9px;
-    background: #faf3f7; color: var(--morado); font: inherit; font-weight: 750;
-    text-transform: uppercase; box-shadow: 0 3px 0 #e1c9d6;
-    cursor: pointer; transition: background .18s, transform .18s, box-shadow .18s;
-}
-.ahorcado .ahorcado-tecla:not(:disabled):hover { background: var(--rosa); color: #fff; transform: translateY(-2px); }
-.ahorcado .ahorcado-tecla:not(:disabled):active { transform: translateY(2px); box-shadow: none; }
-.ahorcado .ahorcado-tecla:disabled { cursor: default; opacity: .65; }
-.ahorcado .ahorcado-tecla.correcta { background: #e8f4e9; color: var(--verde); border-color: #9dc4a1; box-shadow: 0 3px 0 #9dc4a1; opacity: 1; }
-.ahorcado .ahorcado-tecla.incorrecta { background: #f8e5eb; color: #943950; border-color: #e1aaba; text-decoration: line-through; box-shadow: 0 3px 0 #e1aaba; opacity: 1; }
-.ahorcado .ahorcado-leyenda { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 16px 0; color: #74636e; font-size: 11px; }
+.ahorcado .ahorcado-vidas span { flex: 1; height: 6px; border-radius: 6px; background: #e9dec72e; }
+.ahorcado .ahorcado-vidas span.activa { background: #b9d3a4; }
+.ahorcado .ahorcado-palabra { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 22px 0 12px; }
+.ahorcado .ahorcado-letra { display: grid; place-items: center; width: 42px; min-height: 52px; border: 1px solid #ddc08b40; border-bottom: 3px solid #ddc08b85; border-radius: 7px; background: #202a21; color: var(--ng-muted); font-size: 23px; font-weight: 650; }
+.ahorcado .ahorcado-letra.encontrada { background: #344b2d; color: #d7ecc7; border-color: #8aa777; }
+.ahorcado .ahorcado-letra.revelada { background: #57392f; color: #f1b6a0; border-color: #d59881; }
+.ahorcado .ahorcado-restantes { color: var(--ng-muted); font-size: .8rem; margin: 0 0 20px; }
+.ahorcado .ahorcado-formulario { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 0 0 22px; padding: 0; border: 0; background: transparent; box-shadow: none; }
+.ahorcado .ahorcado-formulario label { color: var(--ng-muted); font-size: .82rem; font-weight: 500; }
+.ahorcado .ahorcado-formulario input { width: 110px; min-height: 44px; padding: 8px; text-align: center; border: 1px solid #ddc08b60; border-radius: 8px; background: #202a21; color: var(--ng-texto); font: inherit; }
+.ahorcado .ahorcado-formulario input::placeholder { color: #bdb6a3; }
+.ahorcado .ahorcado-formulario input:disabled { opacity: .65; }
+.ahorcado .ahorcado-leyenda { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 16px 0; color: var(--ng-muted); font-size: .74rem; }
 .ahorcado .ahorcado-leyenda span { display: inline-flex; align-items: center; gap: 5px; }
-.ahorcado .ahorcado-leyenda i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
-.ahorcado .ahorcado-leyenda .correcta { background: #70a575; }
-.ahorcado .ahorcado-leyenda .incorrecta { background: #cd7d94; }
-.ahorcado .ahorcado-resultado { padding: 12px; margin: 14px 0; border-radius: 10px; font-size: 14px; }
-.ahorcado .ahorcado-resultado.victoria { background: #e8f4e9; color: var(--verde); }
-.ahorcado .ahorcado-resultado.derrota { background: #f8e5eb; color: #943950; }
-.ahorcado .ahorcado-reiniciar {
-    min-height: 42px; padding: 10px 24px; border: 0; border-radius: 24px;
-    background: var(--rosa); color: #fff; font: inherit; font-size: 14px;
-    font-weight: 700; cursor: pointer;
-}
-.ahorcado .ahorcado-reiniciar:not(:disabled):hover { background: #762049; }
-.ahorcado .ahorcado-reiniciar:disabled { background: #eee5ee; color: #74636e; cursor: default; }
-.ahorcado button:focus-visible, .ahorcado input:focus-visible { outline: 3px solid var(--turquesa); outline-offset: 3px; }
+.ahorcado .ahorcado-leyenda i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; }
+.ahorcado .ahorcado-leyenda .correcta { background: #b9d3a4; }
+.ahorcado .ahorcado-leyenda .incorrecta { background: #e6b6a0; }
+.ahorcado .ahorcado-resultado { padding: 12px; margin: 14px 0; border: 1px solid transparent; border-radius: 9px; font-size: .9rem; }
+.ahorcado .ahorcado-resultado.victoria { background: #344b2d; color: #d7ecc7; border-color: #8aa777; }
+.ahorcado .ahorcado-resultado.derrota { background: #57392f; color: #f1b6a0; border-color: #d59881; }
+.ahorcado .ahorcado-reiniciar { min-height: 44px; padding: 10px 24px; border: 0; border-radius: 8px; background: var(--ng-acento); color: #293225; font: inherit; font-size: .88rem; font-weight: 650; cursor: pointer; transition: background .2s; }
+.ahorcado .ahorcado-reiniciar:not(:disabled):hover { background: #f0dcb2; }
+.ahorcado .ahorcado-reiniciar:disabled { background: #293225; color: #bdb6a3; cursor: default; }
 @media (max-width: 760px) {
-    .ahorcado { padding: 26px 16px; margin: 15px auto; }
-    .ahorcado .ahorcado-tablero { grid-template-columns: minmax(0, 1fr); gap: 14px; }
-    .ahorcado .ahorcado-dibujo { max-width: 170px; }
-    .ahorcado .ahorcado-panel-dibujo, .ahorcado .ahorcado-panel-juego { padding: 18px; }
+  .ahorcado .ahorcado-tablero { grid-template-columns: minmax(0,1fr); gap: 14px; }
+  .ahorcado .ahorcado-dibujo { max-width: 170px; }
 }
-@media (max-width: 380px) {
-    .ahorcado .ahorcado-abecedario { gap: 5px; grid-template-columns: repeat(6, minmax(0, 1fr)); }
-    .ahorcado .ahorcado-letra { width: 35px; height: 46px; }
+@media (max-width: 420px) {
+  .ahorcado .ahorcado-letra { width: 35px; min-height: 46px; }
+  .ahorcado .ahorcado-panel-juego { padding: 13px; }
 }
-@media (prefers-reduced-motion: reduce) { .ahorcado .ahorcado-tecla { transition: none; } }
+
+/* Entrada de teclado e historial de letras */
+.ahorcado .ahorcado-formulario { gap: 11px; margin-bottom: 24px; }
+.ahorcado .ahorcado-formulario label { color: var(--ng-texto); font-size: .95rem; font-weight: 600; }
+.ahorcado .ahorcado-formulario input {
+    width: 78px; height: 74px; min-height: 74px; padding: 10px;
+    font-size: 2rem; font-weight: 500; line-height: 1;
+    border: 1px solid #ddc08b80; border-radius: 13px;
+    background: #293225; color: var(--ng-texto); caret-color: var(--ng-acento);
+    transition: background .2s, border-color .2s, box-shadow .2s;
+}
+.ahorcado .ahorcado-formulario input:focus {
+    background: #35432c; border-color: var(--ng-acento);
+    outline: none; box-shadow: 0 0 0 3px #ddc08b26;
+}
+.ahorcado .ahorcado-formulario input::placeholder { color: #d2cbb580; }
+.ahorcado .ahorcado-ayuda-teclado, .ahorcado .ahorcado-historial-vacio {
+    margin: 0; color: var(--ng-muted); font-size: .8rem; line-height: 1.5;
+}
+.ahorcado .ahorcado-historial {
+    border-top: 1px solid var(--ng-borde); padding-top: 18px;
+    min-height: 88px;
+}
+.ahorcado .ahorcado-historial-vacio { margin-top: 12px; }
+.ahorcado .ahorcado-letras-usadas {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+    list-style: none; padding: 0; margin: 12px 0 0;
+}
+.ahorcado .ahorcado-letra-usada {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    min-width: 38px; min-height: 36px; padding: 5px 9px;
+    border: 1px solid; border-radius: 8px; font-size: 1rem; font-weight: 600;
+}
+.ahorcado .ahorcado-letra-usada.correcta { background: #344b2d; color: #d7ecc7; border-color: #8aa777; }
+.ahorcado .ahorcado-letra-usada.incorrecta { background: #57392f; color: #f1b6a0; border-color: #d59881; }
+.ahorcado .ahorcado-marca-letra { font-size: .7rem; }
+.ahorcado .ahorcado-solo-lector {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+@media (max-width: 760px) {
+    .ahorcado .ahorcado-formulario input { width: 74px; height: 66px; min-height: 66px; }
+    .ahorcado .ahorcado-historial { min-height: 75px; }
+}

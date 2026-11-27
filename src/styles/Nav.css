@@ -1,0 +1,139 @@
+/* Ngigua | Navegación de cristal. Compatible con Nav.jsx y Global.css. */
+.ng-nav-global {
+  --nav-fondo: rgba(21, 28, 22, .88);
+  --nav-panel: #293225;
+  --nav-acento: #ddc08b;
+  --nav-texto: #f0e8d8;
+  --nav-suave: #d2cbb5;
+  --nav-borde: #ddc08b35;
+  --nav-cristal: rgba(21, 28, 22, .34);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: transparent;
+  color: var(--nav-texto);
+  border-bottom: 1px solid var(--nav-borde);
+  /* El desenfoque se aplica a una capa independiente, no al menú. */
+  overflow: visible;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  text-align: left;
+  color-scheme: dark;
+}
+/* Capa de cristal: deja ver el paisaje sin perder contraste. */
+.ng-nav-global::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(110deg, rgba(21,28,22,.54), var(--nav-cristal));
+  -webkit-backdrop-filter: blur(16px) saturate(115%);
+  backdrop-filter: blur(16px) saturate(115%);
+}
+/* En Inicio, Nav y paisaje comparten el mismo plano. El contenido conserva
+   el espacio superior del Nav; no se suma otra pantalla de altura. */
+#root:has(> .ng-inicio):has(> .ng-nav-global) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(100vh, auto);
+  grid-template-rows: minmax(100dvh, auto);
+}
+#root:has(> .ng-inicio) > .ng-nav-global {
+  grid-area: 1 / 1;
+  align-self: start;
+}
+#root:has(> .ng-nav-global) > .ng-inicio {
+  grid-area: 1 / 1;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-top: calc(var(--ng-alto-nav, 74px) + clamp(12px, 2.5vmin, 34px) + 4px);
+}
+.ng-nav-global *, .ng-nav-global *::before, .ng-nav-global *::after { box-sizing: border-box; }
+.ng-nav-global { box-sizing: border-box; }
+.ng-nav-contenedor {
+  max-width: 1920px;
+  min-height: 74px;
+  margin: 0 auto;
+  padding: 10px clamp(18px, 5.5vw, 84px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.ng-nav-global a { text-decoration: none; }
+.ng-nav-global .ng-nav-marca { display: inline-flex; flex: 0 1 auto; min-width: 0; align-items: center; gap: 10px; color: var(--nav-acento); }
+.ng-nav-marca > span { font-size: clamp(1rem, 1.65vw, 1.45rem); line-height: 1.15; overflow-wrap: anywhere; font-weight: 550; letter-spacing: -.045em; color: var(--nav-texto); }
+.ng-nav-marca small { display: block; margin-top: 5px; font-size: .59rem; font-weight: 500; letter-spacing: .09em; color: var(--nav-acento); }
+.ng-nav-lista, .ng-nav-submenu { list-style: none; margin: 0; padding: 0; }
+.ng-nav-lista { display: flex; align-items: center; gap: clamp(3px, 1.1vw, 16px); }
+.ng-nav-global .ng-nav-enlace {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 10px 12px;
+  border-radius: 7px;
+  color: var(--nav-texto);
+  font-size: .9rem;
+  text-shadow: 0 1px 6px #0005;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background .2s ease, color .2s ease;
+}
+.ng-nav-global .ng-nav-enlace:hover, .ng-nav-global .ng-nav-enlace.ng-nav-activo { color: var(--nav-acento); background: #ddc08b0e; }
+.ng-nav-lista > li > .ng-nav-enlace.ng-nav-activo::after, .ng-nav-grupo > .ng-nav-activo::after {
+  content: ''; position: absolute; bottom: 4px; left: 12px; right: 12px; height: 1px; background: var(--nav-acento);
+}
+.ng-nav-juegos { position: relative; }
+.ng-nav-grupo { display: flex; align-items: center; }
+.ng-nav-grupo .ng-nav-enlace { padding-right: 5px; }
+.ng-nav-global .ng-nav-desplegar, .ng-nav-global .ng-nav-toggle {
+  display: grid; place-items: center; padding: 0; margin: 0; border: 1px solid transparent; border-radius: 7px;
+  background: transparent; color: var(--nav-acento); cursor: pointer; box-shadow: none;
+  transition: background .2s, border-color .2s;
+}
+.ng-nav-global .ng-nav-desplegar { width: 36px; height: 42px; }
+.ng-nav-global .ng-nav-desplegar:hover, .ng-nav-global .ng-nav-toggle:hover { background: #ddc08b12; border-color: var(--nav-borde); }
+.ng-nav-desplegar svg { transition: transform .2s; }
+.ng-nav-desplegar[aria-expanded='true'] svg { transform: rotate(180deg); }
+.ng-nav-submenu {
+  position: absolute; top: calc(100% + 8px); right: 0; min-width: 190px; padding: 7px;
+  border: 1px solid var(--nav-borde); border-radius: 12px; background: var(--nav-fondo);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  backdrop-filter: blur(20px) saturate(120%);
+  box-shadow: 0 12px 28px #0005; animation: ng-nav-entrada .2s ease both;
+}
+.ng-nav-global .ng-nav-submenu[hidden] { display: none; }
+.ng-nav-submenu .ng-nav-enlace { justify-content: flex-start; color: var(--nav-texto); }
+.ng-nav-rombo { color: var(--nav-acento); }
+.ng-nav-global .ng-nav-admin > .ng-nav-enlace { background: #ddc08be8; color: var(--nav-panel); text-shadow: none; font-weight: 650; padding-inline: 17px; }
+.ng-nav-global .ng-nav-admin > .ng-nav-enlace:hover, .ng-nav-global .ng-nav-admin > .ng-nav-activo { background: #f0dcb2; color: #151c16; }
+.ng-nav-admin > .ng-nav-activo::after { display: none; }
+.ng-nav-global :is(a, button):focus-visible { outline: 2px solid var(--nav-acento); outline-offset: 3px; }
+.ng-nav-global .ng-nav-toggle { display: none; width: 44px; height: 44px; border-color: var(--nav-borde); }
+@keyframes ng-nav-entrada { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 1050px) {
+  .ng-nav-contenedor { min-height: 66px; gap: 10px; }
+  .ng-nav-global .ng-nav-toggle { flex-shrink: 0; }
+  #root:has(> .ng-nav-global) > .ng-inicio { padding-top: calc(max(66px, var(--ng-alto-nav, 66px)) + clamp(12px, 2.5vmin, 34px) + 4px); }
+  .ng-nav-global .ng-nav-toggle { display: grid; }
+  .ng-nav-lista { display: none; position: absolute; left: 0; right: 0; top: 100%; padding: 12px clamp(18px, 5.5vw, 84px) 20px; flex-direction: column; align-items: stretch; gap: 5px; background: var(--nav-fondo); -webkit-backdrop-filter: blur(20px) saturate(120%); backdrop-filter: blur(20px) saturate(120%); border-bottom: 1px solid var(--nav-borde); max-height: calc(100vh - 66px); max-height: calc(100dvh - 66px); overflow-y: auto; box-shadow: 0 14px 28px #0005; }
+  .ng-nav-lista.ng-nav-abierto { display: flex; animation: ng-nav-entrada .2s ease both; }
+  .ng-nav-global .ng-nav-enlace { justify-content: flex-start; min-height: 44px; }
+  .ng-nav-grupo .ng-nav-enlace { flex: 1; }
+  .ng-nav-global .ng-nav-desplegar { width: 44px; height: 44px; border-color: var(--nav-borde); }
+  .ng-nav-submenu { position: static; min-width: 0; margin: 4px 0 4px 12px; background: #ddc08b0a; -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: none; }
+  .ng-nav-global .ng-nav-admin > .ng-nav-enlace { justify-content: space-between; margin-top: 6px; }
+  .ng-nav-lista > li > .ng-nav-enlace.ng-nav-activo::after, .ng-nav-grupo > .ng-nav-activo::after { right: auto; width: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ng-nav-global *, .ng-nav-global *::before, .ng-nav-global *::after { animation: none !important; transition: none !important; }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .ng-nav-global::before { background: rgba(21,28,22,.86); }
+  .ng-nav-global .ng-nav-submenu { background: rgba(21,28,22,.97); }
+}

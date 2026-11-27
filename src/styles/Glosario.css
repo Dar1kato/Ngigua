@@ -1,0 +1,93 @@
+/* Ngigua — vocabulario. Los estilos se limitan al glosario. */
+body:has(.ng-glosario) {
+  background: linear-gradient(115deg, rgba(21,28,22,.93), rgba(41,50,37,.78)),
+    url('/img/imagen3.png') center 30% / cover no-repeat fixed, #293225;
+}
+.ng-glosario, .ng-glosario *, .ng-glosario *::before, .ng-glosario *::after { box-sizing: border-box; }
+.ng-glosario {
+  --ng-acento: #ddc08b;
+  --ng-texto: #f0e8d8;
+  --ng-muted: #d2cbb5;
+  --ng-borde: #e9dec72e;
+  position: relative;
+  width: calc(100% - 28px);
+  max-width: 1100px;
+  min-width: 0;
+  margin: clamp(10px, 2vh, 22px) auto;
+  padding: clamp(16px, 3vh, 30px) clamp(16px, 3vw, 36px);
+  background: linear-gradient(145deg, #202a21ed, #151c16f2);
+  border: 1px solid #efe8d36b;
+  border-radius: 24px;
+  box-shadow: 0 16px 45px #12181160;
+  backdrop-filter: blur(14px);
+  color: var(--ng-texto);
+  color-scheme: dark;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  text-align: left;
+  display: grid;
+  gap: clamp(10px, 1.8vh, 18px);
+  animation: ng-glosario-entrada .65s cubic-bezier(.2,.65,.3,1) both;
+}
+.ng-glosario::before { content: ''; position: absolute; top: -1px; left: 24px; right: 24px; height: 2px; background: linear-gradient(90deg, transparent, #ddc08b, transparent); pointer-events: none; }
+.ng-glosario .ng-glosario-encabezado { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.ng-glosario .ng-glosario-etiqueta { color: var(--ng-acento); font-size: .7rem; font-weight: 650; letter-spacing: .16em; }
+.ng-glosario .ng-glosario-encabezado h2 { font-size: clamp(1.8rem, 4.8vh, 3rem); font-weight: 450; letter-spacing: -.045em; line-height: 1.12; margin: 6px 0; color: var(--ng-texto); }
+.ng-glosario .ng-glosario-encabezado p { color: var(--ng-muted); font-size: .9rem; margin: 0; }
+.ng-glosario .ng-glosario-total { display: grid; gap: 2px; padding: 8px 15px; border: 1px solid #ddc08b40; border-radius: 12px; background: #35432c80; text-align: right; flex-shrink: 0; }
+.ng-glosario .ng-glosario-total strong { color: var(--ng-acento); font-size: 1.55rem; font-weight: 500; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.ng-glosario .ng-glosario-total span { color: var(--ng-muted); font-size: .72rem; }
+.ng-glosario .ng-glosario-filtros { display: grid; grid-template-columns: minmax(0,1fr) minmax(155px, 245px); gap: 12px; margin: 0; padding: 0; width: 100%; max-width: none; background: transparent; border: 0; box-shadow: none; }
+.ng-glosario .ng-glosario-campo { min-width: 0; display: flex; flex-direction: column; gap: 5px; margin: 0; color: var(--ng-muted); font-size: .78rem; font-weight: 600; }
+.ng-glosario .ng-glosario-busqueda { position: relative; display: flex; align-items: center; }
+.ng-glosario .ng-glosario-busqueda svg { position: absolute; left: 12px; color: var(--ng-acento); pointer-events: none; }
+.ng-glosario :is(input,select) { width: 100%; min-width: 0; height: 42px; margin: 0; padding: 8px 12px; font: inherit; font-size: 1rem; font-weight: 400; color: var(--ng-texto); background: #151c16; border: 1px solid #ddc08b40; border-radius: 10px; transition: border-color .2s, box-shadow .2s; }
+.ng-glosario input[type='search'] { padding-left: 40px; }
+.ng-glosario input::placeholder { color: #bdb6a3; }
+.ng-glosario :is(input,select):focus { outline: none; border-color: var(--ng-acento); box-shadow: 0 0 0 3px #ddc08b20; }
+.ng-glosario select { cursor: pointer; }
+.ng-glosario .ng-glosario-tabla { min-width: 0; overflow-x: auto; background: #151c16c9; border: 1px solid var(--ng-borde); border-radius: 13px; }
+.ng-glosario table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 0; border: 0; background: transparent; color: var(--ng-texto); }
+.ng-glosario :is(th,td) { padding: 9px clamp(8px, 1.5vw, 16px); text-align: left; vertical-align: middle; border: 0; border-bottom: 1px solid #ddc08b17; overflow-wrap: anywhere; line-height: 1.35; font-size: .88rem; }
+.ng-glosario th { color: var(--ng-acento); background: #293225; font-size: .73rem; letter-spacing: .07em; text-transform: uppercase; font-weight: 650; border-bottom-color: #ddc08b40; }
+.ng-glosario th:first-child { width: 12%; }
+.ng-glosario th:nth-child(2), .ng-glosario th:nth-child(3) { width: 32%; }
+.ng-glosario th:last-child { width: 24%; }
+.ng-glosario td { background: transparent; color: var(--ng-texto); }
+.ng-glosario td:first-child { color: var(--ng-muted); font-size: .78rem; font-variant-numeric: tabular-nums; }
+.ng-glosario td.ng-glosario-palabra { color: var(--ng-acento); font-weight: 650; }
+.ng-glosario tbody tr:nth-child(even) td { background: #ddc08b05; }
+.ng-glosario tbody tr:hover td { background: #35432c85; }
+.ng-glosario tbody tr:last-child td { border-bottom: 0; }
+.ng-glosario .ng-glosario-categoria { display: inline-block; max-width: 100%; padding: 3px 8px; border: 1px solid #b9d3a42e; border-radius: 5px; color: #d1dfc3; background: #35432c9c; font-size: .72rem; text-transform: capitalize; }
+.ng-glosario td.ng-glosario-vacio { padding: 24px 12px; text-align: center; color: var(--ng-muted); font-size: .9rem; }
+.ng-glosario .ng-glosario-pie { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.ng-glosario .ng-glosario-rango { color: var(--ng-muted); font-size: .78rem; margin: 0; }
+.ng-glosario .paginacion { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; padding: 0; margin: 0; width: auto; background: transparent; border: 0; box-shadow: none; }
+.ng-glosario .ng-glosario-grupo-pagina { display: inline-flex; align-items: center; gap: 5px; }
+.ng-glosario .ng-glosario-puntos { color: var(--ng-muted); padding: 0 2px; }
+.ng-glosario .paginacion button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-width: 34px; min-height: 34px; padding: 5px 9px; margin: 0; border: 1px solid #ddc08b35; border-radius: 7px; background: #293225; color: var(--ng-texto); font: inherit; font-size: .8rem; cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+.ng-glosario .paginacion button:not(:disabled):hover { border-color: var(--ng-acento); background: #35432c; color: var(--ng-acento); }
+.ng-glosario .paginacion button[aria-current='page'], .ng-glosario .paginacion button[aria-current='page']:hover { color: #20291e; background: var(--ng-acento); border-color: var(--ng-acento); font-weight: 700; }
+.ng-glosario .paginacion button:disabled { opacity: .45; cursor: default; }
+.ng-glosario button:focus-visible { outline: 2px solid var(--ng-acento); outline-offset: 2px; }
+@keyframes ng-glosario-entrada { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 620px) {
+  .ng-glosario { width: calc(100% - 20px); padding: 16px 12px; border-radius: 16px; }
+  .ng-glosario .ng-glosario-encabezado { align-items: flex-start; flex-wrap: wrap; gap: 9px; }
+  .ng-glosario .ng-glosario-total { display: flex; align-items: center; gap: 8px; padding: 6px 10px; }
+  .ng-glosario .ng-glosario-total strong { font-size: 1.1rem; }
+  .ng-glosario .ng-glosario-filtros { grid-template-columns: 1fr; gap: 8px; }
+  .ng-glosario :is(th,td) { padding: 8px 5px; font-size: .78rem; }
+  .ng-glosario th { font-size: .62rem; letter-spacing: 0; }
+  .ng-glosario th:first-child { width: 13%; }
+  .ng-glosario th:nth-child(2), .ng-glosario th:nth-child(3) { width: 30%; }
+  .ng-glosario th:last-child { width: 27%; }
+  .ng-glosario .ng-glosario-categoria { font-size: .65rem; padding: 2px 4px; }
+  .ng-glosario .ng-glosario-pie { justify-content: center; }
+  .ng-glosario .paginacion { justify-content: center; }
+  .ng-glosario .paginacion button { min-height: 40px; }
+  .ng-glosario .ng-glosario-paso-texto { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .ng-glosario, .ng-glosario * { animation: none !important; transition: none !important; } }

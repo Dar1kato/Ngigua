@@ -17,6 +17,7 @@ const items = [
         "id": "01",
         "tipo": "texto",
         "palabra": "Abrazar",
+        "ng": "tjuua",
         "emparejada": false,
         "volteada": false
     },
@@ -24,6 +25,7 @@ const items = [
         "id": "02",
         "tipo": "img",
         "palabra": "Abrazar",
+        "ng": "tjuua",
         "img": "/img/Abrazar.jpg",
         "emparejada": false,
         "volteada": false
@@ -32,6 +34,7 @@ const items = [
         "id": "03",
         "tipo": "texto",
         "palabra": "Abrir",
+        "ng": "danthjee",
         "emparejada": false,
         "volteada": false
     },
@@ -39,6 +42,7 @@ const items = [
         "id": "04",
         "tipo": "img",
         "palabra": "Abrir",
+        "ng": "danthjee",
         "img": "/img/Abrir.jpg",
         "emparejada": false,
         "volteada": false
@@ -47,6 +51,7 @@ const items = [
         "id": "05",
         "tipo": "texto",
         "palabra": "Acariciar",
+        "ng": null,
         "emparejada": false,
         "volteada": false
     },
@@ -54,6 +59,7 @@ const items = [
         "id": "06",
         "tipo": "img",
         "palabra": "Acariciar",
+        "ng": null,
         "img": "/img/Acariciar.jpg",
         "emparejada": false,
         "volteada": false
@@ -62,6 +68,7 @@ const items = [
         "id": "07",
         "tipo": "texto",
         "palabra": "Adornar",
+        "ng": "nchetsujin",
         "emparejada": false,
         "volteada": false
     },
@@ -69,6 +76,7 @@ const items = [
         "id": "08",
         "tipo": "img",
         "palabra": "Adornar",
+        "ng": "nchetsujin",
         "img": "/img/Adornar.jpg",
         "emparejada": false,
         "volteada": false
@@ -77,6 +85,7 @@ const items = [
         "id": "09",
         "tipo": "texto",
         "palabra": "Agradecer",
+        "ng": "thexruxi'in",
         "emparejada": false,
         "volteada": false
     },
@@ -84,6 +93,7 @@ const items = [
         "id": "10",
         "tipo": "img",
         "palabra": "Agradecer",
+        "ng": "thexruxi'in",
         "img": "/img/Agradecer.jpg",
         "emparejada": false,
         "volteada": false
@@ -92,7 +102,7 @@ const items = [
 
 export function JuegoMemorama() {
 
-    const [tarjetas, setTarjetas] = useState(shuffle(items))
+    const [tarjetas, setTarjetas] = useState(() => shuffle([...items]))
     const [primerTarjeta, setPrimeraTarjeta] = useState(null)
     const [volteadas, setvolteadas] = useState(0)
     const [bloqueo, setBloqueo] = useState(false)

@@ -1,11 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
     verificarLetra,
     checkVictoria,
     checkDerrota,
     generarPalabra
 } from '../../../logic/ahorcado'
-import { Abecedario } from './Abecedario'
 import '../../../styles/Ahorcado.css'
 
 const MAX_INTENTOS = 7
@@ -38,6 +37,8 @@ export function JuegoAhorcado() {
     const [letrasUsadas, setLetrasUsadas] = useState([])
     const [inputLetra, setInputLetra] = useState('')
     const [intentos, setIntentos] = useState(MAX_INTENTOS)
+    const entradaRef = useRef(null)
+    const componiendo = useRef(false)
 
     const victoria = checkVictoria(letrasEncontradas, palabra)
     const derrota = checkDerrota(intentos)
@@ -47,11 +48,29 @@ export function JuegoAhorcado() {
         letra => !letrasEncontradas.includes(letra)
     ).length
 
-    function handleIngresarLetra(input) {
-        setInputLetra('')
+    // En computadora, permite comenzar a escribir sin buscar el campo.
+    // En teléfono, el usuario toca el campo para abrir su teclado.
+    useEffect(() => {
+        if (!terminado && window.matchMedia('(pointer: fine)').matches) {
+            entradaRef.current?.focus({ preventScroll: true })
+        }
+    }, [terminado])
 
-        // Evita gastar intentos con letras repetidas o después de terminar.
-        if (!input || terminado || letrasUsadas.includes(input)) return
+    function handleIngresarLetra(valor) {
+        setInputLetra('')
+        const normalizada = valor.normalize('NFC').toLowerCase()
+        if (Array.from(normalizada).length !== 1 || terminado) return
+
+        // Conserva el carácter exacto de la palabra (incluidas las mayúsculas).
+        const coincidencia = caracteres.find(
+            letra => letra.normalize('NFC').toLowerCase() === normalizada
+        )
+        // No penaliza números, espacios o signos ajenos a la palabra.
+        if (!coincidencia && !/^[\p{L}\p{M}]$/u.test(normalizada)) return
+        const input = coincidencia ?? normalizada
+
+        // No se descuentan intentos por letras repetidas.
+        if (letrasUsadas.includes(input)) return
 
         if (verificarLetra(input, letrasEncontradas, palabra)) {
             setletrasEncontradas([...letrasEncontradas, input])
@@ -109,25 +128,56 @@ export function JuegoAhorcado() {
                     <p className="ahorcado-restantes">{letrasRestantes} letras restantes</p>
 
                     <form className="ahorcado-formulario" onSubmit={e => e.preventDefault()}>
-                        <label htmlFor="ahorcado-entrada">Escribe o selecciona una letra</label>
+                        <label htmlFor="ahorcado-entrada">Introduce una letra</label>
                         <input
+                            ref={entradaRef}
                             id="ahorcado-entrada"
                             type="text"
+                            inputMode="text"
                             value={inputLetra}
-                            onChange={e => handleIngresarLetra(e.target.value)}
-                            maxLength={1}
-                            placeholder="Ej. a"
+                            onChange={e => {
+                                if (componiendo.current || e.nativeEvent.isComposing) {
+                                    setInputLetra(e.target.value)
+                                } else {
+                                    handleIngresarLetra(e.target.value)
+                                }
+                            }}
+                            onCompositionStart={() => { componiendo.current = true }}
+                            onCompositionEnd={e => {
+                                componiendo.current = false
+                                handleIngresarLetra(e.currentTarget.value)
+                            }}
+                            placeholder="a"
                             autoComplete="off"
+                            autoCapitalize="none"
+                            autoCorrect="off"
+                            spellCheck={false}
+                            aria-describedby="ahorcado-ayuda-teclado"
                             disabled={terminado}
                         />
+                        <p id="ahorcado-ayuda-teclado" className="ahorcado-ayuda-teclado">
+                            Usa tu teclado. Cada letra se comprueba automáticamente.
+                        </p>
                     </form>
 
-                    <Abecedario
-                        letrasUsadas={letrasUsadas}
-                        letrasEncontradas={letrasEncontradas}
-                        onLetra={handleIngresarLetra}
-                        terminado={terminado}
-                    />
+                    <div className="ahorcado-historial" aria-live="polite">
+                        <span className="ahorcado-panel-etiqueta">Letras utilizadas</span>
+                        {letrasUsadas.length === 0 ? (
+                            <p className="ahorcado-historial-vacio">Aún no has utilizado letras.</p>
+                        ) : (
+                            <ul className="ahorcado-letras-usadas">
+                                {letrasUsadas.map(letra => {
+                                    const correcta = letrasEncontradas.includes(letra)
+                                    return (
+                                        <li key={letra} className={`ahorcado-letra-usada ${correcta ? 'correcta' : 'incorrecta'}`}>
+                                            {letra}<span className="ahorcado-marca-letra" aria-hidden="true">{correcta ? '✓' : '×'}</span>
+                                            <span className="ahorcado-solo-lector">{correcta ? ' correcta' : ' incorrecta'}</span>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        )}
+                    </div>
 
                     <div className="ahorcado-leyenda">
                         <span><i className="correcta" /> Correcta</span>
