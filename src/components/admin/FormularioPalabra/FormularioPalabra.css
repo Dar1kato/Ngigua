@@ -1,3 +1,4 @@
+/* Ngigua · tema olivo, crema y dorado. Selectores originales conservados. */
 .formulario-palabra__fondo {
   position: fixed;
   inset: 0;
@@ -6,69 +7,116 @@
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background: rgba(0, 0, 0, 0.5);
+  background: #101610bd;
 }
+
 .formulario-palabra {
+  position: relative;
   width: 100%;
-  max-width: 440px;
+  max-width: 460px;
   max-height: 90vh;
+  max-height: 90dvh;
   overflow-y: auto;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 24px;
-  background: var(--admin-superficie, var(--bg));
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
+  gap: 16px;
+  padding: 40px 28px 26px;
+  background: var(--ng-panel);
+  color: var(--ng-texto);
+  border: 1px solid var(--ng-borde);
+  border-radius: 24px;
+  box-shadow: 0 12px 36px #101610b0;
   text-align: left;
 }
-.formulario-palabra h2 { margin: 0; font-size: 1.3rem; color: var(--text-h); }
+
+.formulario-palabra::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 24px; right: 24px;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--ng-acento), transparent);
+}
+
+.formulario-palabra h2 {
+  margin: 0;
+  font-size: clamp(22px, 4vw, 26px);
+  font-weight: 500;
+  letter-spacing: -.035em;
+  color: var(--ng-texto);
+}
+
 .formulario-palabra label {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  font-size: 0.9rem;
+  gap: 7px;
+  font-size: 15px;
   font-weight: 600;
-  color: var(--text-h);
+  color: var(--ng-texto);
 }
+
 .formulario-palabra input,
 .formulario-palabra select {
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--bg);
-  color: var(--text-h);
+  width: 100%;
+  min-width: 0;
+  padding: 13px 15px;
+  border: 1px solid #e9dec74d;
+  border-radius: 12px;
+  background: var(--ng-campo);
+  color: var(--ng-texto);
   font: inherit;
+  font-size: 16px;
+  transition: border-color .2s, box-shadow .2s;
 }
+.formulario-palabra input::placeholder { color: #bdb6a3; }
 .formulario-palabra input:focus,
 .formulario-palabra select:focus {
-  outline: 2px solid var(--admin-acento, var(--accent));
-  border-color: transparent;
+  outline: none;
+  border-color: var(--ng-acento);
+  box-shadow: 0 0 0 3px #ddc08b30;
 }
+
 .formulario-palabra__error {
   margin: 0;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: #fee2e2;
-  color: #b91c1c;
-  font-size: 0.9rem;
+  padding: 11px 14px;
+  border: 1px solid var(--ng-error-borde);
+  border-radius: 10px;
+  background: var(--ng-error-fondo);
+  color: var(--ng-error);
+  font-size: 14px;
 }
-.formulario-palabra__acciones { display: flex; justify-content: flex-end; gap: 12px; }
+
+.formulario-palabra__acciones { display: flex; justify-content: flex-end; gap: 12px; margin-top: 4px; }
+
 .formulario-palabra__acciones button {
-  padding: 10px 24px;
-  border: none;
-  border-radius: 999px;
-  background: var(--admin-acento, var(--accent));
-  color: var(--bg);
+  min-height: 44px;
+  padding: 10px 26px;
+  border: 0;
+  border-radius: 24px;
+  background: var(--ng-acento);
+  color: var(--ng-sobre-acento);
   font: inherit;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
+  transition: background-color .2s;
 }
-.formulario-palabra__acciones button[type='button'] {
-  background: var(--code-bg);
-  color: var(--text-h);
+.formulario-palabra__acciones button:hover:not(:disabled) { background: var(--ng-acento-hover); }
+.formulario-palabra__acciones button[type='button'] { background: #343b31; color: var(--ng-texto); }
+.formulario-palabra__acciones button[type='button']:hover:not(:disabled) { background: #48543a; }
+.formulario-palabra__acciones button:disabled, .formulario-palabra__acciones button[type="button"]:disabled { background: #343b31; color: var(--ng-suave); cursor: not-allowed; }
+
+@media (max-width: 420px) {
+  .formulario-palabra__acciones { flex-direction: column-reverse; }
+  .formulario-palabra__acciones button { width: 100%; }
 }
-.formulario-palabra__acciones button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+@media (prefers-reduced-motion: reduce) {
+  .formulario-palabra input, .formulario-palabra select, .formulario-palabra__acciones button { transition: none; }
+}
+
+.formulario-palabra__fondo { overflow-y: auto; backdrop-filter: blur(6px); }
+.formulario-palabra { min-width: 0; color-scheme: dark; border-color: #ddc08b80; animation: ng-modal-entrada .25s ease-out both; }
+.formulario-palabra select option { background: var(--ng-campo); color: var(--ng-texto); }
+@keyframes ng-modal-entrada { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .formulario-palabra { animation: none; } }

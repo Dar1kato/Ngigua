@@ -1,7 +1,116 @@
- 
-body {
-  background-image: url("public/img/fondo.webp"); 
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+/* Fondo original para las demás secciones del proyecto. */
+
+#root:has(.ng-inicio) { max-width: none; width: 100%; padding: 0; margin: 0; }
+.ng-inicio, .ng-inicio *, .ng-inicio *::before, .ng-inicio *::after { box-sizing: border-box; }
+.ng-inicio {
+  --ng-acento: #ddc08b;
+  --ng-texto: #f0e8d8;
+  --ng-muted: #d2cbb5;
+  position: relative; isolation: isolate; overflow: hidden;
+  width: 100%; min-height: 100vh; min-height: 100svh;
+  background: #293225; color: var(--ng-texto); text-align: left;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  padding: clamp(22px, 5.5vw, 84px);
+  display: flex; align-items: stretch;
+  transition: color .6s ease;
+}
+.ng-inicio .ng-paisajes, .ng-inicio .ng-paisaje, .ng-inicio .ng-ambiente, .ng-inicio .ng-velo { position: absolute; inset: 0; pointer-events: none; }
+.ng-inicio .ng-paisajes { z-index: -3; overflow: hidden; }
+.ng-inicio .ng-paisaje { opacity: 0; visibility: hidden; transition: opacity 1.25s ease, visibility 0s linear 1.25s; overflow: hidden; }
+.ng-inicio .ng-paisaje.ng-activo { opacity: 1; visibility: visible; transition-delay: 0s; }
+.ng-inicio .ng-ambiente { background: var(--ng-foto) center / cover no-repeat; filter: blur(22px) brightness(.75); transform: scale(1.12); }
+
+.ng-inicio .ng-paisaje img {
+  position: absolute; display: block; right: 0; top: 0; width: 83%; height: 100%; max-width: none;
+  object-fit: cover; object-position: var(--ng-pos); transform-origin: 65% 50%;
+  mask-image: linear-gradient(to right, transparent, #000 21%);
+  animation: ng-camara 24s ease-in-out infinite alternate;
+  filter: saturate(.88) sepia(.08);
+}
+.ng-inicio .ng-velo { z-index: -2; background: linear-gradient(90deg, rgba(20,27,20,.76) 0%, rgba(27,34,24,.43) 34%, transparent 67%), linear-gradient(0deg, #151b16e8 0%, #1b21186b 25%, transparent 57%, #20281d38 100%); }
+.ng-inicio .ng-interior {
+  position: relative; flex: 1; width: 100%; max-width: 1680px; margin: 0 auto;
+  min-height: max(515px, calc(100svh - clamp(22px, 5.5vw, 84px) * 2));
+  padding: clamp(24px, 3.7vw, 57px);
+  display: grid; grid-template-rows: auto 1fr auto auto; gap: clamp(14px, 2.2vh, 26px);
+}
+.ng-inicio .ng-marco { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; z-index: 4; }
+.ng-inicio .ng-marco rect { fill: none; stroke: #efe8d38c; stroke-width: 3; vector-effect: non-scaling-stroke; stroke-dasharray: 100; stroke-dashoffset: 0; animation: ng-dibujar 1.2s cubic-bezier(.3,.7,.2,1) both; }
+.ng-inicio .ng-barra { display: flex; justify-content: space-between; align-items: center; gap: 22px; animation: ng-entrada .65s 1.05s both; }
+.ng-inicio a { text-decoration: none; }
+.ng-inicio .ng-marca { display: inline-flex; align-items: center; gap: 9px; color: var(--ng-texto); font-weight: 650; font-size: 1.1rem; letter-spacing: -.02em; }
+.ng-inicio .ng-marca svg { width: 29px; height: 29px; color: var(--ng-acento); }
+.ng-inicio .ng-nav { margin-left: auto; display: flex; gap: clamp(16px, 2.8vw, 40px); align-items: center; }
+.ng-inicio .ng-nav a { color: var(--ng-texto); font-size: .85rem; text-shadow: 0 1px 9px #0008; transition: color .2s; }
+.ng-inicio .ng-nav a:hover { color: var(--ng-acento); }
+.ng-inicio .ng-cta { display: inline-flex; align-items: center; gap: 12px; padding: 10px 17px; border-radius: 7px; color: #293225; background: var(--ng-acento); font-weight: 650; font-size: .8rem; transition: background .25s; }
+.ng-inicio .ng-cta:hover { background: #f0dcb2; }
+.ng-inicio .ng-hero { align-self: start; max-width: 65%; padding-top: clamp(12px, 2.8vh, 36px); animation: ng-entrada .7s 1.35s both; }
+.ng-inicio .ng-etiqueta { color: var(--ng-acento); display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: .16em; font-size: .68rem; font-weight: 650; margin-bottom: 14px; }
+.ng-inicio .ng-etiqueta span { width: 6px; height: 6px; transform: rotate(45deg); background: currentColor; }
+.ng-inicio .ng-hero h1 { margin: 0; font-size: clamp(3rem, 6.5vw, 7.4rem); line-height: .92; letter-spacing: -.065em; font-weight: 400; color: var(--ng-texto); text-shadow: 0 3px 25px #13190f38; }
+.ng-inicio .ng-hero h1 span { display: block; }
+.ng-inicio .ng-hero h1 .ng-suave { color: #d4c7a9; }
+.ng-inicio .ng-subtitulo { color: #e8dfcd; font-size: clamp(.78rem, 1.1vw, 1rem); margin: 19px 0 0; line-height: 1.4; }
+.ng-inicio .ng-inferior { position: relative; display: block; min-height: 110px; }
+.ng-inicio .ng-inferior .ng-contexto { width: 61%; }
+.ng-inicio .ng-inferior .ng-panel { position: absolute; right: 0; bottom: 0; width: 34%; min-width: 265px; }
+.ng-inicio .ng-contexto { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(16px, 3vw, 42px); align-items: end; padding-bottom: 5px; animation: ng-entrada .65s 1.4s both; }
+.ng-inicio .ng-texto { max-width: 340px; }
+.ng-inicio .ng-texto p { font-size: clamp(.79rem, 1.05vw, .98rem); color: var(--ng-texto); margin: 0; line-height: 1.5; }
+.ng-inicio .ng-texto .ng-ubicacion { color: var(--ng-acento); font-weight: 600; font-size: .69rem; margin-bottom: 8px; letter-spacing: .06em; }
+.ng-inicio .ng-texto small { display: block; margin-top: 8px; color: var(--ng-muted); font-size: .66rem; }
+.ng-inicio .ng-dato { display: flex; gap: 9px; align-items: start; }
+.ng-inicio .ng-estrella { font-size: 1.2rem; color: var(--ng-acento); line-height: 1.25; }
+.ng-inicio .ng-dato strong { display: block; font-weight: 450; font-size: clamp(1rem, 1.65vw, 1.65rem); color: var(--ng-texto); line-height: 1.15; }
+.ng-inicio .ng-dato small { display: block; font-size: .75rem; color: var(--ng-muted); margin-top: 5px; line-height: 1.4; }
+.ng-inicio .ng-panel { min-width: 0; border: 1px solid #e9dec729; background: linear-gradient(145deg, #202a21e8, #151c16f2); backdrop-filter: blur(14px); border-radius: 20px; padding: clamp(15px, 1.8vw, 24px); box-shadow: 0 16px 45px #12181150; animation: ng-entrada .7s 1.4s both; }
+.ng-inicio .ng-panel-titulo { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 13px; }
+.ng-inicio .ng-panel-titulo small { color: var(--ng-acento); letter-spacing: .12em; font-size: .59rem; font-weight: 650; }
+.ng-inicio .ng-panel-titulo h2 { margin: 4px 0 0; color: var(--ng-texto); font-size: clamp(1.15rem, 2vw, 1.65rem); font-weight: 450; letter-spacing: -.035em; line-height: 1.05; }
+.ng-inicio .ng-panel-titulo > span { border: 1px solid #f0e8d82b; border-radius: 50%; width: 30px; height: 30px; display: grid; place-items: center; color: var(--ng-acento); }
+.ng-inicio .ng-controles { display: flex; align-items: center; gap: 11px; max-width: 270px; z-index: 5; }
+.ng-inicio .ng-puntos { display: flex; gap: 2px; }
+.ng-inicio .ng-puntos button { padding: 0; width: 22px; height: 24px; border: 0; background: transparent; display: grid; place-items: center; cursor: pointer; }
+.ng-inicio .ng-puntos button::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #d6cfb68c; transition: background .25s, transform .25s; }
+.ng-inicio .ng-puntos .ng-seleccionado::before { background: var(--ng-acento); transform: scale(1.45); }
+.ng-inicio .ng-progreso { flex: 1; height: 2px; background: #e0d6bd50; overflow: hidden; }
+.ng-inicio .ng-progreso span { display: block; height: 100%; background: var(--ng-acento); transform-origin: left; }
+.ng-inicio .ng-numero { font-size: .67rem; color: var(--ng-muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ng-inicio .ng-pausa { border-radius: 50%; width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid #f0e8d84d; color: var(--ng-texto); background: #20291b80; font: inherit; font-size: .83rem; padding: 0; cursor: pointer; }
+.ng-inicio .ng-contador { position: absolute; bottom: clamp(65px, 10vh, 120px); left: clamp(24px, 3.7vw, 57px); color: #e4d9bd; font-size: clamp(3rem, 6vw, 5.7rem); line-height: 1; font-weight: 300; letter-spacing: -.07em; font-variant-numeric: tabular-nums; pointer-events: none; opacity: 1; transition: opacity .35s ease; }
+.ng-inicio .ng-contador-oculto { opacity: 0; }
+.ng-inicio button:focus-visible, .ng-inicio a:focus-visible { outline: 2px solid var(--ng-acento); outline-offset: 4px; }
+.ng-inicio.ng-pausado .ng-paisaje img { animation-play-state: paused; }
+@keyframes ng-camara { from { transform: scale(1); } to { transform: scale(1.075); } }
+@keyframes ng-dibujar { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+@keyframes ng-entrada { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 850px) {
+  .ng-inicio { padding: 20px; }
+  .ng-inicio .ng-interior { padding: 25px; min-height: calc(100svh - 40px); }
+  .ng-inicio .ng-hero { max-width: 100%; }
+  .ng-inicio .ng-inferior .ng-contexto { width: 52%; }
+  .ng-inicio .ng-inferior .ng-panel { width: 43%; min-width: 245px; }
+  .ng-inicio .ng-contexto { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .ng-inicio .ng-hero h1 { font-size: clamp(3rem, 8vw, 5.5rem); }
+}
+@media (max-width: 620px) {
+  .ng-inicio { padding: 12px; }
+  .ng-inicio .ng-interior { padding: 19px; min-height: calc(100svh - 24px); grid-template-rows: auto minmax(245px, 1fr) auto auto; }
+  .ng-inicio .ng-nav { display: none; }
+  .ng-inicio .ng-barra { gap: 12px; }
+  .ng-inicio .ng-paisaje img { width: 100%; object-position: var(--ng-movil); mask-image: none; }
+  .ng-inicio .ng-velo { background: linear-gradient(90deg, #1c251bb0, #20291b15), linear-gradient(0deg, #151b16f7 4%, #1b2118aa 48%, transparent 84%); }
+  .ng-inicio .ng-hero h1 { font-size: clamp(2.9rem, 10.2vw, 4.2rem); }
+  .ng-inicio .ng-inferior { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .ng-inicio .ng-inferior .ng-contexto { width: 100%; }
+  .ng-inicio .ng-inferior .ng-panel { position: static; width: 100%; min-width: 0; }
+  .ng-inicio .ng-contexto { grid-template-columns: 1fr; gap: 10px; }
+  .ng-inicio .ng-panel { border-radius: 13px; }
+  .ng-inicio .ng-marco rect { stroke-width: 2; rx: 5; ry: 2; }
+  .ng-inicio .ng-contador { bottom: 48%; left: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ng-inicio *, .ng-inicio *::before, .ng-inicio *::after { animation: none !important; transition: none !important; }
+  .ng-inicio .ng-contador { display: none; }
 }

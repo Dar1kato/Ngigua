@@ -68,7 +68,7 @@ export function Traductor({ palabras = [] }) {
             onChange={(event) => setBusqueda(event.target.value)}
             placeholder="Escribe una palabra..."
           />
-          <button className="traductor-buscar" type="submit">Buscar</button>
+          <button className="traductor-buscar" type="submit">Traducir</button>
         </div>
       </form>
 

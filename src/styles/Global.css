@@ -1,0 +1,87 @@
+/* Ngigua | Ajuste global de pantalla. Importar al final de App.jsx.
+   No se oculta el scroll vertical: si el contenido realmente no cabe,
+   sigue siendo accesible (móviles, zoom, palabras largas, formularios). */
+:root { --ng-alto-nav: 64px; }
+html { min-height: 100%; }
+body { margin: 0; display: block; min-width: 0; min-height: 100vh; min-height: 100dvh; }
+#root, #root:has(.ng-inicio) {
+  box-sizing: border-box;
+  width: 100%; max-width: none; margin: 0; padding: 0;
+  min-height: 100vh; min-height: 100dvh;
+  display: flex; flex-direction: column;
+}
+#root > .ng-nav-global { flex: 0 0 auto; }
+#root > :not(.ng-nav-global) { min-width: 0; }
+/* El nav ocupa espacio real, no se superpone al contenido. */
+.ng-nav-global .ng-nav-contenedor { min-height: var(--ng-alto-nav); padding: 6px clamp(12px, 3vw, 48px); gap: clamp(8px, 1.5vw, 20px); }
+.ng-nav-global .ng-nav-marca { min-width: 0; flex: 0 1 auto; }
+.ng-nav-global .ng-nav-marca > span { font-size: clamp(1rem, 1.65vw, 1.45rem); line-height: 1.15; overflow-wrap: anywhere; }
+.ng-nav-global .ng-nav-lista { flex-shrink: 0; gap: clamp(2px, .7vw, 10px); }
+.ng-nav-global .ng-nav-enlace { padding: 8px 10px; min-height: 40px; }
+/* El inicio ya no mide 100vh ADEMÁS del nav. */
+#root .ng-inicio { flex: 1 0 auto; min-height: calc(100vh - var(--ng-alto-nav)); min-height: calc(100dvh - var(--ng-alto-nav)); padding: clamp(12px, 2.5vmin, 34px); }
+#root .ng-inicio .ng-interior { min-height: 0; padding: clamp(18px, 3vmin, 42px); }
+#root .ng-inicio .ng-barra:empty { display: none; }
+/* :has evita una fila vacía si el encabezado se eliminó. */
+#root .ng-inicio .ng-interior:has(.ng-barra:empty) { grid-template-rows: minmax(min-content, 1fr) auto auto; }
+/* Márgenes y espaciado que responden a la altura, no sólo al ancho. */
+#root :is(.ahorcado, .memorama, .traductor, .ng-juegos, .admin) {
+  margin-block: clamp(10px, 2vh, 22px);
+  padding: clamp(16px, 3vh, 30px) clamp(16px, 3vw, 36px);
+}
+#root .admin { min-height: 0; }
+#root .login { flex: 1 0 auto; min-height: 0; padding-block: clamp(12px, 2vh, 24px); }
+#root .login .login__tarjeta { padding-block: clamp(24px, 4vh, 36px) clamp(18px, 3vh, 26px); }
+/* Ahorcado y memorama: compactar el espacio, no la interacción. */
+#root .ahorcado .ahorcado-encabezado,
+#root .memorama .memorama-encabezado,
+#root .ng-juegos .ng-juegos-encabezado { margin-bottom: clamp(12px, 2vh, 20px); }
+#root .ahorcado .ahorcado-encabezado h2,
+#root .memorama .memorama-encabezado h2,
+#root .ng-juegos .ng-juegos-encabezado h1 { font-size: clamp(1.8rem, 4.8vh, 3rem); margin-block: 6px; }
+#root .ahorcado :is(.ahorcado-panel-dibujo, .ahorcado-panel-juego) { padding: clamp(12px, 2vh, 20px); }
+#root .ahorcado .ahorcado-panel-dibujo { gap: 8px; }
+#root .ahorcado .ahorcado-dibujo { max-width: clamp(130px, 28vh, 230px); }
+#root .ahorcado .ahorcado-palabra { margin: 12px 0 7px; gap: 6px; }
+#root .ahorcado .ahorcado-letra { width: clamp(32px, 5vh, 42px); min-height: clamp(38px, 6vh, 48px); font-size: 1.2rem; }
+#root .ahorcado .ahorcado-restantes { margin-bottom: 10px; }
+#root .ahorcado .ahorcado-formulario { gap: 7px; margin-bottom: 12px; }
+#root .ahorcado .ahorcado-formulario input { width: 64px; height: 56px; min-height: 56px; font-size: 1.65rem; }
+#root .ahorcado .ahorcado-historial { min-height: 0; padding-top: 10px; }
+#root .ahorcado :is(.ahorcado-historial-vacio, .ahorcado-letras-usadas) { margin-top: 7px; }
+#root .ahorcado .ahorcado-letras-usadas { gap: 5px; }
+#root .ahorcado .ahorcado-letra-usada { min-height: 30px; min-width: 32px; padding: 3px 7px; font-size: .9rem; }
+#root .ahorcado .ahorcado-leyenda { margin: 9px 0; }
+#root .ahorcado .ahorcado-resultado { margin: 8px 0; padding: 8px; }
+#root .memorama .memorama-contador { margin-top: 9px; padding: 7px 12px; }
+#root .traductor :is(.traductor-subtitulo, .traductor-idiomas) { margin-bottom: 18px; }
+#root .traductor .traductor-formulario { margin-bottom: 16px; }
+#root .traductor .traductor-resultado { min-height: 110px; padding: 16px; }
+@media (min-width: 769px) {
+  /* 10 cartas, 5 columnas y 2 filas. La altura limita su ancho. */
+  #root .memorama .memorama-tablero { width: 100%; max-width: min(900px, max(420px, calc((100vh - 300px) * 1.875 + 40px))); max-width: min(900px, max(420px, calc((100dvh - 300px) * 1.875 + 40px))); gap: 10px; }
+  #root .ng-juegos .tarjeta img { aspect-ratio: auto; height: clamp(115px, 30vh, 270px); }
+  #root .ng-juegos .tarjeta-contenido { padding: 16px; gap: 7px; }
+  #root .ng-juegos .tarjeta p { margin-bottom: 4px; }
+  #root .ng-inicio .ng-hero { padding-top: 8px; }
+  #root .ng-inicio .ng-hero h1 { font-size: clamp(2.5rem, min(6.5vw, 9vh), 7.4rem); }
+}
+@media (min-width: 761px) and (max-height: 800px) {
+  #root .ahorcado .ahorcado-tablero { gap: 12px; }
+  #root .ahorcado .ahorcado-dibujo { max-width: clamp(125px, 25vh, 200px); }
+  #root .ng-inicio .ng-interior { gap: 12px; }
+  #root .ng-inicio .ng-hero h1 { font-size: clamp(2.3rem, min(6vw, 8vh), 5rem); }
+  #root .ng-inicio .ng-subtitulo { margin-top: 10px; }
+  #root .admin .tabla-palabras { max-height: max(150px, calc(100dvh - 350px)); }
+}
+/* Pantallas bajas/estrechas: se permite el desplazamiento si hace falta.
+   Nunca cortar el formulario ni impedir que el teclado móvil se abra. */
+@media (max-width: 760px) {
+  :root { --ng-alto-nav: 66px; }
+  #root .ahorcado .ahorcado-dibujo { max-width: 150px; }
+  #root .ng-inicio { min-height: calc(100dvh - var(--ng-alto-nav)); }
+  #root .ng-inicio .ng-interior:has(.ng-barra:empty) { grid-template-rows: minmax(245px, 1fr) auto auto; }
+}
+@media (max-width: 850px) {
+  .ng-nav-global .ng-nav-lista { max-height: calc(100dvh - var(--ng-alto-nav)); }
+}

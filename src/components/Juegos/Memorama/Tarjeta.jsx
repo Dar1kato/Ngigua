@@ -16,9 +16,14 @@ export function Tarjeta({ item, handleClick }) {
             >
 
                 {visible && item.tipo === "texto" && (
-                    <p className="memorama-palabra">
-                        {item.palabra}
-                    </p>
+                    <div className="memorama-palabras">
+                        <p className="memorama-palabra">
+                            {item.ng || 'Traducción pendiente'}
+                        </p>
+                        <span className="memorama-traduccion" lang="es">
+                            {item.palabra}
+                        </span>
+                    </div>
                 )}
 
                 {visible && item.tipo === "img" && (

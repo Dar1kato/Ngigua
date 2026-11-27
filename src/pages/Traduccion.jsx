@@ -15,7 +15,6 @@ export default function Traduccion({
 }) {
     return (
         <main>
-            <h1>Traductor</h1>
             {error ? (
                 <p role="alert">No se pudo cargar el vocabulario: {error}</p>
             ) : cargando ? (

@@ -1,0 +1,189 @@
+/* Identidad visual compartida con Inicio, Traductor, Memorama y Ahorcado. */
+body:has(.ng-juegos) {
+  background: linear-gradient(115deg, rgba(21,28,22,.93), rgba(41,50,37,.78)),
+    url('/img/imagen3.png') center 30% / cover no-repeat fixed, #293225;
+}
+
+.ng-juegos, .ng-juegos *, .ng-juegos *::before, .ng-juegos *::after {
+  box-sizing: border-box;
+}
+
+.ng-juegos {
+  --ng-acento: #ddc08b;
+  --ng-texto: #f0e8d8;
+  --ng-muted: #d2cbb5;
+  --ng-borde: #e9dec72e;
+  position: relative;
+  isolation: isolate;
+  width: calc(100% - 32px);
+  max-width: 1100px;
+  min-width: 0;
+  margin: clamp(18px, 4vw, 48px) auto;
+  padding: clamp(22px, 4vw, 46px);
+  border: 1px solid #efe8d36b;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #202a21ed, #151c16f2);
+  color: var(--ng-texto);
+  box-shadow: 0 16px 45px #12181160;
+  backdrop-filter: blur(14px);
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+  text-align: left;
+  color-scheme: dark;
+  animation: ng-juegos-entrada .65s cubic-bezier(.2,.65,.3,1) both;
+}
+
+.ng-juegos::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 24px;
+  right: 24px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ddc08b, transparent);
+  pointer-events: none;
+}
+
+.ng-juegos .ng-juegos-encabezado { margin-bottom: clamp(22px, 4vw, 36px); }
+.ng-juegos .ng-juegos-etiqueta {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--ng-acento);
+  font-size: .7rem;
+  font-weight: 650;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.ng-juegos .ng-juegos-etiqueta::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+.ng-juegos .ng-juegos-encabezado h1 {
+  margin: 12px 0 8px;
+  color: var(--ng-texto);
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -.055em;
+}
+.ng-juegos .ng-juegos-encabezado p {
+  color: var(--ng-muted);
+  font-size: .95rem;
+  margin: 0;
+  max-width: 52ch;
+}
+
+/* Se reutiliza Tarjeta sin alterar las tarjetas de otras rutas. */
+.ng-juegos .contenedor-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(14px, 2.5vw, 26px);
+  margin: 0;
+  padding: 0;
+}
+.ng-juegos .tarjeta {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--ng-borde);
+  border-radius: 16px;
+  background: #111910a0;
+  color: var(--ng-texto);
+  box-shadow: none;
+  text-align: left;
+  transition: border-color .25s, background .25s, transform .25s, box-shadow .25s;
+  animation: ng-juegos-entrada .65s .1s both;
+}
+.ng-juegos .tarjeta:nth-child(2) { animation-delay: .2s; }
+.ng-juegos .tarjeta:hover, .ng-juegos .tarjeta:focus-within {
+  border-color: #ddc08b80;
+  background: #35432cbd;
+  box-shadow: 0 12px 28px #12181160;
+}
+.ng-juegos .tarjeta img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.8) sepia(.08);
+  border-bottom: 1px solid var(--ng-borde);
+}
+.ng-juegos .tarjeta-contenido {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 0;
+  padding: clamp(16px, 2.5vw, 25px);
+  gap: 10px;
+}
+.ng-juegos .tarjeta h2, .ng-juegos .tarjeta h3 {
+  color: var(--ng-texto);
+  font-size: clamp(1.25rem, 2.3vw, 1.7rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+  text-align: left;
+  margin: 0;
+}
+.ng-juegos .tarjeta p {
+  color: var(--ng-muted);
+  font-size: .9rem;
+  line-height: 1.5;
+  margin: 0 0 8px;
+  text-align: left;
+}
+.ng-juegos .tarjeta-contenido > a, .ng-juegos .tarjeta-contenido > button {
+  margin-top: auto;
+}
+.ng-juegos .tarjeta button, .ng-juegos .tarjeta a:not(:has(button)) {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 12px 16px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: var(--ng-acento);
+  color: #293225;
+  font: inherit;
+  font-size: .88rem;
+  font-weight: 650;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.ng-juegos .tarjeta-contenido > a:has(button) { display: block; text-decoration: none; }
+.ng-juegos .tarjeta-contenido > a button { margin: 0; }
+.ng-juegos .tarjeta button:hover, .ng-juegos .tarjeta a:not(:has(button)):hover { background: #f0dcb2; }
+.ng-juegos a:focus-visible, .ng-juegos button:focus-visible {
+  outline: 2px solid var(--ng-acento);
+  outline-offset: 3px;
+}
+@keyframes ng-juegos-entrada {
+  from { opacity: 0; translate: 0 12px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@media (max-width: 620px) {
+  .ng-juegos { width: calc(100% - 20px); padding: 22px 15px; border-radius: 16px; }
+  .ng-juegos .contenedor-tarjetas { grid-template-columns: minmax(0, 1fr); }
+  .ng-juegos .tarjeta img { aspect-ratio: 16 / 9; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ng-juegos, .ng-juegos *, .ng-juegos *::before, .ng-juegos *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .ng-juegos .tarjeta:hover { transform: none; }
+}

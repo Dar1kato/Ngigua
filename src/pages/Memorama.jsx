@@ -10,7 +10,6 @@ import { JuegoMemorama } from '../components/Juegos/Memorama/JuegoMemorama'
 export default function Memorama() {
     return (
         <main>
-            <h1>Memorama</h1>
             <JuegoMemorama />
         </main>
     )
