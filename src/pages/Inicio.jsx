@@ -7,7 +7,7 @@ const DURACION = 12000
 const INTRO = 1000
 const ESCENAS = [
   {
-    imagen: '/img/imagen1.png',
+    imagen: '/img/imagen1.webp',
     herramienta: {
       nombre: 'Traductor',
       descripcion: 'Consulta el significado de las palabras en ngigua y español.',
@@ -27,7 +27,7 @@ const ESCENAS = [
     acento: '#ddc08b',
   },
   {
-    imagen: '/img/imagen2.png',
+    imagen: '/img/imagen2.webp',
     herramienta: {
       nombre: 'Vocabulario',
       descripcion: 'Descubre nuevas palabras y amplía tu conocimiento de la lengua.',
@@ -47,7 +47,7 @@ const ESCENAS = [
     acento: '#e6b6a0',
   },
   {
-    imagen: '/img/imagen3.png',
+    imagen: '/img/imagen3.webp',
     herramienta: {
       nombre: 'Juegos',
       descripcion: 'Pon a prueba tus conocimientos y aprende de manera interactiva.',
