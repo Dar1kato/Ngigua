@@ -68,7 +68,6 @@ const ESCENAS = [
   },
 ]
 
-
 function IlustracionHerramienta({ tipo }) {
   return (
     <svg viewBox="0 0 320 150" aria-hidden="true" focusable="false">

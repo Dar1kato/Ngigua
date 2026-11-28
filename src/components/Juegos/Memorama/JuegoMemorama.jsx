@@ -100,7 +100,7 @@ const items = [
     }
 ]
 
-export function JuegoMemorama() {
+export function JuegoMemorama({ palabras = palabras }) {
 
     const [tarjetas, setTarjetas] = useState(() => shuffle([...items]))
     const [primerTarjeta, setPrimeraTarjeta] = useState(null)

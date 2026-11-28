@@ -1,7 +1,11 @@
-const palabras = ["nchia", "kunxin", "kumichin", "kunthua", "nua", "thin", "nithe", "thuchjuin"]
+export function generarPalabra(palabras = []) {
+    const candidatas = palabras
+        .map(item => typeof item === 'string' ? item : item?.ng)
+        .filter(palabra => typeof palabra === 'string' && palabra.length > 0)
 
-export function generarPalabra() {
-    const palabra = palabras[Math.floor(Math.random() * palabras.length)]
+    if (candidatas.length === 0) return []
+
+    const palabra = candidatas[Math.floor(Math.random() * candidatas.length)]
     return [...palabra]
 }
 

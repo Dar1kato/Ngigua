@@ -31,8 +31,8 @@ function DibujoAhorcado({ intentos }) {
     )
 }
 
-export function JuegoAhorcado() {
-    const [palabra, setPalabra] = useState(generarPalabra)
+export function JuegoAhorcado({ palabras = []}) {
+    const [palabra, setPalabra] = useState(generarPalabra(palabras))
     const [letrasEncontradas, setletrasEncontradas] = useState([])
     const [letrasUsadas, setLetrasUsadas] = useState([])
     const [inputLetra, setInputLetra] = useState('')
@@ -40,7 +40,7 @@ export function JuegoAhorcado() {
     const entradaRef = useRef(null)
     const componiendo = useRef(false)
 
-    const victoria = checkVictoria(letrasEncontradas, palabra)
+    const victoria = palabra.length > 0 && checkVictoria(letrasEncontradas, palabra)
     const derrota = checkDerrota(intentos)
     const terminado = victoria || derrota
     const caracteres = Array.from(palabra)
@@ -86,7 +86,7 @@ export function JuegoAhorcado() {
         setletrasEncontradas([])
         setInputLetra('')
         setIntentos(MAX_INTENTOS)
-        setPalabra(generarPalabra())
+        setPalabra(generarPalabra(palabras))
         setLetrasUsadas([])
     }
 
@@ -115,17 +115,23 @@ export function JuegoAhorcado() {
 
                 <div className="ahorcado-panel-juego">
                     <span className="ahorcado-panel-etiqueta">Palabra secreta</span>
-                    <div className="ahorcado-palabra" aria-label="Letras de la palabra">
-                        {caracteres.map((letra, i) => {
-                            const encontrada = letrasEncontradas.includes(letra)
-                            return (
-                                <span key={i} className={`ahorcado-letra ${encontrada ? 'encontrada' : ''} ${derrota && !encontrada ? 'revelada' : ''}`}>
-                                    {encontrada || derrota ? letra : '•'}
-                                </span>
-                            )
-                        })}
-                    </div>
-                    <p className="ahorcado-restantes">{letrasRestantes} letras restantes</p>
+                    {caracteres.length === 0 ? (
+                        <p role="status">No hay palabras disponibles para jugar.</p>
+                    ) : (
+                        <>
+                            <div className="ahorcado-palabra" aria-label="Letras de la palabra">
+                                {caracteres.map((letra, i) => {
+                                    const encontrada = letrasEncontradas.includes(letra)
+                                    return (
+                                        <span key={i} className={`ahorcado-letra ${encontrada ? 'encontrada' : ''} ${derrota && !encontrada ? 'revelada' : ''}`}>
+                                            {encontrada || derrota ? letra : '•'}
+                                        </span>
+                                    )
+                                })}
+                            </div>
+                            <p className="ahorcado-restantes">{letrasRestantes} letras restantes</p>
+                        </>
+                    )}
 
                     <form className="ahorcado-formulario" onSubmit={e => e.preventDefault()}>
                         <label htmlFor="ahorcado-entrada">Introduce una letra</label>
@@ -153,7 +159,7 @@ export function JuegoAhorcado() {
                             autoCorrect="off"
                             spellCheck={false}
                             aria-describedby="ahorcado-ayuda-teclado"
-                            disabled={terminado}
+                            disabled={terminado || caracteres.length === 0}
                         />
                         <p id="ahorcado-ayuda-teclado" className="ahorcado-ayuda-teclado">
                             Usa tu teclado. Cada letra se comprueba automáticamente.

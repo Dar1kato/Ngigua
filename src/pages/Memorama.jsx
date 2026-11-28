@@ -7,10 +7,10 @@ El estilo de esta página se debe modificar en /styles/Memorama.css.
 import '../styles/Memorama.css'
 import { JuegoMemorama } from '../components/Juegos/Memorama/JuegoMemorama'
 
-export default function Memorama() {
+export default function Memorama({ palabras = []}) {
     return (
         <main>
-            <JuegoMemorama />
+            <JuegoMemorama palabras={palabras} />
         </main>
     )
 }

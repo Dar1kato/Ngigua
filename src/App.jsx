@@ -62,9 +62,9 @@ export default function App() {
 
         <Route path="/juegos" element={<Juegos />} />
 
-        <Route path="/juegos/memorama" element={<Memorama />} />
+        <Route path="/juegos/memorama" element={<Memorama palabras={palabras}/>} />
 
-        <Route path="/juegos/ahorcado" element={<Ahorcado />} />
+        <Route path="/juegos/ahorcado" element={<Ahorcado palabras={palabras} cargando={cargando}/>} />
 
         <Route path="/login" element={<Login />} />
 

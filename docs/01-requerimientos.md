@@ -16,7 +16,7 @@ Plataforma web para consultar y practicar vocabulario en ngigua, pensada para ap
 ## 2. Leyenda MoSCoW
 
 | Prioridad | Significado |
-|---|---|
+| --- | --- |
 | **Must Have** | Indispensable. Sin esto la demo no funciona. |
 | **Should Have** | Importante. Se hace si el tiempo lo permite, después de los Must. |
 | **Could Have** | Deseable. Solo si sobra tiempo. |
@@ -42,7 +42,7 @@ Cada registro tiene un `id` único y los campos `es`, `ng` y `categoria` son obl
 ## 4. Historias de usuario
 
 | ID | Rol | Historia | Prioridad |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | HU-01 | Usuario | Como usuario quiero una landing page, para facilitar la navegación por la página sin perderme. | Must |
 | HU-02 | Usuario | Como usuario quiero una página de traducción, para traducir mis palabras de español a ngigua. | Must |
 | HU-03 | Usuario | Como usuario quiero traducir de ngigua a español y viceversa, para consultar palabras en ambos sentidos. | Should |

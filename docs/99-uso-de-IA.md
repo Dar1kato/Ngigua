@@ -192,3 +192,15 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
 - **Cambios:**
   - `src/styles/styles.css`: Corrige la ruta de la imagen de fondo para servirla desde `public/`.
 - **Revisión humana:** Pendiente
+
+## 2026-11-27 · Corregir selección de palabra en ahorcado
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Copilot SDK en VS Code (modelo no especificado)
+- **Prompt:** "ayudame a debugear el error «palabra is not iterable» en generarPalabra, llamado desde JuegoAhorcado. (resumen)"
+- **Cambios:**
+  - `src/logic/ahorcado.js`: seleccionar palabras desde registros con campo `ng` y manejar listas vacías.
+  - `src/App.jsx`: pasar el estado de carga de vocabulario a la página del ahorcado.
+  - `src/pages/Ahorcado.jsx`: esperar la carga antes de montar el juego.
+  - `src/components/Juegos/Ahorcado/JuegoAhorcado.jsx`: evitar victorias o intentos con una palabra vacía.
+- **Revisión humana:** Pendiente
