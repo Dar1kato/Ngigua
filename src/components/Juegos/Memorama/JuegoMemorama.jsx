@@ -39,7 +39,6 @@ export function JuegoMemorama({ palabras = [] }) {
     }, [volteadas])
 
     function handleClickCartas(item) {
-
         if (bloqueo) return
 
         const tarjetasActualizadas =
@@ -66,27 +65,20 @@ export function JuegoMemorama({ palabras = [] }) {
         )
 
         if (primeraSeleccionada) {
-
             const encontrada = isPreja(
                 primeraSeleccionada,
                 nuevaTarjeta
             )
-
             if (encontrada) {
-
                 tarjetasSiguientes = emparejarTarjetas(
                     tarjetasSiguientes,
                     primeraSeleccionada,
                     nuevaTarjeta
                 )
-
                 setvolteadas(0)
-
             } else {
-
                 setBloqueo(true)
                 setvolteadas(2)
-
             }
 
             setPrimeraTarjeta(null)
@@ -101,11 +93,15 @@ export function JuegoMemorama({ palabras = [] }) {
         setTarjetas(tarjetasSiguientes)
     }
 
+    function handleNuevoJuego() {
+        setTarjetas(() => crearTarjetasMemorama(palabras, PALABRAS_POR_PARTIDA))
+        setvolteadas(0)
+
+    }
+
     return (
         <section className="memorama">
-
             <div className="memorama-encabezado">
-
                 <span className="memorama-etiqueta">
                     Aprende jugando
                 </span>
@@ -125,11 +121,9 @@ export function JuegoMemorama({ palabras = [] }) {
                         {tarjetas.length / 2}
                     </strong>
                 </div>
-
             </div>
 
             <div className="memorama-tablero">
-
                 {tarjetas.length === 0 ? (
                     <p role="status">No hay palabras con imagen disponibles para jugar.</p>
                 ) : (
@@ -142,9 +136,14 @@ export function JuegoMemorama({ palabras = [] }) {
                         />
                     ))
                 )}
-
             </div>
-
+            <button
+                className="memorama-reiniciar"
+                type="button"
+                onClick={handleNuevoJuego}
+            >
+                Nuevo Juego
+            </button>
         </section>
     )
 }

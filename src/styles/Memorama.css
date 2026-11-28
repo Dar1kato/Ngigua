@@ -58,6 +58,9 @@ body:has(.memorama) {
 
 .memorama .memorama-contador { display: inline-flex; align-items: center; gap: 12px; padding: 10px 17px; margin-top: 18px; background: #111910a0; color: var(--ng-muted); border: 1px solid var(--ng-borde); border-radius: 8px; font-size: .82rem; }
 .memorama .memorama-contador strong { font-size: 1.05rem; color: var(--ng-acento); font-weight: 650; }
+.memorama .memorama-reiniciar { display: block; min-height: 44px; margin: 24px auto 0; padding: 10px 24px; border: 0; border-radius: 8px; background: var(--ng-acento); color: #293225; font: inherit; font-size: .88rem; font-weight: 650; cursor: pointer; transition: background .2s, transform .2s; }
+.memorama .memorama-reiniciar:hover { background: #f0dcb2; transform: translateY(-2px); }
+.memorama .memorama-reiniciar:active { transform: translateY(1px); }
 .memorama .memorama-tablero { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: clamp(9px,1.8vw,18px); max-width: 900px; margin: auto; }
 .memorama .memorama-tarjeta { width: 100%; min-width: 0; aspect-ratio: 3 / 4; }
 .memorama .memorama-carta { width: 100%; height: 100%; padding: 0; position: relative; display: flex; align-items: center; justify-content: center; border: 1px solid #ddc08b66; border-radius: 13px; background: linear-gradient(145deg,#48543a,#202a21); color: var(--ng-texto); cursor: pointer; overflow: hidden; font-family: inherit; box-shadow: 0 4px 0 #101810, 0 9px 20px #10181070; transition: transform .25s, box-shadow .25s, background .25s; }
