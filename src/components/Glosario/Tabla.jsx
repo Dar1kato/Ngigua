@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, useRef } from 'react'
 import { filtrarDatos } from '../../logic/glosario'
 import Filtros from './Filtros'
 import Paginacion from './Paginacion'
@@ -34,6 +34,30 @@ export function Tabla({ palabras = [] }) {
     const primerIndex = ultimoIndex - tamañoTabla
     const postActual = itemsFiltrados.slice(primerIndex, ultimoIndex)
 
+    const audioRefs = useRef(new Map())
+    const [errorAudioId, setErrorAudioId] = useState(null)
+
+    async function reproducirAudio(item) {
+        const audio = audioRefs.current.get(item.id)
+        if (!audio) {
+            setErrorAudioId(item.id)
+            return
+        }
+
+        audioRefs.current.forEach((reproductor, id) => {
+            if (id !== item.id) reproductor.pause()
+        })
+        setErrorAudioId(null)
+
+        try {
+            audio.currentTime = 0
+            await audio.play()
+        } catch (error) {
+            console.error(`No se pudo reproducir el audio de "${item.ng}".`, error)
+            setErrorAudioId(item.id)
+        }
+    }
+
     return (
         <section className="ng-glosario" aria-label="Vocabulario ngigua">
             <header className="ng-glosario-encabezado">
@@ -58,7 +82,11 @@ export function Tabla({ palabras = [] }) {
             <div className="ng-glosario-tabla">
                 <table aria-label="Palabras en ngigua y español">
                     <thead>
-                        <tr><th scope="col">ID</th><th scope="col">Ngigua</th><th scope="col">Español</th><th scope="col">Categoría</th></tr>
+                        <tr><th scope="col">ID</th>
+                        <th scope="col">Ngigua</th>
+                        <th scope="col">Español</th>
+                        <th scope="col">Audio</th>
+                        <th scope="col">Categoría</th></tr>
                     </thead>
                     <tbody>
                         {postActual.map(item => (
@@ -66,10 +94,41 @@ export function Tabla({ palabras = [] }) {
                                 <td>{item.id}</td>
                                 <td className="ng-glosario-palabra">{item.ng}</td>
                                 <td>{item.es}</td>
+                                <td className="ng-glosario-audio">
+                                    <audio
+                                        ref={audio => {
+                                            if (audio) audioRefs.current.set(item.id, audio)
+                                            else audioRefs.current.delete(item.id)
+                                        }}
+                                        src={item.audio || undefined}
+                                        preload="none"
+                                        onError={event => {
+                                            console.error(
+                                                `No se pudo cargar el audio de "${item.ng}".`,
+                                                event.currentTarget.error
+                                            )
+                                            setErrorAudioId(item.id)
+                                        }}
+                                    />
+                                    <button
+                                        className="ng-glosario-audio-boton"
+                                        type="button"
+                                        disabled={!item.audio}
+                                        aria-label={`Reproducir audio de ${item.ng}`}
+                                        onClick={() => reproducirAudio(item)}
+                                    >
+                                        <span aria-hidden="true">▶</span>
+                                    </button>
+                                    {errorAudioId === item.id && (
+                                        <span className="ng-glosario-audio-error" role="alert">
+                                            No se pudo reproducir el audio.
+                                        </span>
+                                    )}
+                                </td>
                                 <td><span className="ng-glosario-categoria">{item.categoria}</span></td>
                             </tr>
                         ))}
-                        {!postActual.length && <tr><td colSpan={4} className="ng-glosario-vacio">{busqueda || categoria ? 'No se encontraron palabras con estos filtros.' : 'No hay palabras para mostrar.'}</td></tr>}
+                        {!postActual.length && <tr><td colSpan={5} className="ng-glosario-vacio">{busqueda || categoria ? 'No se encontraron palabras con estos filtros.' : 'No hay palabras para mostrar.'}</td></tr>}
                     </tbody>
                 </table>
             </div>

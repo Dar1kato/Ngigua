@@ -204,3 +204,12 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
   - `src/pages/Ahorcado.jsx`: esperar la carga antes de montar el juego.
   - `src/components/Juegos/Ahorcado/JuegoAhorcado.jsx`: evitar victorias o intentos con una palabra vacía.
 - **Revisión humana:** Pendiente
+
+## 2026-11-27 · Corregir reproducción de audio del glosario
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Copilot SDK en VS Code (modelo no especificado)
+- **Prompt:** "ayudame a debugear por que el boton de play de audio por palabra no esta reproducioendose correctamente"
+- **Cambios:**
+  - `src/components/Glosario/Tabla.jsx`: asociar cada botón con su reproductor y mostrar errores de audio.
+- **Revisión humana:** Pendiente
