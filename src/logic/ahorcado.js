@@ -6,7 +6,13 @@ export function generarPalabra(palabras = []) {
     if (candidatas.length === 0) return []
 
     const palabra = candidatas[Math.floor(Math.random() * candidatas.length)]
+
     return [...palabra]
+}
+
+export function obtenerPista(palabras = [], palabra = '') {
+    const palabraElegida = Array.isArray(palabra) ? palabra.join('') : palabra
+    return palabras.find(item => item.ng === palabraElegida)?.es ?? ''
 }
 
 export function verificarLetra(letra, letrasUsadas, palabra) {
