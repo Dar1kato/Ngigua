@@ -138,17 +138,6 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
   - Validación: build y ESLint del componente aprobados.
 - **Revisión humana:** Pendiente
 
-## 2026-11-18 · Corrección de errores de CI en Ahorcado
-
-- **Autor:** Daniel Peña
-- **Herramienta / modelo:** Copilot SDK en VS Code / modelo no disponible
-- **Prompt:** "Corrige los errores de ESLint/parse reportados por CI: reasignación de `victoria`/`derrota` en `JuegoAhorcado.jsx` e import inválido en `Ahorcado/index.js`. (resumen)"
-- **Cambios:**
-  - `src/components/Juegos/Ahorcado/JuegoAhorcado.jsx`: Elimina la reasignación de valores derivados; el reinicio vuelve a calcularlos desde el estado.
-  - `src/components/Juegos/Ahorcado/index.js`: Reexporta `JuegoAhorcado` como predeterminado con sintaxis válida.
-  - Validación: ESLint del repositorio y build aprobados.
-- **Revisión humana:** Pendiente
-
 ## 2026-11-23 · Consolidación del panel de administración
 
 - **Autor:** Daniel Peña
@@ -212,4 +201,14 @@ Registro de las tareas realizadas con ayuda de agentes de IA en este proyecto. C
 - **Prompt:** "ayudame a debugear por que el boton de play de audio por palabra no esta reproducioendose correctamente"
 - **Cambios:**
   - `src/components/Glosario/Tabla.jsx`: asociar cada botón con su reproductor y mostrar errores de audio.
+- **Revisión humana:** Pendiente
+
+## 2026-11-27 · Diseñar la columna de audio del glosario
+
+- **Autor:** Daniel Peña
+- **Herramienta / modelo:** Copilot SDK en VS Code (modelo no especificado)
+- **Prompt:** "Me ayudas a darle estilo a la tabla para acomodar la seccion de audio y para darle diseño al boton de reproducción?"
+- **Cambios:**
+  - `src/components/Glosario/Tabla.jsx`: aplicar clase al botón de reproducción y corregir el ancho de la fila vacía.
+  - `src/styles/Glosario.css`: distribuir columnas y diseñar el botón de audio con ajustes responsivos.
 - **Revisión humana:** Pendiente

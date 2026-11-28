@@ -146,7 +146,7 @@ Cada registro tiene un `id` único y los campos `es`, `ng` y `categoria` son obl
 |---|---|
 | ME-05 | Palabras aleatorias de entre todas en la DB. |
 | ME-06 | Cronómetro. |
-
+: 
 **Won't Have**
 
 | ID | Requisito |
