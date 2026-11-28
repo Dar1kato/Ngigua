@@ -131,7 +131,7 @@ export function JuegoAhorcado({ palabras = []}) {
                                 })}
                             </div>
                             <p className="ahorcado-restantes">{letrasRestantes} letras restantes</p>
-                            {intentos < 5 && <p>Pista: "{obtenerPista(palabras, palabra)}" en español</p>}
+                            {intentos < 6 && <p>Pista: "{obtenerPista(palabras, palabra)}" en español</p>}
                         </>
                     )}
 

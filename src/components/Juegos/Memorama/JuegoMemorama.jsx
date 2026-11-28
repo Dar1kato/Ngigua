@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react'
 import {
-    shuffle,
+    crearTarjetasMemorama,
     girarTarjeta,
     isPreja,
     updateTarjetas,
@@ -12,97 +12,13 @@ import {
 import { Tarjeta } from './Tarjeta'
 import '../../../styles/Memorama.css'
 
-const items = [
-    {
-        "id": "01",
-        "tipo": "texto",
-        "palabra": "Abrazar",
-        "ng": "tjuua",
-        "emparejada": false,
-        "volteada": false
-    },
-    {
-        "id": "02",
-        "tipo": "img",
-        "palabra": "Abrazar",
-        "ng": "tjuua",
-        "img": "/img/Abrazar.jpg",
-        "emparejada": false,
-        "volteada": false
-    },
-    {
-        "id": "03",
-        "tipo": "texto",
-        "palabra": "Abrir",
-        "ng": "danthjee",
-        "emparejada": false,
-        "volteada": false
-    },
-    {
-        "id": "04",
-        "tipo": "img",
-        "palabra": "Abrir",
-        "ng": "danthjee",
-        "img": "/img/Abrir.jpg",
-        "emparejada": false,
-        "volteada": false
-    },
-    {
-        "id": "05",
-        "tipo": "texto",
-        "palabra": "Acariciar",
-        "ng": null,
-        "emparejada": false,
-        "volteada": false
-    },
-    {
-        "id": "06",
-        "tipo": "img",
-        "palabra": "Acariciar",
-        "ng": null,
-        "img": "/img/Acariciar.jpg",
-        "emparejada": false,
-        "volteada": false
-    },
-    {
-        "id": "07",
-        "tipo": "texto",
-        "palabra": "Adornar",
-        "ng": "nchetsujin",
-        "emparejada": false,
-        "volteada": false
-    },
-    {
-        "id": "08",
-        "tipo": "img",
-        "palabra": "Adornar",
-        "ng": "nchetsujin",
-        "img": "/img/Adornar.jpg",
-        "emparejada": false,
-        "volteada": false
-    },
-    {
-        "id": "09",
-        "tipo": "texto",
-        "palabra": "Agradecer",
-        "ng": "thexruxi'in",
-        "emparejada": false,
-        "volteada": false
-    },
-    {
-        "id": "10",
-        "tipo": "img",
-        "palabra": "Agradecer",
-        "ng": "thexruxi'in",
-        "img": "/img/Agradecer.jpg",
-        "emparejada": false,
-        "volteada": false
-    }
-]
+const PALABRAS_POR_PARTIDA = 5
 
-export function JuegoMemorama({ palabras = palabras }) {
+export function JuegoMemorama({ palabras = [] }) {
 
-    const [tarjetas, setTarjetas] = useState(() => shuffle([...items]))
+    const [tarjetas, setTarjetas] = useState(() =>
+        crearTarjetasMemorama(palabras, PALABRAS_POR_PARTIDA)
+    )
     const [primerTarjeta, setPrimeraTarjeta] = useState(null)
     const [volteadas, setvolteadas] = useState(0)
     const [bloqueo, setBloqueo] = useState(false)
@@ -214,14 +130,18 @@ export function JuegoMemorama({ palabras = palabras }) {
 
             <div className="memorama-tablero">
 
-                {tarjetas.map((item) => (
-                    <Tarjeta
-                        key={item.id}
-                        id={item.id}
-                        item={item}
-                        handleClick={handleClickCartas}
-                    />
-                ))}
+                {tarjetas.length === 0 ? (
+                    <p role="status">No hay palabras con imagen disponibles para jugar.</p>
+                ) : (
+                    tarjetas.map((item) => (
+                        <Tarjeta
+                            key={item.id}
+                            id={item.id}
+                            item={item}
+                            handleClick={handleClickCartas}
+                        />
+                    ))
+                )}
 
             </div>
 

@@ -28,7 +28,7 @@ export function Tarjeta({ item, handleClick }) {
 
                 {visible && item.tipo === "img" && (
                     <img
-                        src={item.img}
+                        src={item.imagen}
                         alt={item.palabra}
                         className="memorama-imagen"
                     />

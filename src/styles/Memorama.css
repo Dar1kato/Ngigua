@@ -1,7 +1,7 @@
 /* Identidad visual del inicio Ngigua. No requiere cambios en JSX. */
 body:has(.memorama) {
   background: linear-gradient(115deg, rgba(21,28,22,.93), rgba(41,50,37,.78)),
-    url('/img/imagen3.png') center 30% / cover no-repeat fixed, #293225;
+    #293225;
 }
 .memorama {
   --ng-acento: #ddc08b;

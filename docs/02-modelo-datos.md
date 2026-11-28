@@ -6,27 +6,29 @@ Cada documento de la colección `palabras` representa una entrada del vocabulari
 
 | Campo | Tipo | Requisito | Descripción |
 |---|---|---|---|
-| `id` | Cadena o número | Obligatorio | Identificador secuencial usado para ordenar las palabras. Las nuevas entradas siguen el formato de los identificadores existentes; por ejemplo, `"0001"`. |
+| `id` | Cadena | Obligatorio | Identificador secuencial usado para ordenar las palabras; por ejemplo, `"0322"`. |
 | `ng` | Cadena | Obligatorio | Palabra o expresión en ngigua. |
 | `es` | Cadena | Obligatorio | Traducción al español. |
 | `categoria` | Cadena | Obligatorio | Categoría en minúsculas, por ejemplo `"sustantivo"` o `"verbo"`. |
-| `imagen` | Cadena | Opcional | URL o ruta de la imagen. Si se deja vacía en el formulario, se guarda como `""`. |
-| `audio` | Cadena | Opcional | URL o ruta del audio. Si se deja vacío en el formulario, se guarda como `""`. |
+| `imagen` | Cadena | Opcional | URL de descarga de la imagen almacenada en Firebase Storage. Si se deja vacía en el formulario, se guarda como `""`. |
+| `audio` | Cadena | Opcional | URL de descarga del audio almacenado en Firebase Storage. Si se deja vacío en el formulario, se guarda como `""`. |
 
 Ejemplo de documento:
 
 ```json
 {
-  "id": "0001",
-  "ng": "nchia",
-  "es": "casa",
-  "categoria": "sustantivo",
-  "imagen": "/img/casa.png",
-  "audio": "/audio/casa.mp3"
+  "audio": "URL de descarga de Firebase Storage",
+  "categoria": "verbo",
+  "es": "Asustar",
+  "id": "0322",
+  "imagen": "URL de descarga de Firebase Storage",
+  "ng": "nchexraon"
 }
 ```
 
 Firestore también asigna a cada documento un identificador propio. La aplicación lo expone como `docId` al leer los datos y lo usa para editar o eliminar el documento; `docId` no forma parte del contenido guardado del ejemplo.
+
+Para el memorama, cada documento con `ng`, `es` e `imagen` no vacíos puede generar una pareja de tarjetas: una tarjeta de palabra y otra que muestra la imagen de Firebase Storage. Por eso, cinco palabras con imagen producen diez tarjetas.
 
 ## Compatibilidad con datos anteriores
 
